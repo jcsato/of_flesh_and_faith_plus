@@ -82,7 +82,7 @@ The Anatomists have gotten a small update as well, with a new potion added for t
 
 ## Compatibility
 
-Of Flesh and Faith+ seeks to be as save game save and compatible as it can be. The mod _should_ be save to remove at any time, provided the save in question does not use one of the new origins added by the mod or the Of Flesh and Faith DLC itself.
+Of Flesh and Faith+ seeks to be as save game save and compatible as it can be. The mod _should_ be safe to remove at any time, provided the save in question does not use one of the new origins added by the mod or the Of Flesh and Faith DLC itself.
 
 A best-effort attempt will be made to note any save-game incompatible updates to the mod on the releases page.
 
@@ -107,5 +107,6 @@ A best-effort attempt will be made to note any save-game incompatible updates to
 
 **Principal Playtesting**
 - Doubt
+- Gunbuster
 - Matrick
 - Santo
