@@ -27,6 +27,7 @@ northern_assassin_offers_to_join_event <- inherit("scripts/events/event",
 												function getResult(_event) { return "C"; }
 											}
 										]
+
 							function start(_event) { }
 						});
 
@@ -48,6 +49,7 @@ northern_assassin_offers_to_join_event <- inherit("scripts/events/event",
 												}
 											}
 										]
+
 							function start(_event) {
 								local roster = World.getTemporaryRoster();
 								_event.m.Dude = roster.create("scripts/entity/tactical/player");
@@ -93,8 +95,7 @@ northern_assassin_offers_to_join_event <- inherit("scripts/events/event",
 						});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		if(!Const.DLC.Desert || !Const.DLC.Paladins)
 			return;
 
@@ -114,17 +115,13 @@ northern_assassin_offers_to_join_event <- inherit("scripts/events/event",
 		m.Score = 6;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() { }
 
-	function onPrepareVariables(_vars)
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([ "price", "3000" ]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		m.Dude = null;
 	}
 })

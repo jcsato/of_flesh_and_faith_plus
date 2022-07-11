@@ -1,162 +1,164 @@
-::mods_hookNewObject("skills/actives/bandage_ally_skill", function(bas) {
-	local onAfterUpdate		= bas.onAfterUpdate;
-	local originalAPCost	= bas.m.ActionPointCost;
+::mods_queue("of_flesh_and_faith_plus", "", function() {
+	::mods_hookNewObject("skills/actives/bandage_ally_skill", function(bas) {
+		local onAfterUpdate		= bas.onAfterUpdate;
+		local originalAPCost	= bas.m.ActionPointCost;
 
-	bas.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		bas.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		/**
-		 * A couple notes here:
-		 *	onAfterUpdate is run multiple times - seemingly twice (at least with a container)
-		 *	This is why we can't just say m.ActionPointCost -= 1; all our AP will be reduced
-		 *  by 2 instead of 1. Curiously, FatigueCostMult seems to be updated separately on
-		 *  the last call. This is why we don't bother just checking if we've already applied
-		 *  the -AP and early exiting; we *want* it to run multiple times to pick up the
-		 *  update to m.FatigueCostMult.
-		 */
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			/**
+			* A couple notes here:
+			*	onAfterUpdate is run multiple times - seemingly twice (at least with a container)
+			*	This is why we can't just say m.ActionPointCost -= 1; all our AP will be reduced
+			*  by 2 instead of 1. Curiously, FatigueCostMult seems to be updated separately on
+			*  the last call. This is why we don't bother just checking if we've already applied
+			*  the -AP and early exiting; we *want* it to run multiple times to pick up the
+			*  update to m.FatigueCostMult.
+			*/
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/coat_with_poison_skill", function(cwps) {
-	local onAfterUpdate		= cwps.onAfterUpdate;
-	local originalAPCost	= cwps.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/coat_with_poison_skill", function(cwps) {
+		local onAfterUpdate		= cwps.onAfterUpdate;
+		local originalAPCost	= cwps.m.ActionPointCost;
 
-	cwps.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		cwps.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/coat_with_spider_poison_skill", function(cwsps) {
-	local onAfterUpdate		= cwsps.onAfterUpdate;
-	local originalAPCost	= cwsps.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/coat_with_spider_poison_skill", function(cwsps) {
+		local onAfterUpdate		= cwsps.onAfterUpdate;
+		local originalAPCost	= cwsps.m.ActionPointCost;
 
-	cwsps.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		cwsps.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/drink_antidote_skill", function(das) {
-	local onAfterUpdate		= das.onAfterUpdate;
-	local originalAPCost	= das.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/drink_antidote_skill", function(das) {
+		local onAfterUpdate		= das.onAfterUpdate;
+		local originalAPCost	= das.m.ActionPointCost;
 
-	das.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		das.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/throw_acid_flask", function(taf) {
-	local onAfterUpdate		= taf.onAfterUpdate;
-	local originalAPCost	= taf.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/throw_acid_flask", function(taf) {
+		local onAfterUpdate		= taf.onAfterUpdate;
+		local originalAPCost	= taf.m.ActionPointCost;
 
-	taf.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		taf.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/throw_daze_bomb_skill", function(tdbs) {
-	local onAfterUpdate		= tdbs.onAfterUpdate;
-	local originalAPCost	= tdbs.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/throw_daze_bomb_skill", function(tdbs) {
+		local onAfterUpdate		= tdbs.onAfterUpdate;
+		local originalAPCost	= tdbs.m.ActionPointCost;
 
-	tdbs.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		tdbs.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/throw_fire_bomb_skill", function(tfbs) {
-	local onAfterUpdate		= tfbs.onAfterUpdate;
-	local originalAPCost	= tfbs.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/throw_fire_bomb_skill", function(tfbs) {
+		local onAfterUpdate		= tfbs.onAfterUpdate;
+		local originalAPCost	= tfbs.m.ActionPointCost;
 
-	tfbs.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		tfbs.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/throw_holy_water", function(thw) {
-	local onAfterUpdate		= thw.onAfterUpdate;
-	local originalAPCost	= thw.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/throw_holy_water", function(thw) {
+		local onAfterUpdate		= thw.onAfterUpdate;
+		local originalAPCost	= thw.m.ActionPointCost;
 
-	thw.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		thw.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/throw_net", function(tn) {
-	local onAfterUpdate		= tn.onAfterUpdate;
-	local originalAPCost	= tn.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/throw_net", function(tn) {
+		local onAfterUpdate		= tn.onAfterUpdate;
+		local originalAPCost	= tn.m.ActionPointCost;
 
-	tn.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		tn.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/throw_smoke_bomb_skill", function(tsbs) {
-	local onAfterUpdate		= tsbs.onAfterUpdate;
-	local originalAPCost	= tsbs.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/throw_smoke_bomb_skill", function(tsbs) {
+		local onAfterUpdate		= tsbs.onAfterUpdate;
+		local originalAPCost	= tsbs.m.ActionPointCost;
 
-	tsbs.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		tsbs.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
-});
+	});
 
-::mods_hookNewObject("skills/actives/release_falcon_skill", function(rfs) {
-	local onAfterUpdate		= rfs.onAfterUpdate;
-	local originalAPCost	= rfs.m.ActionPointCost;
+	::mods_hookNewObject("skills/actives/release_falcon_skill", function(rfs) {
+		local onAfterUpdate		= rfs.onAfterUpdate;
+		local originalAPCost	= rfs.m.ActionPointCost;
 
-	rfs.onAfterUpdate = function (_properties) {
-		onAfterUpdate(_properties);
+		rfs.onAfterUpdate = function (_properties) {
+			onAfterUpdate(_properties);
 
-		if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
-			m.ActionPointCost = originalAPCost - 1;
-			m.FatigueCostMult *= 0.5;
+			if (getContainer().getActor().getSkills().hasSkill("effects.assassin_speciality_05")) {
+				m.ActionPointCost = originalAPCost - 1;
+				m.FatigueCostMult *= 0.5;
+			}
 		}
-	}
+	});
 });

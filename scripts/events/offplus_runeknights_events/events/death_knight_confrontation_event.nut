@@ -13,6 +13,7 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 		m.Title		= "Along the way...";
 		m.Cooldown	= 99999.0 * World.getTime().SecondsPerDay;
 
+
 		m.Screens.push({
 							ID			= "A"
 							Text		= "{%terrainImage%As you make your way through the wilderness, you are stopped by a peculiar sight indeed. A barbarian warrior clad in thick plated armor stands in the middle of your path - and you see that resting beneath his tented, calloused hands is Ironhand's rune blade! You'd thought the weapon lost forever, but here it is before your eyes, the familiar pocks and scratches of its runed surface immediately marking it as the real thing. The man addresses you.%SPEECH_ON%I know who you are. Old Ironhand is displeased by your carelessness with his gift. But he sees potential in you. I was tasked with retrieving his blade and returning it you, if you prove yourselves worthy. Put forth your greatest warrior. We shall duel, and we shall die. Once the price is paid, the blade shall be yours again.%SPEECH_OFF%You consider the man and his offer. Whoever he is, it's clear he's extremely dangerous, but if he acts under Old Ironhand's auspice you can at least take him at his word.}"
@@ -47,8 +48,7 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 									});
 								}
 
-								Options.push(
-								{
+								Options.push({
 									Text = "There'll be no duels today."
 									function getResult(_event) { return "D"; }
 								});
@@ -96,8 +96,8 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 												}
 											}
 										]
-							function start(_event)
-							{
+
+							function start(_event) {
 								Characters.push(_event.m.Dude.getImagePath());
 
 								List.push({	id = 13, icon = "ui/icons/kills.png", text = _event.m.Champion.getName() + " has died" });
@@ -114,11 +114,9 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 									List.push({ id = 10, icon = "ui/items/" + item.getIcon(), text = "You gain " + item.getName() });
 								}
 
-
 								local brothers = World.getPlayerRoster().getAll();
 
-								foreach( bro in brothers )
-								{
+								foreach( bro in brothers ) {
 									if (bro.getBackground().getID() == "background.barbarian" || bro.getFlags().getAsInt("numActiveRunes") >= 3) {
 										bro.improveMood(0.5, "Feels that Old Ironhand has set the company on the right path");
 
@@ -151,8 +149,8 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 												function getResult(_event) { return 0; }
 											}
 										]
-							function start(_event)
-							{
+
+							function start(_event) {
 								Characters.push(_event.m.Champion.getImagePath());
 
 								local item = new("scripts/items/weapons/legendary/barbarian_runeblade");
@@ -174,20 +172,16 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 							Options		= [
 											{
 												Text = "We'll see Ironhand's will done with the weapons we have now."
-												function getResult(_event)
-												{
-													return 0;
-												}
+												function getResult(_event) { return 0; }
 											}
 										]
-							function start(_event)
-							{
+
+							function start(_event) {
 								Characters.push(_event.m.Dude.getImagePath());
 
 								local brothers = World.getPlayerRoster().getAll();
 
-								foreach( bro in brothers )
-								{
+								foreach( bro in brothers ) {
 									if (bro.getBackground().getID() == "background.barbarian" || bro.getFlags().getAsInt("numActiveRunes") >= 3) {
 										bro.worsenMood(0.75, "Is worried the company has strayed from the followings of Old Ironhand");
 
@@ -199,8 +193,7 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 						});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		if (!Const.DLC.Wildmen || !Const.DLC.Paladins)
 			return;
 
@@ -213,17 +206,15 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 		if (World.Assets.getStash().getNumberOfEmptySlots() < 2)
 			return;
 
-		if(World.Assets.getBusinessReputation() < 1800)
+		if (World.Assets.getBusinessReputation() < 1800)
 			return;
 
 		local towns = World.EntityManager.getSettlements();
 		local nearTown = false;
 		local playerTile = World.State.getPlayer().getTile();
 
-		foreach( t in towns )
-		{
-			if (t.getTile().getDistanceTo(playerTile) <= 3)
-			{
+		foreach( t in towns ) {
+			if (t.getTile().getDistanceTo(playerTile) <= 3) {
 				nearTown = true;
 				break;
 			}
@@ -236,8 +227,7 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 		local haveRuneblade = false;
 		local champion_candidates = []
 
-		foreach( bro in brothers )
-		{
+		foreach( bro in brothers ) {
 			local item = bro.getItems().getItemAtSlot(Const.ItemSlot.Mainhand);
 
 			if (item != null && item.getID() == "weapon.barbarian_runeblade")
@@ -247,8 +237,7 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 				champion_candidates.push(bro);
 		}
 
-		if (!haveRuneblade)
-		{
+		if (!haveRuneblade) {
 			local stash = World.Assets.getStash().getItems();
 
 			foreach( item in stash )
@@ -272,17 +261,13 @@ death_knight_confrontation_event <- inherit("scripts/events/event",
 		m.Score = 10;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() { }
 
-	function onPrepareVariables(_vars)
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([ "champion", m.Champion != null ? m.Champion.getName() : "" ]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		m.Champion				= null;
 		m.ChampionCandidates	= [];
 		m.Dude					= null;

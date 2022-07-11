@@ -43,7 +43,6 @@ explorers_anatomist_joins_event <- inherit("scripts/events/event",
 								Characters.push(_event.m.Dude.getImagePath());
 							}
 						});
-
 		m.Screens.push({
 							ID			= "B"
 							Text		= "[img]gfx/ui/events/event_184.png[/img]{You interrupt the man and explain that if he travels with you it's almost guaranteed he'll take on the Rot too. He looks you square in the eye.%SPEECH_ON%Field work comes with risk, that is why most avoid it - and precisely why it is so important. I'm prepared for what is to come, Captain.%SPEECH_OFF%You shrug and offer your hand to welcome him aboard. He shakes it without hesitation.}"
@@ -72,7 +71,7 @@ explorers_anatomist_joins_event <- inherit("scripts/events/event",
 
 	function onUpdateScore()
 	{
-		if(!Const.DLC.Paladins)
+		if(!Const.DLC.Unhold || !Const.DLC.Paladins)
 			return;
 
 		if(World.Assets.getOrigin().getID() != "scenario.explorers")

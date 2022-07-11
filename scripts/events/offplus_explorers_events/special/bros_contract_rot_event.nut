@@ -11,7 +11,6 @@ bros_contract_rot_event <- inherit("scripts/events/event",
 		m.Title		= "During camp...";
 		m.IsSpecial = true;
 
-		// Screen A
 		m.Screens.push({
 							ID			= "A"
 							Text		= "[img]gfx/ui/events/event_18.png[/img]{You meander through camp to take stock of the men, and to your dismay find that the Rot has taken firmer hold of the %companyname%. %randombrother% is vomiting his guts out in a corner, black bile spewing onto the ground, and a number of the other men have had a truly depressing variety of new rashes, maladies, and ailments manifest. The men are understandably glum. | %randombrother% enters your tent, stifling a cough as he does.%SPEECH_ON%Sir, you should come take a look at this.%SPEECH_OFF%Around the camp men are wailing and groaning, scratching their throats and retching and generally existing in a state of newfound misery. It seems the Rot has claimed more victims. | It seems the Pillager Rot has lived up to its name once again, having picked the %companyname%'s camp as the target for its latest raid. You find the men incapacitated to varying degrees, doubled over and scratching themselves furiously and drenched in sweat, and mysterious black boils have broken out on %randombrother%'s skin. Some of the men are definitely regretting the choices that led them here, and mood in the camp is generally dour. | You find %randombrother% wheezing uncontrollably. He looks at you, attempting to form a sentence, but can't get the words out. Giving up, he points you to a nearby tent where you find several of the other men are writhing on the ground, nursing ailments and plagues that came over them in the night. Your fears are confirmed when you see blackened veins pulsate under one man's skin; the Rot has come for the %companyname% again.}"
@@ -22,11 +21,10 @@ bros_contract_rot_event <- inherit("scripts/events/event",
 											{
 												Text = "{We have to find a cure soon. | Bad news, indeed. | Fark the Rot! | All the more reason to find a cure.}"
 												function getResult(_event) { return 0;}
-											},
+											}
 										  ]
 
-							function start(_event)
-							{
+							function start(_event) {
 								local brothers = World.getPlayerRoster().getAll();
 								foreach( bro in brothers ) {
 									if (Time.getVirtualTimeF() - bro.getHireTime() <= World.getTime().SecondsPerDay * 2.0)
@@ -60,8 +58,7 @@ bros_contract_rot_event <- inherit("scripts/events/event",
 					   });
 	}
 
-	function isValid()
-	{
+	function isValid() {
 		if (!Const.DLC.Paladins || !Const.DLC.Unhold)
 			return false;
 
@@ -74,8 +71,7 @@ bros_contract_rot_event <- inherit("scripts/events/event",
 		if (Time.getVirtualTimeF() - World.Events.getLastBattleTime() < 5.0)
 			return false;
 
-		if (World.getTime().Days > World.Statistics.getFlags().getAsInt("CursedExplorersLastRotCheckedDay"))
-		{
+		if (World.getTime().Days > World.Statistics.getFlags().getAsInt("CursedExplorersLastRotCheckedDay")) {
 			World.Statistics.getFlags().set("CursedExplorersLastRotCheckedDay", World.getTime().Days);
 
 			if (Math.rand(1, 100) <= 25 * (World.getTime().Days - World.Statistics.getFlags().getAsInt("CursedExplorersLastRotEvent") - 8))
@@ -85,16 +81,11 @@ bros_contract_rot_event <- inherit("scripts/events/event",
 		return false;
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		return;
 	}
 
-	function onPrepareVariables(_vars)
-	{
-	}
+	function onPrepareVariables(_vars) { }
 
-	function onClear()
-	{
-	}
+	function onClear() { }
 })

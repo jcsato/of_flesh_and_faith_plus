@@ -16,8 +16,7 @@ assassin_poison_01_effect <- inherit("scripts/skills/skill",
 		m.SoundOnUse	= [ "sounds/combat/poison_applied_01.wav", "sounds/combat/poison_applied_02.wav" ];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret =
 		[
 			{ id = 1, type = "title", text = getName() }
@@ -30,8 +29,7 @@ assassin_poison_01_effect <- inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
 		if (_damageInflictedHitpoints < Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0)
 			return;
 
@@ -41,8 +39,7 @@ assassin_poison_01_effect <- inherit("scripts/skills/skill",
 		if (!_targetEntity.getFlags().has("undead"))
 			return;
 
-		if (!_targetEntity.isHiddenToPlayer())
-		{
+		if (!_targetEntity.isHiddenToPlayer()) {
 			if (m.SoundOnUse.len() != 0)
 				Sound.play(m.SoundOnUse[Math.rand(0, m.SoundOnUse.len() - 1)], Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
 
@@ -55,4 +52,3 @@ assassin_poison_01_effect <- inherit("scripts/skills/skill",
 		_targetEntity.getSkills().add(new("scripts/skills/effects/assassin_poisoned_01_effect"));
 	}
 });
-

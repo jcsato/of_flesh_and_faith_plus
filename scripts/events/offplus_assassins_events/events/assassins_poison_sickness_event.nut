@@ -44,12 +44,11 @@ assassins_poison_sickness_event <- inherit("scripts/events/event",
 					   });
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		if (!Const.DLC.Desert || !Const.DLC.Paladins)
 			return;
 
-		if(World.Assets.getOrigin().getID() != "scenario.southern_assassins")
+		if (World.Assets.getOrigin().getID() != "scenario.southern_assassins")
 			return;
 
 		local brothers = World.getPlayerRoster().getAll();
@@ -65,15 +64,9 @@ assassins_poison_sickness_event <- inherit("scripts/events/event",
 		m.Score = Math.min(2 * poison_candidates.len(), 15);
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() { }
 
-	function onPrepareVariables(_vars)
-	{
-	}
+	function onPrepareVariables(_vars) { }
 
-	function onClear()
-	{
-	}
+	function onClear() { }
 })

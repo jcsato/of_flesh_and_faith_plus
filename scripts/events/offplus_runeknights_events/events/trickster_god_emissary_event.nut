@@ -108,14 +108,10 @@ trickster_god_emissary_event <- inherit("scripts/events/event",
 							Options		= [
 											{
 												Text = "Well, alright."
-												function getResult(_event)
-												{
-													return 0;
-												}
+												function getResult(_event) { return 0; }
 											}
 										]
-							function start(_event)
-							{
+							function start(_event) {
 								Characters.push(_event.m.Barbarian.getImagePath());
 
 								_event.m.Barbarian.worsenMood(0.75, "You refused to take in his long-lost kin");
@@ -125,8 +121,7 @@ trickster_god_emissary_event <- inherit("scripts/events/event",
 						});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		if (!Const.DLC.Wildmen || !Const.DLC.Paladins)
 			return;
 
@@ -149,8 +144,7 @@ trickster_god_emissary_event <- inherit("scripts/events/event",
 		local brothers = World.getPlayerRoster().getAll();
 		local barbarian_candidates = [];
 
-		foreach( bro in brothers )
-		{
+		foreach( bro in brothers ) {
 			if (bro.getBackground().getID() == "background.barbarian")
 				barbarian_candidates.push(bro);
 		}
@@ -161,17 +155,13 @@ trickster_god_emissary_event <- inherit("scripts/events/event",
 		m.Score = 7;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() { }
 
-	function onPrepareVariables(_vars)
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([ "barbarian", m.Barbarian != null ? m.Barbarian.getNameOnly() : "" ]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		m.Barbarian		= null;
 		m.Dude			= null;
 	}

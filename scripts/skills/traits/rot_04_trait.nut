@@ -31,13 +31,11 @@ rot_04_trait <- inherit("scripts/skills/traits/character_trait",
 		return ret;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		getContainer().getActor().getFlags().increment("CursedExplorersRotsActive");
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		getContainer().getActor().getFlags().increment("CursedExplorersRotsActive", -1);
 	}
 

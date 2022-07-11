@@ -71,15 +71,9 @@ assassins_training_accident_event <- inherit("scripts/events/event",
 		m.Score = Math.min(2 * speciality_candidates.len(), 18);
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() { }
 
-	function onPrepareVariables(_vars)
-	{
-	}
+	function onPrepareVariables(_vars) { }
 
-	function onClear()
-	{
-	}
+	function onClear() { }
 })

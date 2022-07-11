@@ -21,35 +21,30 @@ assassin_poisoned_04_effect <- inherit("scripts/skills/skill",
 		m.IsRemovedAfterBattle	= true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character is afflicted by a vicious poison that clouds his vision and senses. [color=" + Const.UI.Color.NegativeValue + "]-" + m.VisionPenalty + "[/color] Vision and [color=" + Const.UI.Color.NegativeValue + "]-" + (m.SkillMultPenalty * 100) + "%[/color] Melee and Ranged Skill for [color=" + Const.UI.Color.NegativeValue + "]" + m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function resetTime()
-	{
+	function resetTime() {
 		m.TurnsLeft = 2;
 
-		if(getContainer().hasSkill("trait.ailing"))
+		if (getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		m.TurnsLeft = 2;
 
-		if(getContainer().hasSkill("trait.ailing"))
+		if (getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function onTurnEnd()
-	{
-		if(--m.TurnsLeft <= 0)
+	function onTurnEnd() {
+		if (--m.TurnsLeft <= 0)
 			removeSelf();
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.Vision			-= m.VisionPenalty;
 		_properties.MeleeSkillMult	*= (1.0 - m.SkillMultPenalty);
 		_properties.RangedSkillMult	*= (1.0 - m.SkillMultPenalty);

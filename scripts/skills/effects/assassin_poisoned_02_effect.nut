@@ -20,27 +20,23 @@ assassin_poisoned_02_effect <- inherit("scripts/skills/skill",
 		m.IsRemovedAfterBattle	= true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character has a vicious poison running through his veins that drains the will to fight. [color=" + Const.UI.Color.NegativeValue + "]" + "-" + m.ResolvePenalty + "[/color] Resolve for [color=" + Const.UI.Color.NegativeValue + "]" + m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		m.TurnsLeft = 2;
 
-		if(getContainer().hasSkill("trait.ailing"))
+		if (getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function onTurnEnd()
-	{
-		if(--m.TurnsLeft <= 0)
+	function onTurnEnd() {
+		if (--m.TurnsLeft <= 0)
 			removeSelf();
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.Bravery -= m.ResolvePenalty;
 	}
 })

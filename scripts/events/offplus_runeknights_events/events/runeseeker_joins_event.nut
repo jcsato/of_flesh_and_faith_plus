@@ -61,16 +61,11 @@ runeseeker_joins_event <- inherit("scripts/events/event",
 		m.Score = 5;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() { }
 
-	function onPrepareVariables(_vars)
-	{
-	}
+	function onPrepareVariables(_vars) { }
 
-	function onClear()
-	{
+	function onClear() {
 		m.Dude = null;
 	}
 })

@@ -18,8 +18,7 @@ conquerer_potion_effect <- inherit("scripts/skills/skill",
 		m.IsStacking			= false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character's body has taken in material found in the Black Monolith, and they are filled with a constant, albeit undirected, vengeful rage. This makes them almost unbearable to be around in camp, but their attitude and newfound mutations make them all the more capable in the battlefield.";
 	}
 
@@ -53,10 +52,10 @@ conquerer_potion_effect <- inherit("scripts/skills/skill",
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		if(_targetEntity == null)
+		if (_targetEntity == null)
 			return;
 
-		if(_skill.isAttack() && m.ArmorDamageTaken > 0) {
+		if (_skill.isAttack() && m.ArmorDamageTaken > 0) {
 			_properties.DamageRegularMin	+= Math.floor(m.ArmorDamageTaken * 0.5);
 			_properties.DamageRegularMax	+= Math.floor(m.ArmorDamageTaken * 0.5);
 		}

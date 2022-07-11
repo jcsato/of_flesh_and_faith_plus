@@ -32,5 +32,4 @@ assassins_prophet_effect <- inherit("scripts/skills/skill",
 		_properties.InitiativeMult		*= 1.25;
 		_properties.HitpointsMult		*= 1.5;
 	}
-
 })

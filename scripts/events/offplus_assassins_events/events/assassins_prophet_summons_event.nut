@@ -59,8 +59,7 @@ assassins_prophet_summons_event <- inherit("scripts/events/event",
 					   });
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		if (!Const.DLC.Paladins || !Const.DLC.Desert)
 			return;
 
@@ -70,18 +69,15 @@ assassins_prophet_summons_event <- inherit("scripts/events/event",
 		if (World.Statistics.getFlags().get("SouthernAssassinsProphetSummonsReceived") == true)
 			return;
 
-		if(World.Assets.getBusinessReputation() < 2250)
+		if (World.Assets.getBusinessReputation() < 2250)
 			return;
 
 		m.Score = 1000;
 	}
 
-	function onPrepareVariables(_vars)
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([ "nemesis", World.Statistics.getFlags().get("SouthernAssassinNemesisName") ]);
 	}
 
-	function onClear()
-	{
-	}
+	function onClear() { }
 })

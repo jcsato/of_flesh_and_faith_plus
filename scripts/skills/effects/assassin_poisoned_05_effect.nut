@@ -29,32 +29,27 @@ assassin_poisoned_05_effect <- inherit("scripts/skills/skill",
 			return m.Name + " (x" + m.Count + ")";
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character has a vicious poison running through his veins that paralyzes and numbs his nerves. [color=" + Const.UI.Color.NegativeValue + "]-" + (m.ActionPointPenalty * m.Count) + "[/color] Action Points for [color=" + Const.UI.Color.NegativeValue + "]" + m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function addStack()
-	{
+	function addStack() {
 		m.Count++;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		m.TurnsLeft = 1;
 
 		if(getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		if(--m.TurnsLeft <= 0)
 			removeSelf();
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.ActionPoints	-= (m.ActionPointPenalty * m.Count);
 	}
 })

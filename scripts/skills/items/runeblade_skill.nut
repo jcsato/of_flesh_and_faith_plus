@@ -19,9 +19,7 @@ runeblade_skill <- inherit("scripts/skills/skill", {
 
 		local isNemesis = _targetEntity.m.IsMiniboss || _targetEntity.getSkills().hasSkill("perk.captain");
 		if (_skill.isAttack() && isNemesis)
-		{
 			_properties.DamageTotalMult *= 1.2;
-		}
 	}
 
 });
