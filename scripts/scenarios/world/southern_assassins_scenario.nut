@@ -4,7 +4,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 	{
 		m.ID = "scenario.southern_assassins";
 		m.Name = "Southern Assassins";
-		m.Description = "[p=c][img]gfx/ui/events/event_165.png[/img][/p][p]You are an assassin of the Southern guilds, a master of shadows and blades. But when you are tasked with target not even the guilds can touch, can you adapt to the life of a mercenary?\n\n[color=#bcad8c]Assassins:[/color] Start with two trained assassins.\n[color=#bcad8c]Secret Arts:[/color] At levels 3, 6, and 9, your men learn a random assassin specialty instead of gaining a perk point.\n[color=#bcad8c]Training Retinue:[/color] You have two fewer retinue slots.[/p]";
+		m.Description = "[p=c][img]gfx/ui/events/event_165.png[/img][/p][p]You are an assassin of the Southern guilds, a master of shadows and blades. But when you are tasked with a target not even the guilds can touch, can you adapt to the life of a mercenary?\n\n[color=#bcad8c]Assassins:[/color] Start with two trained assassins.\n[color=#bcad8c]Secret Arts:[/color] At levels 3, 6, and 9, your men learn a random assassin specialty instead of gaining a perk point.\n[color=#bcad8c]Training Retinue:[/color] You have two fewer retinue slots.[/p]";
 		m.Difficulty = 2;
 		m.Order = 86;
 		m.IsFixedLook = true;
