@@ -1,11 +1,7 @@
-assassin_poison_01_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
-	}
+assassin_poison_01_effect <- inherit("scripts/skills/skill", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		m.ID			= "effects.assassin_poison_01";
 		m.Name			= "Holy Water";
 		m.Description	= "This character's weapons are laced with a viscous liquid that has been blessed by priests. While benign to the living, it burns the undead with divine wrath.";
@@ -21,7 +17,7 @@ assassin_poison_01_effect <- inherit("scripts/skills/skill",
 		[
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints coats the target in holy water, inflicting [color=" + Const.UI.Color.NegativeValue + "]5-15[/color] damage for 1 turn against any undead" }
+			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints coats the target in holy water, inflicting [color=" + Const.UI.Color.NegativeValue + "]5-15[/color] damage for 2 turns against any undead" }
 			{ id = 12, type = "text", icon = "ui/icons/special.png", text = "Can stack multiple times on a single target" }
 			{ id = 13, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
 		];

@@ -1,5 +1,4 @@
-way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait",
-{
+way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait", {
 	m =
 	{
 		DamageBoost			= 5
@@ -8,8 +7,7 @@ way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait",
 		SkillCount			= 0
 	}
 
-	function create()
-	{
+	function create() {
 		character_trait.create();
 
 		m.ID			= "trait.way_of_the_spider";
@@ -21,68 +19,67 @@ way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait",
 		m.Excluded = [];
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "";
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 14, type = "text", icon = "ui/icons/special.png", text = "Any attacks that inflict a poison status inflict an additional stacking [color=" + Const.UI.Color.DamageValue + "]" + m.DamageBoost + "[/color] damage at the end of the target's turn" }
+			{ id = 14, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.DamageValue + "]+" + m.DamageBoost + "[/color] additional damage for each active poison effect on the target" }
 		];
 
 		return ret;
 	}
 
-	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor)
-	{
-		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0)
+	function onBeforeTargetHit(_skill, _targetEntity, _hitInfo) {
+		if (!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive())
 			return;
 
-		if (!_targetEntity.isAlive())
-			return;
-
-		if (_targetEntity.getFlags().has("undead"))
-			return;
-
-		if (!(_targetEntity.getSkills().hasSkill("effects.assassin_poisoned_01_effect")
-				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_02_effect")
-				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_03_effect")
-				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_04_effect")
-				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_05_effect")
+		if (!(_targetEntity.getSkills().hasSkill("effects.assassin_poisoned_01")
+				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_02")
+				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_03")
+				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_04")
+				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_05")
+				|| _targetEntity.getSkills().hasSkill("effects.lindwurm_acid")
+				|| _targetEntity.getSkills().hasSkill("effects.acid")
 				|| _targetEntity.getSkills().hasSkill("effects.spider_poison")
 				|| _targetEntity.getSkills().hasSkill("effects.goblin_poison")
 			))
 			return;
 
-		if ((Time.getFrame() == m.LastFrameApplied || m.SkillCount == Const.SkillCounter) && _targetEntity.getID() == m.LastEnemyAppliedTo)
-			return;
-
-		if (!_targetEntity.isHiddenToPlayer() && m.SoundOnUse.len() != 0)
-			Sound.play(m.SoundOnUse[Math.rand(0, m.SoundOnUse.len() - 1)], Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
-
-		spawnIcon("status_effect_plus_23", _targetEntity.getTile());
-
-		m.LastFrameApplied = Time.getFrame();
-		m.LastEnemyAppliedTo = _targetEntity.getID();
-		m.SkillCount = Const.SkillCounter;
-
-		_targetEntity.getSkills().add(new("scripts/skills/effects/assassin_spider_poison_effect"));
+		spawnIcon("trait_icon_plus_10", _targetEntity.getTile());
 	}
 
-	function onCombatStarted()
-	{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_targetEntity == null)
+			return;
+
+		local numPoisons = 0;
+		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.assassin_poisoned_01");
+		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.assassin_poisoned_02");
+		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.assassin_poisoned_03");
+		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.assassin_poisoned_04");
+		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.assassin_poisoned_05");
+		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.lindwurm_acid");
+		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.acid");
+		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.spider_poison");
+		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.goblin_poison");
+
+		if (_skill.isAttack() && numPoisons > 0) {
+			_properties.DamageRegularMin += numPoisons * m.DamageBoost;
+			_properties.DamageRegularMax += numPoisons * m.DamageBoost;
+		}
+	}
+
+	function onCombatStarted() {
 		m.SkillCount = 0;
 		m.LastEnemyAppliedTo = 0;
 		m.LastFrameApplied = 0;
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		skill.onCombatFinished();
 		m.SkillCount = 0;
 		m.LastEnemyAppliedTo = 0;

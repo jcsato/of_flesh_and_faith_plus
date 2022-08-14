@@ -1,15 +1,13 @@
-assassin_poisoned_01_effect <- inherit("scripts/skills/skill",
-{
+assassin_poisoned_01_effect <- inherit("scripts/skills/skill", {
 	m =
 	{
 		DamageMin			= 5
 		DamageMax			= 15
 		LastRoundApplied	= 0
-		TurnsLeft			= 1
+		TurnsLeft			= 2
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.assassin_poisoned_01";
 		m.Name					= "Holy Water";
 		m.KilledString			= "Purified by holy water";
@@ -22,34 +20,35 @@ assassin_poisoned_01_effect <- inherit("scripts/skills/skill",
 		m.IsRemovedAfterBattle	= true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character has been sprayed with holy water and will lose [color=" + Const.UI.Color.NegativeValue + "]" + m.DamageMin + "-" + m.DamageMax + "[/color] hitpoints each turn for [color=" + Const.UI.Color.NegativeValue + "]" + m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function resetTime()
-	{
+	function resetTime() {
 		m.TurnsLeft = 1;
 
 		if(getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function applyDamage()
-	{
-		if(!getContainer().getActor().getFlags().has("undead"))
+	function getDamage() {
+		// This function is used by AI to determine how risky it should act
+		//   e.g. "if I'm about to die anyway, why would I shieldwall?"
+		//   so returning the maximum possible damage here is appropriate
+		return m.DamageMax;
+	}
+
+	function applyDamage() {
+		if (!getContainer().getActor().getFlags().has("undead"))
 			return;
 
-		if(m.LastRoundApplied != Time.getRound())
-		{
+		if (m.LastRoundApplied != Time.getRound()) {
 			m.LastRoundApplied = Time.getRound();
 
 			spawnIcon("status_effect_plus_18", getContainer().getActor().getTile());
 
 			if(m.SoundOnUse.len() != 0)
-			{
 				Sound.play(m.SoundOnUse[Math.rand(0, m.SoundOnUse.len() - 1)], Const.Sound.Volume.RacialEffect * 1.0, getContainer().getActor().getPos());
-			}
 
 			local hitInfo = clone Const.Tactical.HitInfo;
 			hitInfo.DamageRegular		= Math.rand(m.DamageMin, m.DamageMax);
@@ -62,24 +61,21 @@ assassin_poisoned_01_effect <- inherit("scripts/skills/skill",
 		}
 	}
 
-	function onAdded()
-	{
-		m.TurnsLeft = 1;
+	function onAdded() {
+		m.TurnsLeft = 2;
 
 		if(getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		applyDamage();
 
 		if(--m.TurnsLeft <= 0)
 			removeSelf();
 	}
 
-	function onWaitTurn()
-	{
+	function onWaitTurn() {
 		applyDamage();
 	}
 

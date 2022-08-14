@@ -1,11 +1,10 @@
-rune_02_effect <- inherit("scripts/skills/skill",
-{
+rune_02_effect <- inherit("scripts/skills/skill", {
 	m =
 	{
+		HealingApplied = false
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.rune_02";
 		m.Name					= "Unpassage Rune";
 		m.Icon					= "skills/status_effect_plus_02.png";
@@ -18,13 +17,11 @@ rune_02_effect <- inherit("scripts/skills/skill",
 		m.IsStacking			= false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "\"Mine duty lies not with the Deathmonger. It is not the end of mine chosen that please me, but the manner in which that end is met. Tend thine wounds, that thee might earn deeper ones.\"";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret =
 		[
 			{ id = 1, type = "title", text = getName() }
@@ -36,13 +33,17 @@ rune_02_effect <- inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatStarted() {
+		m.HealingApplied = false;
+	}
+
+	function onCombatFinished() {
 		local actor = getContainer().getActor();
 
-		if (actor != null && !actor.isNull() && actor.isAlive()) {
+		if (actor != null && !actor.isNull() && actor.isAlive() && !m.HealingApplied) {
 			actor.setHitpoints(Math.min(actor.getHitpoints() + 10, actor.getHitpointsMax()));
 			actor.setDirty(true);
+			m.HealingApplied = true;
 		}
 	}
 })

@@ -1,26 +1,22 @@
 southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
+	function create() {
 		m.ID = "scenario.southern_assassins";
 		m.Name = "Southern Assassins";
-		m.Description = "[p=c][img]gfx/ui/events/event_165.png[/img][/p][p]You are an assassin of the Southern guilds, a master of shadows and blades. But when you are tasked with a target not even the guilds can touch, can you adapt to the life of a mercenary?\n\n[color=#bcad8c]Assassins:[/color] Start with two trained assassins.\n[color=#bcad8c]Secret Arts:[/color] At levels 3, 6, and 9, your men learn a random assassin specialty instead of gaining a perk point.\n[color=#bcad8c]Training Retinue:[/color] You have two fewer retinue slots.[/p]";
+		m.Description = "[p=c][img]gfx/ui/events/event_165.png[/img][/p][p]You are an assassin of the Southern guilds, a master of shadows and blades. But when you are tasked with a target not even the guilds can touch, can you adapt to the life of a mercenary?\n\n[color=#bcad8c]Assassins:[/color] Start with two trained assassins.\n[color=#bcad8c]Secret Arts:[/color] At levels 2, 5, and 8, your men learn a random assassin specialty instead of gaining a perk point.\n[color=#bcad8c]Training Retinue:[/color] You have two fewer retinue slots.[/p]";
 		m.Difficulty = 2;
 		m.Order = 86;
 		m.IsFixedLook = true;
 	}
 
-	function isValid()
-	{
+	function isValid() {
 		return Const.DLC.Paladins && Const.DLC.Desert;
 	}
 
-	function onSpawnAssets()
-	{
+	function onSpawnAssets() {
 		local roster = World.getPlayerRoster();
 
-		for( local i = 0; i < 2; i = ++i )
-		{
+		for( local i = 0; i < 2; i = ++i ) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = Time.getVirtualTimeF();
@@ -35,6 +31,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		bros[0].m.PerkPoints = 1;
 		bros[0].m.LevelUps = 1;
 		bros[0].m.Level = 2;
+		addPoisonSpeciality(bros[0])
 
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
@@ -62,15 +59,18 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		bros[1].m.PerkPoints = 1;
 		bros[1].m.LevelUps = 1;
 		bros[1].m.Level = 2;
+		addPoisonSpeciality(bros[1])
+
+		bros[1].getBaseProperties().RangedSkill = Math.max(bros[1].getBaseProperties().RangedSkill, 38);
 
 		bros[1].m.Talents = [];
-		local talents = bros[1].getTalents();
+		talents = bros[1].getTalents();
 		talents.resize(Const.Attributes.COUNT, 0);
 		talents[Const.Attributes.Fatigue] = 2;
 		talents[Const.Attributes.Initiative] = 2;
 		talents[Const.Attributes.RangedSkill] = 3;
 
-		local items = bros[1].getItems();
+		items = bros[1].getItems();
 		items.unequip(items.getItemAtSlot(Const.ItemSlot.Body));
 		items.unequip(items.getItemAtSlot(Const.ItemSlot.Head));
 		items.unequip(items.getItemAtSlot(Const.ItemSlot.Mainhand));
@@ -89,12 +89,10 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		World.Assets.getStash().add(new("scripts/items/supplies/rice_item"));
 	}
 
-	function onSpawnPlayer()
-	{
+	function onSpawnPlayer() {
 		local randomVillage;
 
-		for( local i = 0; i != World.EntityManager.getSettlements().len(); i = ++i )
-		{
+		for( local i = 0; i != World.EntityManager.getSettlements().len(); i = ++i ) {
 			randomVillage = World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern())
@@ -105,8 +103,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		local navSettings = World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = Math.rand(Math.max(2, randomVillageTile.SquareCoords.X - 4), Math.min(Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
 			local y = Math.rand(Math.max(2, randomVillageTile.SquareCoords.Y - 4), Math.min(Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
@@ -122,8 +119,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 
 			local path = World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-			if (!path.isEmpty())
-			{
+			if (!path.isEmpty()) {
 				randomVillageTile = tile;
 				break;
 			}
@@ -138,17 +134,14 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		World.State.m.Player = World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		World.Assets.updateLook(104);
 		World.getCamera().setPos(World.State.m.Player.getPos());
-		Time.scheduleEvent(TimeUnit.Real, 1000, function ( _tag )
-		{
+		Time.scheduleEvent(TimeUnit.Real, 1000, function ( _tag ) {
 			Music.setTrackList([ "music/worldmap_11.ogg" ], Const.Music.CrossFadeTime);
 			World.Events.fire("event.southern_assassins_scenario_intro");
 		}, null);
 	}
 
-	function onInit()
-	{
-		if (!(World.Statistics.getFlags().get("SouthernAssassinsEventsAdded")))
-		{
+	function onInit() {
+		if (!(World.Statistics.getFlags().get("SouthernAssassinsEventsAdded"))) {
 			local mundaneEvents = IO.enumerateFiles("scripts/events/offplus_assassins_events");
 			foreach ( i, event in mundaneEvents ) {
 				local instantiatedEvent = new(event);
@@ -164,20 +157,20 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 	}
 
 	function onHired(_bro) {
-		if (_bro.getLevel() >= 3)
+		if (_bro.getLevel() >= 2)
 			addPoisonSpeciality(_bro);
-		if (_bro.getLevel() >= 6)
+		if (_bro.getLevel() >= 5)
 			addCombatSpeciality(_bro);
-		if (_bro.getLevel() >= 9)
+		if (_bro.getLevel() >= 8)
 			addPhilosophy(_bro);
 	}
 
 	function onUpdateLevel(_bro) {
-		if (_bro.getLevel() == 3)
+		if (_bro.getLevel() == 2)
 			addPoisonSpeciality(_bro);
-		else if (_bro.getLevel() == 6)
+		else if (_bro.getLevel() == 5)
 			addCombatSpeciality(_bro);
-		else if (_bro.getLevel() == 9)
+		else if (_bro.getLevel() == 8)
 			addPhilosophy(_bro);
 	}
 

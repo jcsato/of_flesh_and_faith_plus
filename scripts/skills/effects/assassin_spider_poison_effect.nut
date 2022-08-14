@@ -1,6 +1,4 @@
-assassin_spider_poison_effect <- inherit("scripts/skills/skill",
-{
-
+assassin_spider_poison_effect <- inherit("scripts/skills/skill", {
 	m =
 	{
 		DamageMin			= 5
@@ -9,8 +7,7 @@ assassin_spider_poison_effect <- inherit("scripts/skills/skill",
 		TurnsLeft			= 1
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.assassin_spider_poison";
 		m.Name					= "Poisoned";
 		m.KilledString			= "Died from poison";
@@ -23,31 +20,32 @@ assassin_spider_poison_effect <- inherit("scripts/skills/skill",
 		m.IsRemovedAfterBattle	= true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character has a vicious poison running through his veins and will lose [color=" + Const.UI.Color.NegativeValue + "]" + m.DamageMin + "[/color] - [color=" + Const.UI.Color.NegativeValue + "]" + m.DamageMax + "[/color] hitpoints each turn for [color=" + Const.UI.Color.NegativeValue + "]" + m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function resetTime()
-	{
+	function resetTime() {
 		m.TurnsLeft = 1;
 
 		if(getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function applyDamage()
-	{
-		if(m.LastRoundApplied != Time.getRound())
-		{
+	function getDamage() {
+		// This function is used by AI to determine how risky it should act
+		//   e.g. "if I'm about to die anyway, why would I shieldwall?"
+		//   so returning the maximum possible damage here is appropriate
+		return m.DamageMax;
+	}
+
+	function applyDamage() {
+		if (m.LastRoundApplied != Time.getRound()) {
 			m.LastRoundApplied = Time.getRound();
 
 			spawnIcon("status_effect_plus_23", getContainer().getActor().getTile());
 
 			if(m.SoundOnUse.len() != 0)
-			{
 				Sound.play(m.SoundOnUse[Math.rand(0, m.SoundOnUse.len() - 1)], Const.Sound.Volume.RacialEffect * 1.0, getContainer().getActor().getPos());
-			}
 
 			local hitInfo = clone Const.Tactical.HitInfo;
 			hitInfo.DamageRegular		= Math.rand(m.DamageMin, m.DamageMax);
@@ -60,27 +58,22 @@ assassin_spider_poison_effect <- inherit("scripts/skills/skill",
 		}
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		m.TurnsLeft = 1;
 
 		if(getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		applyDamage();
 
-		if(--m.TurnsLeft <= 0)
-		{
+		if(--m.TurnsLeft <= 0) {
 			removeSelf();
 		}
 	}
 
-	function onWaitTurn()
-	{
+	function onWaitTurn() {
 		applyDamage();
 	}
-
 })

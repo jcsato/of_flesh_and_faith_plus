@@ -1,12 +1,10 @@
-assassin_speciality_03_effect <- inherit("scripts/skills/skill",
-{
+assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
 	m =
 	{
 		AttackBoost	= 10
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID			= "effects.assassin_speciality_03";
 		m.Name			= "Torturer";
 		m.Description	= "Hit them while they're down! This character can recognize and exploit blind spots and vulnerabilities, and knows how to strike for maximum effect.";
@@ -18,8 +16,7 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill",
 		m.IsStacking	= false;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 					{ id = 1, type = "title", text = getName() }
 					{ id = 2, type = "description", text = getDescription() }
@@ -29,8 +26,7 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill",
 				];
 	}
 
-	function onAnySkillUsed(_skill, _targetEntity, _properties)
-	{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if(!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())
 			return;
 
@@ -38,8 +34,8 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill",
 		if (skills.hasSkillOfType(Const.SkillType.TemporaryInjury) ||
 			skills.hasSkill("effects.goblin_poison") ||
 			skills.hasSkill("effects.spider_poison") ||
-			skills.hasSkill("effects.lindwurm_acid_effect") ||
-			skills.hasSkill("effects.acid_effect") ||
+			skills.hasSkill("effects.lindwurm_acid") ||
+			skills.hasSkill("effects.acid") ||
 			skills.hasSkill("effects.assassin_poison_01") ||
 			skills.hasSkill("effects.assassin_poison_02") ||
 			skills.hasSkill("effects.assassin_poison_03") ||

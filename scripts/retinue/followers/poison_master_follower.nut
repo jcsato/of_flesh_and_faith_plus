@@ -9,7 +9,7 @@ poison_master_follower <- inherit("scripts/retinue/follower", {
 		m.Image = "ui/campfire/poison_master_01";
 		m.Cost = 0;
 		m.Effects = [
-			"Your men learn a poison specialty at level 3 instead of gaining a perk point"
+			"Your men learn a poison specialty at level 2 instead of gaining a perk point"
 		];
 		m.Requirements = [ { IsSatisfied = false, Text = "You are a trusted assassin of the Southern guilds" } ];
 	}
