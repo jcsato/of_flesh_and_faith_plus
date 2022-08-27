@@ -164,7 +164,7 @@
 
 		oee.m.Screens.push({
 							ID			= "SouthernAssassinsProphetPreFight"
-							Text		= "[img]gfx/ui/events/event_152.png[/img]{As you enter the tent city, you are approached by Firi Al-Kashim, the short, robed emissary who first extended the Prophet's invitation to you. He wastes no time on formalities.%SPEECH_ON%It is good you have come. He awaits. Follow me.%SPEECH_OFF%Firi leads you and the men through a maze of pilgrims and sooth seekers, stopping in front of a large tent with two guards posted to it. He flashes a hand gesture you cannot see and they let you inside. Firi moves a few boxes and pulls aside a large rug, revealing a trapdoor underneath.%SPEECH_ON%Tell your men not to stray. The pathways underneath the Oracle are complex, and it is a simple matter for the uninitiated to become lost and...expire within.%SPEECH_OFF%You idly wonder how one goes about being initiated into this sect and follow the man. It turns out he wasn't exaggerating. The tunnels sprawl out like an anthill, with all the dead ends, traps, and false walls you'd expect from such a pathway. You try to keep track of the route but quickly give up, realizing there's no hope for a casual observer to keep up.\n\nYou continue that way for some time, long enough to begin wondering if this isn't a some trap. Then you see a shaft of sunlight ahead and Firi leads you above ground into a desert encampment. As your eyes adjust you see the Oracle in the distance, further away than you'd expected. This must be one of the myriad ruins that dot the area around the holy site - no doubt the Prophet has camps such as this set up in many of them.}"
+							Text		= "[img]gfx/ui/events/event_152.png[/img]{As you enter the tent city, you are approached by Firi Al-Kashim, the short, robed emissary who first extended the Prophet's invitation to you. He wastes no time on formalities.%SPEECH_ON%It is good you have come. He awaits. Follow me.%SPEECH_OFF%Firi leads you and the men through a maze of pilgrims and sooth seekers, stopping in front of a large tent with two guards posted to it. He flashes a hand gesture you cannot see and they let you inside. Firi moves a few boxes and pulls aside a large rug, revealing a trapdoor underneath.%SPEECH_ON%Tell your men not to stray. The pathways underneath the Oracle are complex, and it is a simple matter for the uninitiated to become lost and...expire within.%SPEECH_OFF%You idly wonder how one goes about being initiated into this sect and follow the man. It turns out he wasn't exaggerating. The tunnels sprawl out like an anthill, with all the dead ends, traps, and false walls you'd expect from such a pathway. You try to keep track of the route but quickly give up, realizing there's no hope for a casual observer to keep up.\n\nYou continue that way for some time, long enough to begin wondering if this isn't a some trap. Then you see a shaft of light ahead and Firi leads you above ground into a desert encampment. As your eyes adjust, you see the Oracle in the distance, further away than you'd expected. This must be one of the myriad ruins that dot the area around the holy site - no doubt the Prophet has camps such as this set up in many of them.}"
 							Image		= ""
 							List		= [ ]
 							Characters	= [ ]
@@ -187,8 +187,7 @@
 							Options		= [
 											{
 												Text = "To arms!"
-												function getResult(_event)
-												{ 
+												function getResult(_event) {
 
 													World.Statistics.getFlags().set("SouthernAssassinsProphetFightTriggered", true);
 
@@ -221,8 +220,7 @@
 													for(local i = 0; i < p.Entities.len(); ++i)
 														p.Entities[i].Faction <- f;
 
-													p.BeforeDeploymentCallback = function()
-													{
+													p.BeforeDeploymentCallback = function() {
 														local prophet = 1;
 														do
 														{
@@ -340,8 +338,6 @@
 														while (hedgehegs > 0);
 
 														local blade_dancers = 1;
-														if (World.Assets.getCombatDifficulty() == Const.Difficulty.Hard)
-															++blade_dancers;
 
 														do
 														{
@@ -367,7 +363,7 @@
 														}
 														while (blade_dancers > 0);
 
-														local gunners = 4;
+														local gunners = 3;
 														if (World.Assets.getCombatDifficulty() == Const.Difficulty.Hard)
 															++gunners;
 														if (World.Assets.getCombatDifficulty() == Const.Difficulty.Easy)

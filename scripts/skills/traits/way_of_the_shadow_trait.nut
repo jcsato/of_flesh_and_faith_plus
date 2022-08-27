@@ -1,11 +1,9 @@
-way_of_the_shadow_trait <- inherit("scripts/skills/traits/character_trait",
-{
+way_of_the_shadow_trait <- inherit("scripts/skills/traits/character_trait", {
 	m =
 	{
 	}
 
-	function create()
-	{
+	function create() {
 		character_trait.create();
 
 		m.ID			= "trait.way_of_the_shadow";
@@ -16,14 +14,12 @@ way_of_the_shadow_trait <- inherit("scripts/skills/traits/character_trait",
 		m.Excluded = [];
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 11, type = "text", icon = "ui/icons/bravery.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+10[/color] Resolve at night" }
-			{ id = 12, type = "text", icon = "ui/icons/initiative.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15[/color] Initiative at night" }
+			{ id = 11, type = "text", icon = "ui/icons/bravery.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15[/color] Resolve at night" }
+			{ id = 12, type = "text", icon = "ui/icons/initiative.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+20[/color] Initiative at night" }
 			{ id = 13, type = "text", icon = "ui/icons/vision.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+1[/color] Vision at night" }
 			{ id = 14, type = "text", icon = "ui/icons/special.png", text = "Not affected by nighttime penalties" }
 		];
@@ -31,15 +27,13 @@ way_of_the_shadow_trait <- inherit("scripts/skills/traits/character_trait",
 		return ret;
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.IsAffectedByNight	= false;
 
 		if (!getContainer().getActor().isPlacedOnMap())
 			return;
 
-		if (("State" in World) && World.State != null && !World.getTime().IsDaytime)
-		{
+		if (("State" in World) && World.State != null && !World.getTime().IsDaytime) {
 			_properties.Bravery		+= 10;
 			_properties.Initiative	+= 15;
 			_properties.Vision		+= 1;

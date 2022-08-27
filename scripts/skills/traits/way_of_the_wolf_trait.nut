@@ -1,14 +1,11 @@
-way_of_the_wolf_trait <- inherit("scripts/skills/traits/character_trait",
-{
+way_of_the_wolf_trait <- inherit("scripts/skills/traits/character_trait", {
 	m =
 	{
-		LastEnemyAppliedTo	= 0
-		LastFrameApplied	= 0
+		LastTargetID		= 0
 		SkillCount			= 0
 	}
 
-	function create()
-	{
+	function create() {
 		character_trait.create();
 
 		m.ID			= "trait.way_of_the_wolf";
@@ -19,64 +16,60 @@ way_of_the_wolf_trait <- inherit("scripts/skills/traits/character_trait",
 		m.Excluded = [];
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15%[/color] damage against targets that have not yet acted" }
+			{ id = 12, type = "text", icon = "ui/icons/special.png", text = "The threshold to inflict injuries is lowered by [color=" + Const.UI.Color.NegativeValue + "]15%[/color]  against targets that have not yet acted" }
 		];
 
 		return ret;
 	}
 
-	function onAnySkillUsed(_skill, _targetEntity, _properties)
-	{
-		if(Tactical.TurnSequenceBar.getActiveEntity() == null || Tactical.TurnSequenceBar.getActiveEntity().getID() != getContainer().getActor().getID())
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (!getContainer().getActor().isPlacedOnMap())
 			return;
 
-		if(!_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(getContainer().getActor()))
+		if (Tactical.TurnSequenceBar.getActiveEntity() == null || Tactical.TurnSequenceBar.getActiveEntity().getID() != getContainer().getActor().getID())
 			return;
 
-		if(!_targetEntity.isTurnStarted() && !_targetEntity.isTurnDone())
-		{
+		if (_targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(getContainer().getActor()))
+			return;
+
+		if (!_targetEntity.isTurnStarted() && !_targetEntity.isTurnDone()) {
 			if(m.SkillCount == Const.SkillCounter && m.LastTargetID == _targetEntity.getID())
 				return;
 
 			m.SkillCount = Const.SkillCounter;
 			m.LastTargetID = _targetEntity.getID();
 
-			_properties.DamageTotalMult *= 1.15;
+			_properties.ThresholdToInflictInjuryMult	*= 0.85;
+			_properties.DamageTotalMult					*= 1.15;
 		}
 	}
 
-	function onBeforeTargetHit(_skill, _targetEntity, _hitInfo)
-	{
-		if(Tactical.TurnSequenceBar.getActiveEntity() == null || Tactical.TurnSequenceBar.getActiveEntity().getID() != getContainer().getActor().getID())
+	function onBeforeTargetHit(_skill, _targetEntity, _hitInfo) {
+		if (Tactical.TurnSequenceBar.getActiveEntity() == null || Tactical.TurnSequenceBar.getActiveEntity().getID() != getContainer().getActor().getID())
 			return;
 
-		if(!_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(getContainer().getActor()))
+		if (_targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(getContainer().getActor()))
 			return;
 
-		if(!_targetEntity.isTurnStarted() && !_targetEntity.isTurnDone())
-		{
+		if (!_targetEntity.isTurnStarted() && !_targetEntity.isTurnDone()) {
 			if(m.SkillCount == Const.SkillCounter && m.LastTargetID == _targetEntity.getID())
 				return;
 
-			spawnIcon("trait_icon_plus_11", getContainer().getActor().getTile())
+			spawnIcon("trait_icon_plus_11", _targetEntity.getTile())
 		}
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		m.SkillCount	= 0;
 		m.LastTargetID	= 0;
 	}
 
-	function onCombatFinished()
-	{
-		skill.onCombatFinished();
+	function onCombatFinished() {
 		m.SkillCount	= 0;
 		m.LastTargetID	= 0;
 	}

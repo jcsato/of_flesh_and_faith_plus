@@ -43,7 +43,7 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
 			skills.hasSkill("effects.assassin_poison_05") ||
 			skills.hasSkill("effects.assassin_spider_poison"))
 		{
-			_properties.ThresholdToInflictInjuryMult	*= 0.75
+			_properties.ThresholdToInflictInjuryMult	*= 0.75;
 			_properties.MeleeSkill						+= m.AttackBoost;
 			_properties.RangedSkill						+= m.AttackBoost;
 		}

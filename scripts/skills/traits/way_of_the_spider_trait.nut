@@ -2,6 +2,7 @@ way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait", {
 	m =
 	{
 		DamageBoost			= 5
+		DamageCap			= 20
 		LastEnemyAppliedTo	= 0
 		LastFrameApplied	= 0
 		SkillCount			= 0
@@ -27,7 +28,7 @@ way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait", {
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 14, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.DamageValue + "]+" + m.DamageBoost + "[/color] additional damage for each active poison effect on the target" }
+			{ id = 14, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.DamageValue + "]+" + m.DamageBoost + "[/color] additional damage for each active poison effect on the target, up to [color=" + Const.UI.Color.DamageValue + "]" + m.DamageCap + "[/color] total" }
 		];
 
 		return ret;
@@ -68,8 +69,9 @@ way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait", {
 		numPoisons += _targetEntity.getSkills().getNumOfSkill("effects.goblin_poison");
 
 		if (_skill.isAttack() && numPoisons > 0) {
-			_properties.DamageRegularMin += numPoisons * m.DamageBoost;
-			_properties.DamageRegularMax += numPoisons * m.DamageBoost;
+			local extraDamage = Math.min(numPoisons * m.DamageBoost, m.DamageCap);
+			_properties.DamageRegularMin += extraDamage;
+			_properties.DamageRegularMax += extraDamage;
 		}
 	}
 

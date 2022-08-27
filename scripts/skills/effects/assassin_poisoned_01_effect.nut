@@ -1,7 +1,7 @@
 assassin_poisoned_01_effect <- inherit("scripts/skills/skill", {
 	m =
 	{
-		DamageMin			= 5
+		DamageMin			= 10
 		DamageMax			= 15
 		LastRoundApplied	= 0
 		TurnsLeft			= 2
@@ -78,5 +78,4 @@ assassin_poisoned_01_effect <- inherit("scripts/skills/skill", {
 	function onWaitTurn() {
 		applyDamage();
 	}
-
 })

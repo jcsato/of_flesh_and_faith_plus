@@ -152,7 +152,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 	}
 
 	function onActorKilled(_actor, _killer, _combatID) {
-		if (_combatID == "SouthernAssassinsProphetFight" && _actor.getSkills().hasSkill("effect.assassins_prophet"))
+		if (_combatID == "SouthernAssassinsProphetFight" && _actor.getSkills().hasSkill("effects.assassins_prophet"))
 			World.Statistics.getFlags().set("SouthernAssassinsProphetSlain", true);
 	}
 

@@ -43,7 +43,7 @@ assassins_training_accident_event <- inherit("scripts/events/event",
 									if ((injuredCount < 1 && i == speciality_candidates.len() - 1) || Math.rand(1, 100) <= 20 - (bro.getLevel() - 6)) {
 										injuredCount++;
 										local injury = bro.addInjury(Const.Injury.Accident1);
-										List = [{ id = 10, icon = injury.getIcon(), text = bro.getName() + " suffers " + injury.getNameOnly() }];
+										List.push({ id = 10, icon = injury.getIcon(), text = bro.getName() + " suffers " + injury.getNameOnly() });
 									}
 								}
 							}
