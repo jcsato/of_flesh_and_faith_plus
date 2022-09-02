@@ -20,7 +20,7 @@ assassin_poison_03_effect <- inherit("scripts/skills/skill", {
 		[
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints applies a poison that reduces the target's current Fatigue by [color=" + Const.UI.Color.NegativeValue + "]" + m.FatigueDamageOnHit + "[/color]" }
+			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints applies a poison that inflicts [color=" + Const.UI.Color.NegativeValue + "]" + m.FatigueDamageOnHit + "[/color] extra Fatigue" }
 			{ id = 12, type = "text", icon = "ui/icons/fatigue.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints applies a poison that reduces the target's Fatigue Recovery per turn by [color=" + Const.UI.Color.NegativeValue + "]-15[/color] for 2 turns" }
 			{ id = 13, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
 		];

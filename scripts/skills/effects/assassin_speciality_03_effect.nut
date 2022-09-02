@@ -27,7 +27,7 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		if(!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())
+		if(!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())// || _targetEntity.isAlliedWith(getContainer().getActor()))
 			return;
 
 		local skills = _targetEntity.getSkills();
@@ -36,11 +36,11 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
 			skills.hasSkill("effects.spider_poison") ||
 			skills.hasSkill("effects.lindwurm_acid") ||
 			skills.hasSkill("effects.acid") ||
-			skills.hasSkill("effects.assassin_poison_01") ||
-			skills.hasSkill("effects.assassin_poison_02") ||
-			skills.hasSkill("effects.assassin_poison_03") ||
-			skills.hasSkill("effects.assassin_poison_04") ||
-			skills.hasSkill("effects.assassin_poison_05") ||
+			skills.hasSkill("effects.assassin_poisoned_01") ||
+			skills.hasSkill("effects.assassin_poisoned_02") ||
+			skills.hasSkill("effects.assassin_poisoned_03") ||
+			skills.hasSkill("effects.assassin_poisoned_04") ||
+			skills.hasSkill("effects.assassin_poisoned_05") ||
 			skills.hasSkill("effects.assassin_spider_poison"))
 		{
 			_properties.ThresholdToInflictInjuryMult	*= 0.75;
