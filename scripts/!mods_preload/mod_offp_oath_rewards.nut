@@ -35,6 +35,9 @@
 							case "ambition.oath_of_humility":
 								trait_name = "oath_of_humility_upheld_trait";
 								break;
+							case "ambition.oath_of_proving":
+								trait_name = "oath_of_proving_upheld_trait";
+								break;
 							case "ambition.oath_of_righteousness":
 								trait_name = "oath_of_righteousness_upheld_trait";
 								break;
