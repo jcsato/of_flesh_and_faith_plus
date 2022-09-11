@@ -20,8 +20,8 @@ way_of_the_wolf_trait <- inherit("scripts/skills/traits/character_trait", {
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 11, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15%[/color] damage against targets that have not yet acted" }
-			{ id = 12, type = "text", icon = "ui/icons/special.png", text = "The threshold to inflict injuries is lowered by [color=" + Const.UI.Color.NegativeValue + "]15%[/color]  against targets that have not yet acted" }
+			{ id = 11, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+20%[/color] damage against targets that have not yet acted" }
+			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "The Adrenaline skill costs [color=" + Const.UI.Color.NegativeValue + "]60%[/color] less Fatigue" }
 		];
 
 		return ret;
@@ -44,8 +44,7 @@ way_of_the_wolf_trait <- inherit("scripts/skills/traits/character_trait", {
 			m.SkillCount = Const.SkillCounter;
 			m.LastTargetID = _targetEntity.getID();
 
-			_properties.ThresholdToInflictInjuryMult	*= 0.85;
-			_properties.DamageTotalMult					*= 1.15;
+			_properties.DamageTotalMult	*= 1.2;
 		}
 	}
 

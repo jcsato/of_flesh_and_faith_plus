@@ -25,8 +25,10 @@
 		}
 
 		l.onEnter = function() {
-			if (World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.explorers" && isLocationType(Const.World.LocationType.Unique)) {
-				if (getTypeID() == "location.ancient_statue" || getTypeID() == "location.ancient_temple" || getTypeID() == "location.ancient_watchtower" || getTypeID() == "location.land_ship" || getTypeID() == "location.holy_site.meteorite" || getTypeID() == "location.holy_site.oracle" || getTypeID() == "location.unhold_graveyard" || getTypeID() == "location.holy_site.vulcano")
+			if (World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.explorers" && isLocationType(Const.World.LocationType.Unique) && !isVisited()) {
+				if (getTypeID() == "location.ancient_statue" || getTypeID() == "location.ancient_temple" || getTypeID() == "location.ancient_watchtower" ||
+					getTypeID() == "location.land_ship" || getTypeID() == "location.holy_site.meteorite" || getTypeID() == "location.holy_site.oracle" ||
+					getTypeID() == "location.unhold_graveyard" || getTypeID() == "location.holy_site.vulcano")
 				{
 					local brothers = World.getPlayerRoster().getAll();
 					foreach( bro in brothers ) {
@@ -41,7 +43,8 @@
 		l.onCombatLost = function() {
 			if (World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.explorers" && isLocationType(Const.World.LocationType.Unique)) {
 				// Might have issues with icy cave and sunken library, as those don't have an onDestroyed they explicitly want called. . .we'll see
-				if (getTypeID() == "location.black_monolith" || getTypeID() == "location.icy_cave_location" || getTypeID() == "location.sunken_library" || getTypeID() == "location.goblin_city" || getTypeID() == "location.waterwheel" || getTypeID() == "location.witch_hut")
+				if (getTypeID() == "location.black_monolith" || getTypeID() == "location.icy_cave_location" || getTypeID() == "location.sunken_library" ||
+					getTypeID() == "location.goblin_city" || getTypeID() == "location.waterwheel" || getTypeID() == "location.witch_hut")
 				{
 					local brothers = World.getPlayerRoster().getAll();
 					foreach( bro in brothers ) {
@@ -65,7 +68,9 @@
 			if (_f)
 				return;
 
-			if (getTypeID() == "location.ancient_statue" || getTypeID() == "location.ancient_temple" || getTypeID() == "location.ancient_watchtower" || getTypeID() == "location.land_ship" || getTypeID() == "location.holy_site.meteorite" || getTypeID() == "location.holy_site.oracle" || getTypeID() == "location.unhold_graveyard" || getTypeID() == "location.holy_site.vulcano")
+			if (getTypeID() == "location.ancient_statue" || getTypeID() == "location.ancient_temple" || getTypeID() == "location.ancient_watchtower" ||
+				getTypeID() == "location.land_ship" || getTypeID() == "location.holy_site.meteorite" || getTypeID() == "location.holy_site.oracle" ||
+				getTypeID() == "location.unhold_graveyard" || getTypeID() == "location.holy_site.vulcano")
 			{
 				local brothers = World.getPlayerRoster().getAll();
 				foreach( bro in brothers ) {

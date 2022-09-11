@@ -37,6 +37,18 @@ runeseeker_joins_event <- inherit("scripts/events/event",
 								local roster = World.getTemporaryRoster();
 								_event.m.Dude = roster.create("scripts/entity/tactical/player");
 								_event.m.Dude.setStartValuesEx([ "barbarian_background" ]);
+								local r = Math.rand(0, 2);
+								if (r == 0)
+									_event.m.Dude.getBackground().m.RawDescription = "It was in the barren north, surrounded by dead men sacrificed in the names of their ancestors and immediately forgotten, that %name% first heard Old Ironhand's call. He has wandered the lands ever since, guided by the god's quiet whispers, searching for those who know the secret of the rune rite. It wasn't long before he found his way into the %companyname%.";
+								else if (r == 1)
+									_event.m.Dude.getBackground().m.RawDescription = "Often sickly, %name% was told one day by his tribe's shaman that he had but a few years left to live. Rather than waste it worshipping the ancestors who failed to guard him from the ailment, he set off to find his own glory. Hearing of Old Ironhand's rune rite, he now seeks the company of warriors whose aspirations reach beyond their own deaths.";
+								else
+									_event.m.Dude.getBackground().m.RawDescription = "With a glare as hard as steel and as cold as the northern lands he once called home, %name% cuts an imposing figure. You don't know what drove the barbarian into Old Ironhand's flock, but he fights like a man possessed and is wholly unconcerned about living to see the next day's dawn. A model warrior, truly.";
+								_event.m.Dude.getBackground().buildDescription(true);
+
+								r = Math.rand(0, 100);
+								if (r <= 50 && _event.m.Dude.getTitle() == "")
+									_event.m.Dude.setTitle("the Runeseeker");
 
 								Characters.push(_event.m.Dude.getImagePath());
 							}
@@ -48,10 +60,10 @@ runeseeker_joins_event <- inherit("scripts/events/event",
 		if (!Const.DLC.Wildmen || !Const.DLC.Paladins)
 			return;
 
-		if(World.Assets.getOrigin().getID() != "scenario.runeknights")
+		if (World.Assets.getOrigin().getID() != "scenario.runeknights")
 			return;
 
-		if(World.getPlayerRoster().getSize() >= World.Assets.getBrothersMax())
+		if (World.getPlayerRoster().getSize() >= World.Assets.getBrothersMax())
 			return;
 
 		local currentTile = World.State.getPlayer().getTile();
