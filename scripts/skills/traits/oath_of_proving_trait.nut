@@ -2,7 +2,7 @@ oath_of_proving_trait <- inherit("scripts/skills/traits/character_trait",
 {
 	m =
 	{
-		ApplyXPMult = false
+		ApplyXPMult	= false
 		KillScored	= false
 	}
 
@@ -20,49 +20,54 @@ oath_of_proving_trait <- inherit("scripts/skills/traits/character_trait",
 		m.Excluded = [];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret =
 		[
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 10, type = "text", icon = "ui/icons/initiative.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15[/color] Initiative each combat until this character kills an enemy" }
-			{ id = 11, type = "text", icon = "ui/icons/damage_dealt.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+10%[/color] damage each combat until this character kills an enemy" }
 		];
 
-		if (m.ApplyXPMult)
+		if (!getContainer().getActor().isPlacedOnMap() || !m.KillScored) {
+			ret.extend([
+				{ id = 10, type = "text", icon = "ui/icons/initiative.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15[/color] Initiative each combat until this character kills an enemy" }
+				{ id = 11, type = "text", icon = "ui/icons/damage_dealt.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+10%[/color] damage each combat until this character kills an enemy" }
+			])
+		} else if (getContainer().getActor().isPlacedOnMap() && m.KillScored) {
+			ret.push({ id = 10, type = "text", icon = "ui/icons/special.png", text = "This character has killed an enemy this combat and proven his worth" })
+		}
+
+		if (getContainer().getActor().getFlags().get("OathOfProvingApplyXPMult"))
 			ret.push({ id = 12, type = "text", icon = "ui/icons/xp_received.png", text = "[color=" + Const.UI.Color.NegativeValue + "]-100%[/color] Experience Gain until this character kills an enemy" });
 
 		return ret;
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
+		m.ApplyXPMult = getContainer().getActor().getFlags().get("OathOfProvingApplyXPMult");
 		m.KillScored = false;
 	}
 
-	function onCombatFinished()
-	{
-		m.KillScored = false;
-		m.ApplyXPMult = !m.KillScored;
+	function onCombatFinished() {
+		getContainer().getActor().getFlags().set("OathOfProvingApplyXPMult", !m.KillScored);
 	}
 
-	function onTargetKilled(_targetEntity, _skill)
-	{
+	function onTargetKilled(_targetEntity, _skill) {
 		if(!_targetEntity.isAlliedWith(getContainer().getActor())) {
 			m.KillScored	= true;
-			m.ApplyXPMult	= false;
+			getContainer().getActor().getFlags().set("OathOfProvingApplyXPMult", false);
 		}
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
+		if (!getContainer().getActor().isPlacedOnMap())
+			return;
+
 		if (!m.KillScored) {
 			_properties.Initiative		+= 15;
 			_properties.DamageTotalMult	*= 1.1;
 		}
 
-		if (m.ApplyXPMult)
+		if (getContainer().getActor().getFlags().get("OathOfProvingApplyXPMult"))
 			_properties.XPGainMult *= 0.0;
 	}
 })

@@ -90,6 +90,7 @@ oath_of_proving_ambition <- inherit("scripts/ambitions/oaths/oath_ambition",
 		{
 			bro.getSkills().removeByID("trait.oath_of_proving");
 			bro.getFlags().set("OathOfProvingKills", 0);
+			bro.getFlags().set("OathOfProvingApplyXPMult", false)
 		}
 	}
 })

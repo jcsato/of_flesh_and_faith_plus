@@ -13,7 +13,7 @@ A mod for the game Battle Brothers ([Steam](https://store.steampowered.com/app/3
 
 ## Features
 
-Of Flesh and Faith+ is a content expansion to the Of Flesh and Faith DLC. It adds three new origins, one for each of the previous major Battle Brothers DLC, as well as small additions the Oathtaker and Anatomist origins.
+Of Flesh and Faith+ is a content expansion to the Of Flesh and Faith DLC. It adds three new origins, one for each of the previous major Battle Brothers DLC, as well as small additions to the Oathtaker and Anatomist origins.
 
 ### **The Cursed Explorers (Beasts & Exploration)**
 
@@ -49,7 +49,7 @@ Providing this training to mercenaries of less exotic backgrounds are two master
 
 <img src="./readme_assets/Oathtakers.png" width="1200">
 
-The Oathtakers origin has been expanded, with an additional Oath and a new mechanic to incentivize completing their special bonus objectives.
+The Oathtakers origin has been expanded with an additional Oath and a new mechanic to incentivize completing their special bonus objectives.
 
 The **Oath of Proving** sees the company commit to martial excellence as individuals. Every man in the company gets a bonus in combat until he fells his first enemy - but those who fail to down any foe by the end of the fight no longer gain any experience until scoring a kill.
 
@@ -82,7 +82,7 @@ The Anatomists have gotten a small update as well, with a new potion added for t
 
 ## Compatibility
 
-Of Flesh and Faith+ seeks to be as save game save and compatible as it can be. The mod _should_ be safe to remove at any time, provided the save in question does not use one of the new origins added by the mod or the Of Flesh and Faith DLC itself.
+Of Flesh and Faith+ seeks to be as save game safe and compatible as it can be. The mod _should_ be safe to remove at any time, provided the save in question does not use one of the new origins added by the mod or the Of Flesh and Faith DLC itself.
 
 A best-effort attempt will be made to note any save-game incompatible updates to the mod on the releases page.
 
