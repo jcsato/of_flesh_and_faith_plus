@@ -23,7 +23,7 @@ way_of_the_scorpion_trait <- inherit("scripts/skills/traits/character_trait",
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "[color=" + this.Const.UI.Color.PositiveValue + "]+2[/color] Fatigue Recovery per turn" }
-			{ id = 12, type = "text", icon = "ui/icons/special.png", text = "Builds up [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] less fatigue for each tile travelled" }
+			{ id = 12, type = "text", icon = "ui/icons/special.png", text = "Builds up [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] less Fatigue for each tile travelled" }
 		];
 
 		return ret;

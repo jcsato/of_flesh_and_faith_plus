@@ -1,8 +1,7 @@
 @echo off
 
 set modname=of_flesh_and_faith_plus
-set modkitdir=YOUR_MODKIT_BIN_PATH
-set version=1.3.3
+set version=1.3.4
 
 echo.
 echo Creating temporary directory...

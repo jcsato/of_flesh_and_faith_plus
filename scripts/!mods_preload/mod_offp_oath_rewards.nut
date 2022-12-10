@@ -70,6 +70,7 @@
 	::mods_hookExactClass("scenarios/world/paladins_scenario", function(ps) {
 		local onActorKilled = ::mods_getMember(ps, "onActorKilled");
 		local onInit = ::mods_getMember(ps, "onInit");
+		local onHired = ::mods_getMember(ps, "onHired");
 
 		::mods_override(ps, "onActorKilled", function( _actor, _killer, _combatID ) {
 			onActorKilled(_actor, _killer, _combatID);
@@ -84,7 +85,7 @@
 				return;
 			}
 
-			if (_killer.getFaction() == Const.Faction.Player)
+			if (_killer.getFaction() == Const.Faction.Player && World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_proving")
 				_killer.getFlags().increment("OathOfProvingKills");
 		});
 
@@ -98,6 +99,14 @@
 				};
 			}
 			World.Statistics.getFlags().set("OFFPlusOathOfProvingAdded", true);
+		});
+
+		::mods_override(ps, "onHired", function (_bro) {
+			onHired(_bro);
+
+			if (World.Ambitions.hasActiveAmbition() && World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_proving") {
+				_bro.getSkills().add(new("scripts/skills/traits/oath_of_proving_trait"));
+			}
 		});
 	});
 
