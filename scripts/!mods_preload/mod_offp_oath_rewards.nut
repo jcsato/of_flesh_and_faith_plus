@@ -78,8 +78,8 @@
 			if (!World.Ambitions.hasActiveAmbition())
 				return;
 
-			if (_killer == null || _killer.getFaction() != Const.Faction.Player) {
-				if (_actor.isPlayerControlled && World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_camaraderie")
+			if (_killer == null || (_killer.getFaction() != Const.Faction.Player && _killer.getFaction() != Const.Faction.PlayerAnimals)) {
+				if (_actor.isPlayerControlled() && World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_camaraderie")
 					World.Statistics.getFlags().increment("OathOfCamaraderieNewObjective");
 
 				return;
@@ -87,8 +87,6 @@
 
 			if (_killer.getFaction() == Const.Faction.Player && World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_proving")
 				_killer.getFlags().increment("OathOfProvingKills");
-
-			World.Assets.m.BrothersMax		= 18;
 		});
 
 		::mods_override(ps, "onInit", function() {
@@ -101,6 +99,8 @@
 				};
 			}
 			World.Statistics.getFlags().set("OFFPlusOathOfProvingAdded", true);
+
+			World.Assets.m.BrothersMax		= 18;
 		});
 
 		::mods_override(ps, "onHired", function (_bro) {
@@ -124,6 +124,7 @@
 
 	::mods_hookExactClass("ambitions/oaths/oath_of_camaraderie_ambition", function(ooca) {
 		local onStart = ::mods_getMember(ooca, "onStart");
+		local onReward = ::mods_getMember(ooca, "onReward");
 
 		::mods_override(ooca, "getRenownOnSuccess", function() {
 			local additionalRenown = getBonusObjectiveProgress() <= getBonusObjectiveGoal() ? Const.World.Assets.ReputationOnOathBonusObjective : 0;
@@ -157,6 +158,11 @@
 			onStart();
 			World.Statistics.getFlags().set("OathOfCamaraderieNewObjective", 0);
 		});
+
+		::mods_override(ooca, "onReward", function() {
+			onReward();
+			World.Statistics.getFlags().set("OathOfCamaraderieNewObjective", 0);
+		});
 	});
 
 	::mods_hookNewObject("skills/traits/oath_of_camaraderie_trait", function(ooct) {
@@ -185,20 +191,18 @@
 			local allies = Tactical.Entities.getInstancesOfFaction(actor.getFaction());
 			local smallestDistance = 9999;
 
-			foreach( ally in allies )
-			{
+			foreach( ally in allies ) {
 				if (ally.getID() == actor.getID() || !ally.isPlacedOnMap())
 					continue;
 
-				if (ally.getTile().getDistanceTo(myTile) < smallestDistance)
-				{
+				if (ally.getTile().getDistanceTo(myTile) < smallestDistance) {
 					smallestDistance = ally.getTile().getDistanceTo(myTile);
 					if (smallestDistance <= 1)
 						break;
 				}
-
-				_properties.Bravery -= (smallestDistance - 1) * 10;
 			}
+
+			_properties.Bravery -= Math.min((smallestDistance - 1) * 10, _properties.Bravery);
 		});
 	});
 
