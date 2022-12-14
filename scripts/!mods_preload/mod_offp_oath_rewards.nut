@@ -87,6 +87,8 @@
 
 			if (_killer.getFaction() == Const.Faction.Player && World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_proving")
 				_killer.getFlags().increment("OathOfProvingKills");
+
+			World.Assets.m.BrothersMax		= 18;
 		});
 
 		::mods_override(ps, "onInit", function() {
@@ -115,9 +117,13 @@
 	// Burden changed to: -10 Resolve per tile of distance from the nearest ally
 	// Bonus objective changed to: Have no more than 2/1/0 men die
 	//
-	::mods_hookExactClass("ambitions/oaths/oath_of_camaraderie_ambition", function(ooca) {
+	::mods_hookNewObject("ambitions/oaths/oath_of_camaraderie_ambition", function(ooca) {
 		::mods_addField(ooca, "oath_of_camaraderie_ambition", "OathBurdenText", "Your men suffer [color=" + Const.UI.Color.NegativeValue + "]-10[/color] Resolve for each tile of distance from the nearest ally.")
 		::mods_addField(ooca, "oath_of_camaraderie_ambition", "SuccessText", "[img]gfx/ui/events/event_180.png[/img]{Power in numbers, camaraderie in brotherhood. Initially the men struggled with the larger formations, sure that their comrades would split off and get each other killed. Over the course of every battle, however, the %companyname% quickly realized that the chaos of combat could be overcome by standing shoulder to shoulder with the man beside you, trusting him to do his job and him trusting that you do yours. It matters not if you fight with one man or one hundred, so long as there's an Oathtaker among them.\n\nNow that the company knows it can confront its enemies by trusting its own members, it is ready to take on another Oath!}")
+	});
+
+	::mods_hookExactClass("ambitions/oaths/oath_of_camaraderie_ambition", function(ooca) {
+		local onStart = ::mods_getMember(ooca, "onStart");
 
 		::mods_override(ooca, "getRenownOnSuccess", function() {
 			local additionalRenown = getBonusObjectiveProgress() <= getBonusObjectiveGoal() ? Const.World.Assets.ReputationOnOathBonusObjective : 0;
@@ -153,9 +159,11 @@
 		});
 	});
 
-	::mods_hookExactClass("skills/traits/oath_of_camaraderie_trait", function(ooct) {
+	::mods_hookNewObject("skills/traits/oath_of_camaraderie_trait", function(ooct) {
 		::mods_addField(ooct, "oath_of_camaradere_trait", "Description", "This character has taken an Oath of Camaraderie, and is sworn to stand together with his allies against all odds. Unconvinced of their ability to survive away from his protection, and equally suspicious of their helpfulness if he gets cut off, he's more nervous than usual about getting separated from the rest of the men.")
+	});
 
+	::mods_hookExactClass("skills/traits/oath_of_camaraderie_trait", function(ooct) {
 		local getTooltip = ::mods_getMember(ooct, "getTooltip");
 		local onUpdate = ::mods_getMember(ooct, "onUpdate");
 
@@ -198,7 +206,7 @@
 	//
 	// XP mechanics changed so bro gets all XP from kills, but has 50% reduced XP gain
 	//
-	::mods_hookExactClass("ambitions/oaths/oath_of_distinction_ambition", function(ooda) {
+	::mods_hookNewObject("ambitions/oaths/oath_of_distinction_ambition", function(ooda) {
 		::mods_addField(ooda, "oath_of_distinction_ambition", "OathBurdenText", "Your men gain [color=" + Const.UI.Color.NegativeValue + "]50%[/color] less experience and do not share experience with allies.")
 	});
 
@@ -262,10 +270,12 @@
 	//
 	// Bonus objective: defeat 6/7/8 enemy camps, either as part of contracts of your own initiative
 	//
+	::mods_hookNewObject("ambitions/oaths/oath_of_fortification_ambition", function(oofa) {
+		::mods_addField(oofa, "oath_of_fortification_ambition", "SuccessText", "[img]gfx/ui/events/event_180.png[/img]{A wise warrior once said 'The walls of the earth will never rival the walls within man himself.' The %companyname% put that to the test in fulfilling the Oath of Fortification. Again and again you assailed the walls of villains and monsters with a wall of your own, and each time yours was proven stronger. It always took a few moments to piece the elements together, but once your shieldwall formed it crushed those before it as readily as a boulder would an ant. Now with the walls of your enemies lain low, it's time to move on to the next Oath!}")
+	});
+
 	::mods_hookExactClass("ambitions/oaths/oath_of_fortification_ambition", function(oofa) {
 		local onStart = ::mods_getMember(oofa, "onStart");
-
-		::mods_addField(oofa, "oath_of_fortification_ambition", "SuccessText", "[img]gfx/ui/events/event_180.png[/img]{A wise warrior once said 'The walls of the earth will never rival the walls within man himself.' The %companyname% put that to the test in fulfilling the Oath of Fortification. Again and again you assailed the walls of villains and monsters with a wall of your own, and each time yours was proven stronger. It always took a few moments to piece the elements together, but once your shieldwall formed it crushed those before it as readily as a boulder would an ant. Now with the walls of your enemies lain low, it's time to move on to the next Oath!}")
 
 		::mods_override(oofa, "getRenownOnSuccess", function() {
 			local additionalRenown = getBonusObjectiveProgress() >= getBonusObjectiveGoal() ? Const.World.Assets.ReputationOnOathBonusObjective : 0;
@@ -300,7 +310,7 @@
 
 		ts.onBattleEnded = function() {
 			local isVictory = Tactical.Entities.getCombatResult() == Const.Tactical.CombatResult.EnemyDestroyed || Tactical.Entities.getCombatResult() == Const.Tactical.CombatResult.EnemyRetreated;
-			if (isVictory && !isScenarioMode() && m.StrategicProperties != null && m.StrategicProperties.IsAttackingLocation)
+			if (isVictory && !isScenarioMode() && m.StrategicProperties != null && m.StrategicProperties.IsAttackingLocation && World.Ambitions.hasActiveAmbition() && World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_fortification")
 				World.Statistics.getFlags().increment("OathOfFortificationNewObjective");
 
 			onBattleEnded();

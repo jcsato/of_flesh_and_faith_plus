@@ -1,7 +1,7 @@
 @echo off
 
 set modname=of_flesh_and_faith_plus
-set version=1.3.4
+set version=1.3.5
 
 echo.
 echo Creating temporary directory...
