@@ -56,6 +56,7 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		bros[1].getBackground().buildDescription(true);
 		bros[1].setPlaceInFormation(4);
 		bros[1].getSkills().add(new("scripts/skills/traits/loyal_trait"));
+		bros[1].getSkills().removeByID("trait.disloyal");
 
 		bros[1].m.PerkPoints = 0;
 		bros[1].m.LevelUps = 0;
