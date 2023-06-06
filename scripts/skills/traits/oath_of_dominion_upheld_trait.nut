@@ -12,7 +12,7 @@ oath_of_dominion_upheld_trait <- inherit("scripts/skills/traits/character_trait"
 		m.ID			= "trait.oath_of_dominion_upheld";
 		m.Name			= "Oath of Dominion Upheld";
 		m.Icon			= "ui/traits/trait_icon_plus_20.png";
-		m.Description	= "The character has fulfilled an Oath of Dominion, and has proven to himself - and the world - that it is proper for men to beat back the hordes of nature. He meets all the horrors of the natural and supernatural with a renewed, steely will, no longer afraid of the isolated hollow or the dark of night, for they are his domain.";
+		m.Description	= "This character has fulfilled an Oath of Dominion, and has proven to himself - and the world - that it is proper for men to beat back the hordes of nature. He meets all the horrors of the natural and supernatural with a renewed, steely will, no longer afraid of the isolated hollow or the dark of night, for they are his domain.";
 
 		m.Order			= Const.SkillOrder.Trait + 1;
 
