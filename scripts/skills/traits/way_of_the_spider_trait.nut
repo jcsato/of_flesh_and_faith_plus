@@ -1,6 +1,5 @@
 way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait", {
-	m =
-	{
+	m = {
 		DamageBoost			= 5
 		DamageCap			= 20
 		LastEnemyAppliedTo	= 0
@@ -29,6 +28,7 @@ way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait", {
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 14, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.DamageValue + "]+" + m.DamageBoost + "[/color] additional damage for each active poison effect on the target, up to [color=" + Const.UI.Color.DamageValue + "]" + m.DamageCap + "[/color] total" }
+			{ id = 14, type = "text", icon = "ui/icons/special.png", text = "Any attacks that inflict a poison status inflict an additional stacking [color=" + Const.UI.Color.DamageValue + "]" + m.DamageBoost + "[/color] damage at the end of the target's turn" }
 		];
 
 		return ret;
@@ -87,4 +87,4 @@ way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait", {
 		m.LastEnemyAppliedTo = 0;
 		m.LastFrameApplied = 0;
 	}
-})
+});

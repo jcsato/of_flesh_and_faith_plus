@@ -1,11 +1,7 @@
-assassins_prophet_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
-	}
+assassins_prophet_effect <- inherit("scripts/skills/skill", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.assassins_prophet";
 		m.Name					= "The Prophet";
 		m.Icon					= "skills/status_effect_plus_24.png";
@@ -17,8 +13,7 @@ assassins_prophet_effect <- inherit("scripts/skills/skill",
 		m.IsStacking			= false;
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.IsAffectedByDyingAllies		= false;
 		_properties.IsAffectedByLosingHitpoints = false;
 		_properties.IsAffectedByFreshInjuries	= false;
@@ -32,4 +27,4 @@ assassins_prophet_effect <- inherit("scripts/skills/skill",
 		_properties.InitiativeMult		*= 1.25;
 		_properties.HitpointsMult		*= 1.5;
 	}
-})
+});

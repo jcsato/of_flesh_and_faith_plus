@@ -1,11 +1,7 @@
-rot_01_trait <- inherit("scripts/skills/traits/character_trait",
-{
-	m =
-	{
-	}
+rot_01_trait <- inherit("scripts/skills/traits/character_trait", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		character_trait.create();
 
 		m.ID			= "trait.rot_01";
@@ -18,27 +14,25 @@ rot_01_trait <- inherit("scripts/skills/traits/character_trait",
 		m.Excluded = [];
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "[color=" + Const.UI.Color.NegativeValue + "]-10%[/color] Max Fatigue" }
+			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "[color=" + Const.UI.Color.NegativeValue + "]-1[/color] Fatigue Recovery per turn for each Rot" }
 		];
 
 		return ret;
 	}
 
-	function onAdded() {
-		getContainer().getActor().getFlags().increment("CursedExplorersRotsActive");
-	}
-
-	function onRemoved() {
-		getContainer().getActor().getFlags().increment("CursedExplorersRotsActive", -1);
-	}
-
 	function onUpdate(_properties) {
-		_properties.StaminaMult	*= 0.9;
+		local skills = getContainer().getActor().getSkills();
+		local numRots = 0;
+
+		foreach (trait in ::OFFP.Explorers.RotTraits) {
+			if (skills.hasSkill(trait))
+				numRots++;
+		};
+
+		_properties.FatigueRecoveryRate	-= numRots;
 	}
-})
+});

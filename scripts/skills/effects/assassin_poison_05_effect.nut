@@ -1,11 +1,7 @@
-assassin_poison_05_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
-	}
+assassin_poison_05_effect <- inherit("scripts/skills/skill", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		m.ID			= "effects.assassin_poison_05";
 		m.Name			= "Violet Paralytic";
 		m.Description	= "An exotic substance glistens on this character's weapons. Anyone unlucky enough to be wounded by them will find their muscles freeze and their whole body begin to seize up.";
@@ -16,10 +12,8 @@ assassin_poison_05_effect <- inherit("scripts/skills/skill",
 		m.SoundOnUse	= [ "sounds/combat/poison_applied_01.wav", "sounds/combat/poison_applied_02.wav" ];
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/action_points.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints applies a poison that reduces the target's Action Points by [color=" + Const.UI.Color.NegativeValue + "]2[/color] for 1 turn" }
@@ -30,8 +24,7 @@ assassin_poison_05_effect <- inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
 		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0)
 			return;
 
@@ -41,8 +34,7 @@ assassin_poison_05_effect <- inherit("scripts/skills/skill",
 		if (_targetEntity.getFlags().has("undead"))
 			return;
 
-		if (!_targetEntity.isHiddenToPlayer())
-		{
+		if (!_targetEntity.isHiddenToPlayer()) {
 			if (m.SoundOnUse.len() != 0)
 				Sound.play(m.SoundOnUse[Math.rand(0, m.SoundOnUse.len() - 1)], Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
 
@@ -58,4 +50,3 @@ assassin_poison_05_effect <- inherit("scripts/skills/skill",
 			poison.addStack();
 	}
 });
-

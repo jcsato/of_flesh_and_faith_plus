@@ -1,12 +1,13 @@
 runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
-	m = {},
+	m = { }
+
 	function create() {
-		m.ID = "scenario.runeknights";
-		m.Name = "Rune Chosen";
-		m.Description = "[p=c][img]gfx/ui/events/event_145.png[/img][/p][p]You are an adherent of Old Ironhand, an esoteric god of war and glorious death. As you begin to receive visions that the time has come to seek his favor beyond the bounds of the snowy north, what better way than through mercenary work?\n\n[color=#bcad8c]Ironhand's Chosen:[/color] Start with two barbarians and Ironhand's legendary rune blade.\n[color=#bcad8c]Warrior's Repose:[/color] Fallen brothers can be immortalized in runes that grant powerful boons.\n[color=#bcad8c]Death Seekers:[/color] Your men will always die if struck down.[/p]";
-		m.Difficulty = 2;
-		m.Order = 87;
-		m.IsFixedLook = true;
+		m.ID			= "scenario.runeknights";
+		m.Name			= "Rune Chosen";
+		m.Description	= "[p=c][img]gfx/ui/events/event_145.png[/img][/p][p]You are an adherent of Old Ironhand, an esoteric god of war and glorious death. As you begin to receive visions that the time has come to seek his favor beyond the bounds of the snowy north, what better way than through mercenary work?\n\n[color=#bcad8c]Ironhand's Chosen:[/color] Start with two barbarians and Ironhand's legendary rune blade.\n[color=#bcad8c]Warrior's Repose:[/color] Fallen brothers can be immortalized in runes that grant powerful boons.\n[color=#bcad8c]Death Seekers:[/color] Your men will always die if struck down.[/p]";
+		m.Difficulty	= 2;
+		m.Order			= 87;
+		m.IsFixedLook	= true;
 	}
 
 	function isValid() {
@@ -16,7 +17,7 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 	function onSpawnAssets() {
 		local roster = World.getPlayerRoster();
 
-		for( local i = 0; i < 2; i = ++i ) {
+		for (local i = 0; i < 2; i = ++i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = Time.getVirtualTimeF();
@@ -58,9 +59,9 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		bros[1].getSkills().add(new("scripts/skills/traits/loyal_trait"));
 		bros[1].getSkills().removeByID("trait.disloyal");
 
-		bros[1].m.PerkPoints = 0;
-		bros[1].m.LevelUps = 0;
-		bros[1].m.Level = 1;
+		bros[1].m.PerkPoints = 1;
+		bros[1].m.LevelUps = 1;
+		bros[1].m.Level = 2;
 
 		bros[1].m.Talents = [];
 		talents = bros[1].getTalents();
@@ -76,7 +77,8 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		items.unequip(items.getItemAtSlot(Const.ItemSlot.Offhand));
 		items.unequip(items.getItemAtSlot(Const.ItemSlot.Ammo));
 
-		items.equip(new("scripts/items/weapons/militia_spear"));
+		items.equip(new("scripts/items/weapons/barbarians/axehammer"));
+		items.equip(new("scripts/items/shields/wooden_shield_old"));
 		items.equip(new("scripts/items/helmets/barbarians/bear_headpiece"));
 		items.equip(new("scripts/items/armor/barbarians/scrap_metal_armor"));
 
@@ -91,10 +93,11 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 
 	function onSpawnPlayer() {
 		local randomVillage = null, northernmostY = 0;
-		for(local i=0; i != World.EntityManager.getSettlements().len(); ++i) {
+
+		for (local i=0; i != World.EntityManager.getSettlements().len(); ++i) {
 			local v = World.EntityManager.getSettlements()[i];
 
-			if(v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2) {
+			if (v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2) {
 				northernmostY = v.getTile().SquareCoords.Y;
 				randomVillage = v;
 			}
@@ -129,7 +132,7 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 			if (!path.isEmpty()) {
 				randomVillageTile = tile;
 				break;
-			}			
+			}
 		}
 		while(1);
 
@@ -141,7 +144,7 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 			foreach(s in n.getSettlements()) {
 				local d = s.getTile().getDistanceTo(randomVillageTile);
 
-				if(d < dist) {
+				if (d < dist) {
 					dist = d;
 					closest = s;
 				}
@@ -198,7 +201,7 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		if (_actor.isPlayerControlled()) {
 			if (_actor.getSkills().hasSkill("effect.rune_07"))
 				World.Statistics.getFlags().set("DropBerserkerRune", true);
-			else if (_actor.getLevel() + _actor.getFlags().getAsInt("numActiveRunes") >= 10)
+			else if (_actor.getLevel() + _actor.getFlags().getAsInt("numActiveRunes") >= 11)
 				World.Statistics.getFlags().increment("numFifthLevelRunesToDrop", 1);
 			else if (_actor.getLevel() + _actor.getFlags().getAsInt("numActiveRunes") >= 8)
 				World.Statistics.getFlags().increment("numFourthLevelRunesToDrop", 1);
@@ -211,27 +214,26 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		} else if (_actor.m.IsMiniboss && _killer != null && (_killer.getFaction() == Const.Faction.Player || _killer.getFaction() == Const.Faction.PlayerAnimals)) {
 			World.Statistics.getFlags().increment("numChampionRunesToDrop", 1);
 		}
-
 	}
 
 	function onBattleWon(_combatLoot) {
 		local i;
-		for(i = 0; i < World.Statistics.getFlags().getAsInt("numFirstLevelRunesToDrop"); ++i)
+		for (i = 0; i < World.Statistics.getFlags().getAsInt("numFirstLevelRunesToDrop"); ++i)
 			_combatLoot.add(new("scripts/items/misc/runeknights/rune_01_item"));
 
-		for(i = 0; i < World.Statistics.getFlags().getAsInt("numSecondLevelRunesToDrop"); ++i)
+		for (i = 0; i < World.Statistics.getFlags().getAsInt("numSecondLevelRunesToDrop"); ++i)
 			_combatLoot.add(new("scripts/items/misc/runeknights/rune_02_item"));
 
-		for(i = 0; i < World.Statistics.getFlags().getAsInt("numThirdLevelRunesToDrop"); ++i)
+		for (i = 0; i < World.Statistics.getFlags().getAsInt("numThirdLevelRunesToDrop"); ++i)
 			_combatLoot.add(new("scripts/items/misc/runeknights/rune_03_item"));
 
-		for(i = 0; i < World.Statistics.getFlags().getAsInt("numFourthLevelRunesToDrop"); ++i)
+		for (i = 0; i < World.Statistics.getFlags().getAsInt("numFourthLevelRunesToDrop"); ++i)
 			_combatLoot.add(new("scripts/items/misc/runeknights/rune_04_item"));
 
-		for(i = 0; i < World.Statistics.getFlags().getAsInt("numFifthLevelRunesToDrop"); ++i)
+		for (i = 0; i < World.Statistics.getFlags().getAsInt("numFifthLevelRunesToDrop"); ++i)
 			_combatLoot.add(new("scripts/items/misc/runeknights/rune_05_item"));
 
-		for(i = 0; i < World.Statistics.getFlags().getAsInt("numChampionRunesToDrop"); ++i)
+		for (i = 0; i < World.Statistics.getFlags().getAsInt("numChampionRunesToDrop"); ++i)
 			_combatLoot.add(new("scripts/items/misc/runeknights/rune_06_item"));
 
 		if (World.Statistics.getFlags().get("DropBerserkerRune"))

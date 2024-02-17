@@ -1,12 +1,7 @@
-rune_03_item <- inherit("scripts/items/item",
-{
+rune_03_item <- inherit("scripts/items/item", {
+	m = { }
 
-	m =
-	{
-	}
-
-	function create()
-	{
+	function create() {
 		m.ID					= "misc.rune_03";
 		m.Name					= "Rune of the Warrior King";
 		m.Description			= "If a warrior meets his end without truly leaving his mark on this plane, his soul's strength may be ceded to another who may claim glory for the both of them.\n\nIf one truly seeks a glorious end, one cannot limit himself to a single facet of war - he must embrace death in all its aspects.";
@@ -23,10 +18,8 @@ rune_03_item <- inherit("scripts/items/item",
 		m.Value					= 0;
 	}
 
-	function getTooltip()
-	{
-		local result =
-		[ 
+	function getTooltip() {
+		local result = [
 			{ id = 1, type = "title", text = getName() },
 			{ id = 2, type = "description", text = getDescription() }
 		];
@@ -44,13 +37,11 @@ rune_03_item <- inherit("scripts/items/item",
 		return result;
 	}
 
-	function playInventorySound(_eventType)
-	{
+	function playInventorySound(_eventType) {
 		Sound.play("sounds/combat/armor_leather_impact_03.wav", Const.Sound.Volume.Inventory);
 	}
 
-	function onUse(_actor, _item = null)
-	{
+	function onUse(_actor, _item = null) {
 		if (_actor.getSkills().hasSkill("effects.rune_03"))
 			return false;
 
@@ -61,4 +52,4 @@ rune_03_item <- inherit("scripts/items/item",
 
 		return true;
 	}
-})
+});

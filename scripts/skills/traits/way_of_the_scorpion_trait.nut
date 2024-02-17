@@ -1,11 +1,7 @@
-way_of_the_scorpion_trait <- inherit("scripts/skills/traits/character_trait",
-{
-	m =
-	{
-	}
+way_of_the_scorpion_trait <- inherit("scripts/skills/traits/character_trait", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		character_trait.create();
 
 		m.ID			= "trait.way_of_the_scorpion";
@@ -13,13 +9,11 @@ way_of_the_scorpion_trait <- inherit("scripts/skills/traits/character_trait",
 		m.Icon			= "ui/traits/trait_icon_plus_08.png";
 		m.Description	= "No man is without flaw, no creature incapable of error. To best a target, then, is a matter of enduring until they make such an error - and then striking decisively. Such is the Way of the Scorpion.";
 
-		m.Excluded = [];
+		m.Excluded		= [ ];
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "[color=" + this.Const.UI.Color.PositiveValue + "]+2[/color] Fatigue Recovery per turn" }
@@ -29,10 +23,8 @@ way_of_the_scorpion_trait <- inherit("scripts/skills/traits/character_trait",
 		return ret;
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.MovementFatigueCostAdditional	-= 1;
 		_properties.FatigueRecoveryRate				+= 2;
 	}
-
-})
+});

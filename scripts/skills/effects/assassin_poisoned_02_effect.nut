@@ -1,14 +1,11 @@
-assassin_poisoned_02_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
+assassin_poisoned_02_effect <- inherit("scripts/skills/skill", {
+	m = {
 		ResolvePenalty		= 5
 		LastRoundApplied	= 0
 		TurnsLeft			= 2
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.assassin_poisoned_02";
 		m.Name					= "Lion Leech Poison";
 		m.Icon					= "skills/status_effect_plus_19.png";

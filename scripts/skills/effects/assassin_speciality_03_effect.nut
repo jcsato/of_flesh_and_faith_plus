@@ -1,7 +1,6 @@
 assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
-	m =
-	{
-		AttackBoost	= 10
+	m = {
+		AttackBoost		= 10
 	}
 
 	function create() {
@@ -18,16 +17,16 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		return [
-					{ id = 1, type = "title", text = getName() }
-					{ id = 2, type = "description", text = getDescription() }
-					{ id = 15, type = "text", icon = "ui/icons/special.png", text = "The threshold to inflict injuries is lowered by [color=" + Const.UI.Color.NegativeValue + "]25%[/color] against targets who are injured or under the effects of poison" }
-					{ id = 16, type = "text", icon = "ui/icons/hitchance.png", text = "Has an additional [color=" + Const.UI.Color.PositiveValue + "]+" + m.AttackBoost + "%[/color] chance to hit targets who are injured or under the effects of poison" }
-					{ id = 17, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
-				];
+			{ id = 1, type = "title", text = getName() }
+			{ id = 2, type = "description", text = getDescription() }
+			{ id = 15, type = "text", icon = "ui/icons/special.png", text = "The threshold to inflict injuries is lowered by [color=" + Const.UI.Color.NegativeValue + "]25%[/color] against targets who are injured or under the effects of poison" }
+			{ id = 16, type = "text", icon = "ui/icons/hitchance.png", text = "Has an additional [color=" + Const.UI.Color.PositiveValue + "]+" + m.AttackBoost + "%[/color] chance to hit targets who are injured or under the effects of poison" }
+			{ id = 17, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
+		];
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		if(!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())// || _targetEntity.isAlliedWith(getContainer().getActor()))
+		if (!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())
 			return;
 
 		local skills = _targetEntity.getSkills();
@@ -48,4 +47,4 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
 			_properties.RangedSkill						+= m.AttackBoost;
 		}
 	}
-})
+});

@@ -1,28 +1,27 @@
 poison_master_follower <- inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
-	{
+	m = { }
+
+	function create() {
 		follower.create();
-		m.ID = "follower.poison_master";
-		m.Name = "The Poison Master";
-		m.Description = "A former alchemist, the poison master can train others to concoct and apply a variety of dangerous substances - sometimes even without injury!";
-		m.Image = "ui/campfire/poison_master_01";
-		m.Cost = 0;
-		m.Effects = [
+
+		m.ID			= "follower.poison_master";
+		m.Name			= "The Poison Master";
+		m.Description	= "A former alchemist, the poison master can train others to concoct and apply a variety of dangerous substances - sometimes even without injury!";
+		m.Image			= "ui/campfire/poison_master_01";
+		m.Cost			= 0;
+		m.Effects		= [
 			"Your men learn a poison specialty at level 2 instead of gaining a perk point"
 		];
-		m.Requirements = [ { IsSatisfied = false, Text = "You are a trusted assassin of the Southern guilds" } ];
+		m.Requirements	= [ { IsSatisfied = false, Text = "You are a trusted assassin of the Southern guilds" } ];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{ id = 1, type = "title", text = getName() },
 			{ id = 4, type = "description", text = getDescription() }
 		];
 
-		foreach( i, e in m.Effects )
-		{
+		foreach (i, e in m.Effects) {
 			ret.push({ id = i, type = "text", icon = "ui/icons/special.png", text = e });
 		}
 
@@ -30,19 +29,13 @@ poison_master_follower <- inherit("scripts/retinue/follower", {
 		return ret;
 	}
 
-	function isVisible()
-	{
+	function isVisible() {
 		return World.Assets.getOrigin().getID() == "scenario.southern_assassins";
 	}
 
-	function onUpdate()
-	{
-	}
+	function onUpdate() { }
 
-	function onEvaluate()
-	{
+	function onEvaluate() {
 		m.Requirements[0].IsSatisfied = true;
 	}
-
 });
-

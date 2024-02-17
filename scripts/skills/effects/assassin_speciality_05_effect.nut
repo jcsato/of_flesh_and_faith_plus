@@ -1,11 +1,7 @@
-assassin_speciality_05_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
-	}
+assassin_speciality_05_effect <- inherit("scripts/skills/skill", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		m.ID			= "effects.assassin_speciality_05";
 		m.Name			= "Ambidextrous";
 		m.Description	= "This character has learned to use tools in their offhand and pack more efficiently than others. They're pretty good at juggling, too.";
@@ -17,14 +13,13 @@ assassin_speciality_05_effect <- inherit("scripts/skills/skill",
 		m.IsStacking	= false;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
-					{ id = 1, type = "title", text = getName() }
-					{ id = 2, type = "description", text = getDescription() }
-					{ id = 10, type = "text", icon = "ui/icons/action_points.png", text = "Consumables such as nets cost [color=" + Const.UI.Color.NegativeValue + "]1[/color] fewer Action Points to use" }
-					{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "Consumables such as nets build up [color=" + Const.UI.Color.NegativeValue + "]50%[/color] less Fatigue" }
-					{ id = 17, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
-				];
+			{ id = 1, type = "title", text = getName() }
+			{ id = 2, type = "description", text = getDescription() }
+			{ id = 10, type = "text", icon = "ui/icons/action_points.png", text = "Consumables such as nets cost [color=" + Const.UI.Color.NegativeValue + "]1[/color] fewer Action Points to use" }
+			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "Consumables such as nets build up [color=" + Const.UI.Color.NegativeValue + "]50%[/color] less Fatigue" }
+			{ id = 17, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
+		];
 	}
-})
+});

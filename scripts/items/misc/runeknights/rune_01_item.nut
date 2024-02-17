@@ -1,12 +1,7 @@
-rune_01_item <- inherit("scripts/items/item",
-{
+rune_01_item <- inherit("scripts/items/item", {
+	m = { }
 
-	m =
-	{
-	}
-
-	function create()
-	{
+	function create() {
 		m.ID					= "misc.rune_01";
 		m.Name					= "Rune of the Threshold";
 		m.Description			= "If a warrior meets his end without truly leaving his mark on this plane, his soul's strength may be ceded to another who may claim glory for the both of them.\n\nMost are unworthy of having their soul inscribed in a rune. To stand on the threshold of greatness in Ironhand's eyes is an honor indeed.";
@@ -23,10 +18,8 @@ rune_01_item <- inherit("scripts/items/item",
 		m.Value					= 0;
 	}
 
-	function getTooltip()
-	{
-		local result =
-		[ 
+	function getTooltip() {
+		local result = [
 			{ id = 1, type = "title", text = getName() },
 			{ id = 2, type = "description", text = getDescription() }
 		];
@@ -44,13 +37,11 @@ rune_01_item <- inherit("scripts/items/item",
 		return result;
 	}
 
-	function playInventorySound(_eventType)
-	{
+	function playInventorySound(_eventType) {
 		Sound.play("sounds/combat/armor_leather_impact_03.wav", Const.Sound.Volume.Inventory);
 	}
 
-	function onUse(_actor, _item = null)
-	{
+	function onUse(_actor, _item = null) {
 		if (_actor.getSkills().hasSkill("effects.rune_01"))
 			return false;
 
@@ -61,4 +52,4 @@ rune_01_item <- inherit("scripts/items/item",
 
 		return true;
 	}
-})
+});

@@ -1,6 +1,5 @@
 assassin_poisoned_01_effect <- inherit("scripts/skills/skill", {
-	m =
-	{
+	m = {
 		DamageMin			= 10
 		DamageMax			= 15
 		LastRoundApplied	= 0
@@ -27,7 +26,7 @@ assassin_poisoned_01_effect <- inherit("scripts/skills/skill", {
 	function resetTime() {
 		m.TurnsLeft = 1;
 
-		if(getContainer().hasSkill("trait.ailing"))
+		if (getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
@@ -47,7 +46,7 @@ assassin_poisoned_01_effect <- inherit("scripts/skills/skill", {
 
 			spawnIcon("status_effect_plus_18", getContainer().getActor().getTile());
 
-			if(m.SoundOnUse.len() != 0)
+			if (m.SoundOnUse.len() != 0)
 				Sound.play(m.SoundOnUse[Math.rand(0, m.SoundOnUse.len() - 1)], Const.Sound.Volume.RacialEffect * 1.0, getContainer().getActor().getPos());
 
 			local hitInfo = clone Const.Tactical.HitInfo;
@@ -64,18 +63,18 @@ assassin_poisoned_01_effect <- inherit("scripts/skills/skill", {
 	function onAdded() {
 		m.TurnsLeft = 2;
 
-		if(getContainer().hasSkill("trait.ailing"))
+		if (getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
 	function onTurnEnd() {
 		applyDamage();
 
-		if(--m.TurnsLeft <= 0)
+		if (--m.TurnsLeft <= 0)
 			removeSelf();
 	}
 
 	function onWaitTurn() {
 		applyDamage();
 	}
-})
+});

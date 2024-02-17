@@ -1,11 +1,7 @@
-assassin_poison_02_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
-	}
+assassin_poison_02_effect <- inherit("scripts/skills/skill", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		m.ID			= "effects.assassin_poison_02";
 		m.Name			= "Lion Leech Poison";
 		m.Description	= "This character's weapons are coated in a hallucinogenic poison that distorts the victim's perception and induces terrifying visions. One of the more cruel tools in the assassin's kit.";
@@ -17,8 +13,7 @@ assassin_poison_02_effect <- inherit("scripts/skills/skill",
 	}
 
 	function getTooltip() {
-		local ret =
-		[
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints applies a poison that reduces the target's Resolve by [color=" + Const.UI.Color.NegativeValue + "]5[/color] for 2 turns" }

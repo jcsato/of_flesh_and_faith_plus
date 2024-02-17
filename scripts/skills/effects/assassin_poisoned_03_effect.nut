@@ -1,14 +1,11 @@
-assassin_poisoned_03_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
+assassin_poisoned_03_effect <- inherit("scripts/skills/skill", {
+	m = {
 		FatigueRecoveryPenalty	= 15
 		LastRoundApplied		= 0
 		TurnsLeft				= 2
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.assassin_poisoned_03";
 		m.Name					= "Mudblood Venom";
 		m.Icon					= "skills/status_effect_plus_20.png";
@@ -20,35 +17,30 @@ assassin_poisoned_03_effect <- inherit("scripts/skills/skill",
 		m.IsRemovedAfterBattle	= true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character has a vicious poison running through his veins that tightens the lungs and quells the fires of battle. [color=" + Const.UI.Color.NegativeValue + "]" + "-" + m.FatigueRecoveryPenalty + "[/color] Fatigue recovered per turn for [color=" + Const.UI.Color.NegativeValue + "]" + m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function resetTime()
-	{
+	function resetTime() {
 		m.TurnsLeft = 2;
 
-		if(getContainer().hasSkill("trait.ailing"))
+		if (getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		m.TurnsLeft = 2;
 
-		if(getContainer().hasSkill("trait.ailing"))
+		if (getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
-	function onTurnEnd()
-	{
-		if(--m.TurnsLeft <= 0)
+	function onTurnEnd() {
+		if (--m.TurnsLeft <= 0)
 			removeSelf();
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.FatigueRecoveryRate -= m.FatigueRecoveryPenalty;
 	}
-})
+});

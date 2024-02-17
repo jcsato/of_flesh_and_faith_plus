@@ -1,15 +1,12 @@
-assassin_poisoned_05_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
+assassin_poisoned_05_effect <- inherit("scripts/skills/skill", {
+	m = {
 		ActionPointPenalty		= 2
 		Count					= 1
 		LastRoundApplied		= 0
 		TurnsLeft				= 1
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.assassin_poisoned_05";
 		m.Name					= "Violet Paralytic";
 		m.Icon					= "skills/status_effect_plus_22.png";
@@ -21,8 +18,7 @@ assassin_poisoned_05_effect <- inherit("scripts/skills/skill",
 		m.IsRemovedAfterBattle	= true;
 	}
 
-	function getName()
-	{
+	function getName() {
 		if (m.Count <= 1)
 			return m.Name;
 		else
@@ -40,16 +36,16 @@ assassin_poisoned_05_effect <- inherit("scripts/skills/skill",
 	function onAdded() {
 		m.TurnsLeft = 1;
 
-		if(getContainer().hasSkill("trait.ailing"))
+		if (getContainer().hasSkill("trait.ailing"))
 			++m.TurnsLeft;
 	}
 
 	function onTurnEnd() {
-		if(--m.TurnsLeft <= 0)
+		if (--m.TurnsLeft <= 0)
 			removeSelf();
 	}
 
 	function onUpdate(_properties) {
 		_properties.ActionPoints	-= (m.ActionPointPenalty * m.Count);
 	}
-})
+});

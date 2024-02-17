@@ -1,13 +1,10 @@
-rune_03_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
+rune_03_effect <- inherit("scripts/skills/skill", {
+	m = {
 		SkillBuff	= 4
 		DefenseBuff	= 2
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.rune_03";
 		m.Name					= "Rune of the Warrior King";
 		m.Icon					= "skills/status_effect_plus_03.png";
@@ -20,16 +17,14 @@ rune_03_effect <- inherit("scripts/skills/skill",
 		m.IsStacking			= false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "\"Only under the weight of thine own crown can thee know the true freedom of thine servitude. Stand as a king among men, that thee might prove worthy as mine vassal.\"";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local numWeaponMasteries = getNumMasteries(getContainer().getActor().getCurrentProperties());
-		local ret =
-		[
+
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 15, type = "text", icon = "ui/icons/special.png", text = "Gain [color=" + Const.UI.Color.PositiveValue + "]+4[/color] Skill and [color=" + Const.UI.Color.PositiveValue + "]+2[/color] Defense for each weapon mastery" }
@@ -47,8 +42,7 @@ rune_03_effect <- inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onAfterUpdate(_properties)
-	{
+	function onAfterUpdate(_properties) {
 		local numWeaponMasteries = getNumMasteries(_properties);
 
 		_properties.MeleeSkill		+= numWeaponMasteries * m.SkillBuff;
@@ -57,37 +51,36 @@ rune_03_effect <- inherit("scripts/skills/skill",
 		_properties.RangedDefense	+= numWeaponMasteries * m.DefenseBuff;
 	}
 
-	function getNumMasteries(_properties)
-	{
+	function getNumMasteries(_properties) {
 		local numWeaponMasteries = 0;
 
-		if(_properties.IsSpecializedInBows)
+		if (_properties.IsSpecializedInBows)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInCrossbows)
+		if (_properties.IsSpecializedInCrossbows)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInThrowing)
+		if (_properties.IsSpecializedInThrowing)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInSwords)
+		if (_properties.IsSpecializedInSwords)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInCleavers)
+		if (_properties.IsSpecializedInCleavers)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInMaces)
+		if (_properties.IsSpecializedInMaces)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInHammers)
+		if (_properties.IsSpecializedInHammers)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInAxes)
+		if (_properties.IsSpecializedInAxes)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInFlails)
+		if (_properties.IsSpecializedInFlails)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInSpears)
+		if (_properties.IsSpecializedInSpears)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInPolearms)
+		if (_properties.IsSpecializedInPolearms)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInDaggers)
+		if (_properties.IsSpecializedInDaggers)
 			numWeaponMasteries++;
-		if(_properties.IsSpecializedInShields)
+		if (_properties.IsSpecializedInShields)
 			numWeaponMasteries++;
 
 		return numWeaponMasteries;
 	}
-})
+});

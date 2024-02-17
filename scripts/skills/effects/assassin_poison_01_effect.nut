@@ -13,8 +13,7 @@ assassin_poison_01_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local ret =
-		[
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints coats the target in holy water, inflicting [color=" + Const.UI.Color.NegativeValue + "]10-15[/color] damage for 2 turns against any undead" }

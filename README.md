@@ -2,6 +2,11 @@
 
 A mod for the game Battle Brothers ([Steam](https://store.steampowered.com/app/365360/Battle_Brothers/), [GOG](https://www.gog.com/game/battle_brothers), [Developer Site](http://battlebrothersgame.com/buy-battle-brothers/)).
 
+## Additional Reading
+
+- [Mod Background and Design Goals](./mod_background.md)
+- [List of new mechanics, abilities, and effects (SPOILERS!)](./mechanics_abilities_effects_spoilers.md)
+
 ## Table of contents
 
 -   [Features](#features)
@@ -13,7 +18,11 @@ A mod for the game Battle Brothers ([Steam](https://store.steampowered.com/app/3
 
 ## Features
 
-Of Flesh and Faith+ is a content expansion to the Of Flesh and Faith DLC. It adds three new origins, one for each of the previous major Battle Brothers DLC, as well as small additions to the Oathtaker and Anatomist origins.
+Of Flesh and Faith+ is a content expansion to the Of Flesh and Faith DLC. It adds:
+- Three new origins, one for each of the previous major Battle Brothers DLC
+- A total overhaul to the Oathtaker origin with all new effects and mechanics
+- 5 new events to expand on the Oathtaker background outside of the origin
+- A few smaller additions and events to the Anatomist origin.
 
 ### **The Cursed Explorers (Beasts & Exploration)**
 
@@ -49,17 +58,17 @@ Providing this training to mercenaries of less exotic backgrounds are two master
 
 <img src="./readme_assets/Oathtakers.png" width="1200">
 
-The Oathtakers origin has been expanded with an additional Oath and a new mechanic to incentivize completing their special bonus objectives.
+The Oathtakers origin has been totally overhauled to make their mechanics more engaging and meaningful to character builds.
 
-The **Oath of Proving** sees the company commit to martial excellence as individuals. Every man in the company gets a bonus in combat until he fells his first enemy - but those who fail to down any foe by the end of the fight no longer gain any experience until scoring a kill.
+Where once Oaths were picked for the whole company in lieu of Ambitions, they are now chosen on a per-bro basis via the "Book of Oaths" inventory item. Oaths grant a debuff as the battle brother struggles to internalize its teachings. Once he has completed a quest to prove the oath fulfilled, it instead grants him a buff as consecration of his accomplishment.
 
-Additionally, fulfilling Oath bonus objectives now grants a **unique-per-Oath trait** to all men currently in the company, immortalizing some of the lessons learned while undertaking it.
+Not all the oaths are available from the start of a campaign, however. There are many wardens of the sacred texts, and the company must prove itself by following the oaths it has to earn the right to access more. Additionally, while all Oathtakers are sworn to follow all of Young Anselm's oaths, there are only so many a man can truly commit to questing toward.
 
-Lastly, the **Oath of Camaraderie** has been reworked with a new effect and, along with the **Oath of Fortification**, a new bonus objective. The **Oath of Distinction** has had its XP mechanics tweaked under the hood to hopefully better match player expectations.
+Note that a new Oathtaker campaign will need to be started for these changes to take effect.
 
 ### **The Anatomists**
 
-The Anatomists have gotten a small update as well, with a new potion added for the Conquerer. You'll have to seek out the Monolith and defeat him for yourself to see what it does!
+The Anatomists have gotten a small update as well, with a handful of new events and a new potion added for the Conquerer. Seek out the Black Monolith and defeat him for yourself to see what it does!
 
 ## Requirements
 
@@ -82,11 +91,13 @@ The Anatomists have gotten a small update as well, with a new potion added for t
 
 ## Compatibility
 
-Of Flesh and Faith+ seeks to be as save game safe and compatible as it can be. The mod _should_ be safe to remove at any time, provided the save in question does not use one of the new origins added by the mod or the Of Flesh and Faith DLC itself.
+**IMPORTANT!** As of v2.0, Of Flesh and Faith+ is **NOT** save game compatible. In other words, any saves made while the mod is installed cannot be loaded if the mod is uninstalled.
 
-A best-effort attempt will be made to note any save-game incompatible updates to the mod on the releases page.
+Versions prior to v2.0 should be safe to remove at any time, provided that only saves not using of the new or modified origins are loaded.
 
 ## Credits
+
+### v1.x
 
 **Design and Programming**
 - Sato
@@ -110,3 +121,20 @@ A best-effort attempt will be made to note any save-game incompatible updates to
 - Gunbuster
 - Matrick
 - Santo
+
+### v2.x
+
+**Design and Programming**
+- Sato
+
+**Artwork**
+- Sato
+- Von Krolock
+
+**Writing**
+- Sato
+
+**Principal Playtesting**
+- Doubt
+- Orange
+- A5G Reaper

@@ -1,7 +1,7 @@
 runeblade_skill <- inherit("scripts/skills/skill", {
-	m = {},
-	function create()
-	{
+	m = { }
+
+	function create() {
 		m.ID = "items.runeblade_skill";
 		m.Type = Const.SkillType.Item;
 		m.Order = Const.SkillOrder.Item;
@@ -12,8 +12,7 @@ runeblade_skill <- inherit("scripts/skills/skill", {
 		m.IsRemovedAfterBattle = false;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
 		if (_targetEntity == null)
 			return;
 
@@ -21,5 +20,4 @@ runeblade_skill <- inherit("scripts/skills/skill", {
 		if (_skill.isAttack() && isNemesis)
 			_properties.DamageTotalMult *= 1.2;
 	}
-
 });

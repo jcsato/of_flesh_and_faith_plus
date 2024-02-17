@@ -1,11 +1,7 @@
-rune_04_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
-	}
+rune_04_effect <- inherit("scripts/skills/skill", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.rune_04";
 		m.Name					= "Rune of the Old God";
 		m.Icon					= "skills/status_effect_plus_04.png";
@@ -18,15 +14,12 @@ rune_04_effect <- inherit("scripts/skills/skill",
 		m.IsStacking			= false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "\"Ne\'er shall mine chosen betray my service to bend knee to fear. Meet thine death with thine weapon in hand and thine heart free of indolence.\"";
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 15, type = "text", icon = "ui/icons/fatigue.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+3[/color] Fatigue Recovery per turn" }
@@ -38,11 +31,10 @@ rune_04_effect <- inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.FatigueRecoveryRate			+= 3;
 		_properties.IsAffectedByLosingHitpoints	= false;
 		_properties.IsAffectedByFleeingAllies	= false;
 		_properties.IsAffectedByDyingAllies		= false;
 	}
-})
+});

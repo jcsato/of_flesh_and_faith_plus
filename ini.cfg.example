@@ -1,0 +1,7 @@
+[General]
+modname=of_flesh_and_faith_plus
+version=2.0
+
+[Build]
+modkitpath=YOUR_MODKIT_PATH_HERE
+datapath=YOUR_DATA_PATH_HERE

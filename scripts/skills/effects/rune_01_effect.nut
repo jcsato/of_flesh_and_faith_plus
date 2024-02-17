@@ -1,11 +1,7 @@
-rune_01_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
-	}
+rune_01_effect <- inherit("scripts/skills/skill", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.rune_01";
 		m.Name					= "Rune of the Threshold";
 		m.Icon					= "skills/status_effect_plus_01.png";
@@ -18,15 +14,12 @@ rune_01_effect <- inherit("scripts/skills/skill",
 		m.IsStacking			= false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "\"Stand in the threshold, mine chosen. Brace thineself against its void, and in the liminal plane between death and glory, see thine fate and the fate of thine predecessors and know that under mine auspice your death shall be worthy.\"";
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/xp_received.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+5%[/color] Experience Gain" }
@@ -35,9 +28,7 @@ rune_01_effect <- inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		_properties.XPGainMult		*= 1.05;
 	}
-
-})
+});

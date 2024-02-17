@@ -1,26 +1,21 @@
-conquerer_potion_item <- inherit("scripts/items/misc/anatomist/anatomist_potion_item",
-{
-
-	m =
-	{
-	}
+conquerer_potion_item <- inherit("scripts/items/misc/anatomist/anatomist_potion_item", {
+	m = { }
 
 	function create() {
 		anatomist_potion_item.create();
 
-		m.ID					= "misc.conquerer_potion";
-		m.Name					= "Soul of the Fallen";
-		m.Description			= "This smoky mixture, created through intense study of the undead known as 'the Conquerer', grants the vengeful fury that seems to drive the ancient dead themselves - but directed at more productive targets!";
+		m.ID			= "misc.conquerer_potion";
+		m.Name			= "Soul of the Fallen";
+		m.Description	= "This smoky mixture, created through intense study of the undead known as 'the Conquerer', grants the vengeful fury that seems to drive the ancient dead themselves - but directed at more productive targets!";
 
-		m.IconLarge				= "";
-		m.Icon					= "consumables/potion_plus_01.png";
+		m.IconLarge		= "";
+		m.Icon			= "consumables/potion_plus_01.png";
 
-		m.Value					= 0;
+		m.Value			= 0;
 	}
 
 	function getTooltip() {
-		local result =
-		[ 
+		local result = [
 			{ id = 1, type = "title", text = getName() },
 			{ id = 2, type = "description", text = getDescription() }
 		];
@@ -51,4 +46,4 @@ conquerer_potion_item <- inherit("scripts/items/misc/anatomist/anatomist_potion_
 
 		return anatomist_potion_item.onUse(_actor, _item);
 	}
-})
+});

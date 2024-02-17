@@ -1,6 +1,5 @@
 assassin_speciality_01_effect <- inherit("scripts/skills/skill", {
-	m =
-	{
+	m = {
 		DamageBoost			= 15
 		MeleeDefenseBoost	= 5
 		RangedDefenseBoost	= 5
@@ -20,13 +19,13 @@ assassin_speciality_01_effect <- inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		return [
-					{ id = 1, type = "title", text = getName() }
-					{ id = 2, type = "description", text = getDescription() }
-					{ id = 11, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15%[/color] Damage if engaged with a single enemy" }
-					{ id = 12, type = "text", icon = "ui/icons/melee_defense.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+5[/color] Melee Defense if there are no allies in adjacent tiles" }
-					{ id = 13, type = "text", icon = "ui/icons/ranged_defense.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+5[/color] Ranged Defense if there are no allies in adjacent tiles" }
-					{ id = 17, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
-				];
+			{ id = 1, type = "title", text = getName() }
+			{ id = 2, type = "description", text = getDescription() }
+			{ id = 11, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15%[/color] damage if engaged with a single enemy" }
+			{ id = 12, type = "text", icon = "ui/icons/melee_defense.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+5[/color] Melee Defense if there are no allies in adjacent tiles" }
+			{ id = 13, type = "text", icon = "ui/icons/ranged_defense.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+5[/color] Ranged Defense if there are no allies in adjacent tiles" }
+			{ id = 17, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
+		];
 	}
 
 	function onUpdate(_properties) {
@@ -37,13 +36,13 @@ assassin_speciality_01_effect <- inherit("scripts/skills/skill", {
 		local myTile = actor.getTile();
 		local numAlliesAdjacent = 0, numOpponentsAdjacent = 0;
 
-		for( local i = 0; i < 6; i = ++i ) {
+		for (local i = 0; i < 6; i = ++i) {
 			if (!myTile.hasNextTile(i))
 				continue;
 
 			local tile = myTile.getNextTile(i);
 
-			if (Math.abs(myTile.Level - tile.Level) <= 1 && tile.IsOccupiedByActor) {// && tile.getEntity().getMoraleState() != Const.MoraleState.Fleeing) {
+			if (Math.abs(myTile.Level - tile.Level) <= 1 && tile.IsOccupiedByActor) {
 				if (tile.getEntity().isAlliedWith(actor))
 					numAlliesAdjacent = ++numAlliesAdjacent;
 				else
@@ -59,4 +58,4 @@ assassin_speciality_01_effect <- inherit("scripts/skills/skill", {
 		if (numOpponentsAdjacent == 1)
 			_properties.DamageTotalMult	*= (1.0 + m.DamageBoost / 100.0);
 	}
-})
+});

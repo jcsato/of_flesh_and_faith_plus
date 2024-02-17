@@ -1,15 +1,12 @@
-assassin_poisoned_04_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
+assassin_poisoned_04_effect <- inherit("scripts/skills/skill", {
+	m = {
 		SkillMultPenalty		= 0.10
 		VisionPenalty			= 5
 		LastRoundApplied		= 0
 		TurnsLeft				= 2
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.assassin_poisoned_04";
 		m.Name					= "Gilder's Gaze Poison";
 		m.Icon					= "skills/status_effect_plus_21.png";
@@ -49,4 +46,4 @@ assassin_poisoned_04_effect <- inherit("scripts/skills/skill",
 		_properties.MeleeSkillMult	*= (1.0 - m.SkillMultPenalty);
 		_properties.RangedSkillMult	*= (1.0 - m.SkillMultPenalty);
 	}
-})
+});

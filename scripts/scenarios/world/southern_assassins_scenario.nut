@@ -1,12 +1,13 @@
 southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
-	m = {},
+	m = { }
+
 	function create() {
-		m.ID = "scenario.southern_assassins";
-		m.Name = "Southern Assassins";
-		m.Description = "[p=c][img]gfx/ui/events/event_165.png[/img][/p][p]You are an assassin of the Southern guilds, a master of shadows and blades. But when you are tasked with a target not even the guilds can touch, can you adapt to the life of a mercenary?\n\n[color=#bcad8c]Assassins:[/color] Start with two trained assassins.\n[color=#bcad8c]Secret Arts:[/color] At levels 2, 5, and 8, your men learn a random assassin specialty instead of gaining a perk point.\n[color=#bcad8c]Training Retinue:[/color] You have two fewer retinue slots.[/p]";
-		m.Difficulty = 2;
-		m.Order = 86;
-		m.IsFixedLook = true;
+		m.ID			= "scenario.southern_assassins";
+		m.Name			= "Southern Assassins";
+		m.Description	= "[p=c][img]gfx/ui/events/event_165.png[/img][/p][p]You are an assassin of the Southern guilds, a master of shadows and blades. But when you are tasked with a target not even the guilds can touch, can you adapt to the life of a mercenary?\n\n[color=#bcad8c]Assassins:[/color] Start with two trained assassins.\n[color=#bcad8c]Secret Arts:[/color] At levels 2, 5, and 8, your men learn a random assassin specialty instead of gaining a perk point.\n[color=#bcad8c]Training Retinue:[/color] You have two fewer retinue slots.[/p]";
+		m.Difficulty	= 2;
+		m.Order			= 86;
+		m.IsFixedLook	= true;
 	}
 
 	function isValid() {
@@ -16,7 +17,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 	function onSpawnAssets() {
 		local roster = World.getPlayerRoster();
 
-		for( local i = 0; i < 2; i = ++i ) {
+		for (local i = 0; i < 2; i = ++i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = Time.getVirtualTimeF();
@@ -92,7 +93,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 	function onSpawnPlayer() {
 		local randomVillage;
 
-		for( local i = 0; i != World.EntityManager.getSettlements().len(); i = ++i ) {
+		for (local i = 0; i != World.EntityManager.getSettlements().len(); i = ++i) {
 			randomVillage = World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern())
@@ -198,4 +199,3 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		_bro.m.PerkPointsSpent += 1;
 	}
 });
-

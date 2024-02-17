@@ -1,47 +1,38 @@
-rot_04_trait <- inherit("scripts/skills/traits/character_trait",
-{
-	m =
-	{
-	}
+rot_04_trait <- inherit("scripts/skills/traits/character_trait", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		character_trait.create();
 
 		m.ID			= "trait.rot_04";
 		m.Name			= "Mindrot";
 		m.Icon			= "ui/traits/trait_icon_plus_04.png";
-		m.Description	= "The Rot has spead to this character's brain, causing forgetfulness and a degradation in hand-eye coordination.";
+		m.Description	= "The Rot has spread to this character's brain, causing forgetfulness and muddled thoughts.";
 
 		m.Order			= Const.SkillOrder.Trait - 1;
 
 		m.Excluded = [];
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 11, type = "text", icon = "ui/icons/melee_skill.png", text = "[color=" + Const.UI.Color.NegativeValue + "]-5%[/color] Melee Skill" }
-			{ id = 12, type = "text", icon = "ui/icons/ranged_skill.png", text = "[color=" + Const.UI.Color.NegativeValue + "]-5%[/color] Ranged Skill" }
+			{ id = 11, type = "text", icon = "ui/icons/xp_received.png", text = "[color=" + Const.UI.Color.NegativeValue + "]-5%[/color] Experience Gain per Rot" }
 		];
 
 		return ret;
 	}
 
-	function onAdded() {
-		getContainer().getActor().getFlags().increment("CursedExplorersRotsActive");
-	}
+	function onUpdate(_properties) {
+		local skills = getContainer().getActor().getSkills();
+		local numRots = 0;
 
-	function onRemoved() {
-		getContainer().getActor().getFlags().increment("CursedExplorersRotsActive", -1);
-	}
+		foreach (trait in ::OFFP.Explorers.RotTraits) {
+			if (skills.hasSkill(trait))
+				numRots++;
+		};
 
-	function onUpdate(_properties)
-	{
-		_properties.MeleeSkillMult	*= 0.95;
-		_properties.RangedSkillMult	*= 0.95;
+		_properties.XPGainMult -= numRots * 0.05;
 	}
-})
+});

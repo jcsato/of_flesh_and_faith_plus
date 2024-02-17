@@ -1,6 +1,5 @@
 assassin_poison_03_effect <- inherit("scripts/skills/skill", {
-	m =
-	{
+	m = {
 		FatigueDamageOnHit		= 10
 	}
 
@@ -16,8 +15,7 @@ assassin_poison_03_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local ret =
-		[
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints applies a poison that inflicts [color=" + Const.UI.Color.NegativeValue + "]" + m.FatigueDamageOnHit + "[/color] extra Fatigue" }
@@ -56,4 +54,3 @@ assassin_poison_03_effect <- inherit("scripts/skills/skill", {
 			poison.resetTime();
 	}
 });
-

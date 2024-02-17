@@ -1,14 +1,11 @@
-rune_05_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
+rune_05_effect <- inherit("scripts/skills/skill", {
+	m = {
 		BraveryBuff		= 4
 		InitiativeBuff	= 6
 		Stacks			= 0
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.rune_05";
 		m.Name					= "Death's Door Rune";
 		m.Icon					= "skills/status_effect_plus_05.png";
@@ -21,18 +18,15 @@ rune_05_effect <- inherit("scripts/skills/skill",
 		m.IsStacking			= false;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "\"Only in thine twilight will thee see and know the true path.\"";
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 10, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15%[/color] Damage if hitpoints are below [color=" + Const.UI.Color.NegativeValue + "]75%[/color]" }
+			{ id = 10, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+15%[/color] damage if hitpoints are below [color=" + Const.UI.Color.NegativeValue + "]75%[/color]" }
 			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "This character gains [color=" + Const.UI.Color.PositiveValue + "]+" + m.BraveryBuff + "[/color] Resolve and [color=" + Const.UI.Color.PositiveValue + "]+" + m.InitiativeBuff + "[/color] Initiative each time they take hitpoint damage, resetting at the end of combat" }
 		];
 
@@ -46,24 +40,20 @@ rune_05_effect <- inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		m.Stacks = 0;
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		m.Stacks = 0;
 	}
 
-	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor)
-	{
+	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
 		if (_damageHitpoints > 0)
 			m.Stacks++;
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		local actor = getContainer().getActor();
 
 		if (actor.getHitpoints() < (actor.getHitpointsMax() / 4) * 3)
@@ -72,4 +62,4 @@ rune_05_effect <- inherit("scripts/skills/skill",
 		_properties.Bravery				+= m.Stacks * m.BraveryBuff;
 		_properties.Initiative			+= m.Stacks * m.InitiativeBuff;
 	}
-})
+});

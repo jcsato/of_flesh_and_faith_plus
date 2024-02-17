@@ -1,11 +1,7 @@
-volition_of_the_cursed_trait <- inherit("scripts/skills/traits/character_trait",
-{
-	m =
-	{
-	}
+volition_of_the_cursed_trait <- inherit("scripts/skills/traits/character_trait", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		character_trait.create();
 
 		m.ID			= "trait.volition_of_the_cursed";
@@ -16,13 +12,11 @@ volition_of_the_cursed_trait <- inherit("scripts/skills/traits/character_trait",
 		m.Order			= Const.SkillOrder.Trait - 2;
 		m.IsHidden		= true;
 
-		m.Excluded = [];
+		m.Excluded		= [ ];
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 		];
@@ -38,14 +32,21 @@ volition_of_the_cursed_trait <- inherit("scripts/skills/traits/character_trait",
 			ret.push({ id = 10, type = "text", icon = "ui/icons/special.png", text = "No legendary locations discovered so far" });
 		}
 
-		if (getContainer().getActor().getFlags().getAsInt("CursedExplorersRotsActive") > 0)
+		local skills = getContainer().getActor().getSkills();
+		local numRots = 0;
+
+		foreach (trait in ::OFFP.Explorers.RotTraits) {
+			if (skills.hasSkill(trait))
+				numRots++;
+		};
+
+		if (numRots > 0)
 			ret.push({ id = 10, type = "text", icon = "ui/icons/asset_daily_money.png", text = "Demands [color=" + Const.UI.Color.PositiveValue + "]15%[/color] fewer wages per day" });
 
 		return ret;
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		local ll_cleared			= getContainer().getActor().getFlags().getAsInt("CursedExplorersLegendaryLocations");
 
 		_properties.Bravery			+= ll_cleared;
@@ -54,12 +55,18 @@ volition_of_the_cursed_trait <- inherit("scripts/skills/traits/character_trait",
 		_properties.MeleeDefense	+= ll_cleared;
 		_properties.RangedDefense	+= ll_cleared;
 
-		local activeRot				= getContainer().getActor().getFlags().getAsInt("CursedExplorersRotsActive");
+		local skills = getContainer().getActor().getSkills();
+		local numRots = 0;
 
-		if (activeRot > 0)
+		foreach (trait in ::OFFP.Explorers.RotTraits) {
+			if (skills.hasSkill(trait))
+				numRots++;
+		};
+
+		if (numRots > 0)
 			_properties.DailyWageMult *= 0.85;
 
-		if (activeRot > 0 || ll_cleared > 0)
+		if (numRots > 0 || ll_cleared > 0)
 			m.IsHidden = false;
 	}
-})
+});

@@ -1,13 +1,10 @@
-rune_06_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
+rune_06_effect <- inherit("scripts/skills/skill", {
+	m = {
 		BraveryBuff		= 15
 		ThreatBuff		= 5
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "effects.rune_06";
 		m.Name					= "Nemesis Rune";
 		m.Icon					= "skills/status_effect_plus_06.png";
@@ -54,4 +51,4 @@ rune_06_effect <- inherit("scripts/skills/skill",
 		if (nemesisPresent)
 			_properties.Bravery += m.BraveryBuff;
 	}
-})
+});

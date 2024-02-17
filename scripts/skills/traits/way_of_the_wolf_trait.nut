@@ -1,6 +1,5 @@
 way_of_the_wolf_trait <- inherit("scripts/skills/traits/character_trait", {
-	m =
-	{
+	m = {
 		LastTargetID		= 0
 		SkillCount			= 0
 	}
@@ -72,4 +71,4 @@ way_of_the_wolf_trait <- inherit("scripts/skills/traits/character_trait", {
 		m.SkillCount	= 0;
 		m.LastTargetID	= 0;
 	}
-})
+});

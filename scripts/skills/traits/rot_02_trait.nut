@@ -1,11 +1,7 @@
-rot_02_trait <- inherit("scripts/skills/traits/character_trait",
-{
-	m =
-	{
-	}
+rot_02_trait <- inherit("scripts/skills/traits/character_trait", {
+	m = { }
 
-	function create()
-	{
+	function create() {
 		character_trait.create();
 
 		m.ID			= "trait.rot_02";
@@ -18,27 +14,25 @@ rot_02_trait <- inherit("scripts/skills/traits/character_trait",
 		m.Excluded = [];
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 11, type = "text", icon = "ui/icons/health.png", text = "[color=" + Const.UI.Color.NegativeValue + "]-10%[/color] Hitpoints" }
+			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "The threshold to sustain injuries on getting hit is decreased by [color=" + Const.UI.Color.NegativeValue + "]5%[/color] per Rot" }
 		];
 
 		return ret;
 	}
 
-	function onAdded() {
-		getContainer().getActor().getFlags().increment("CursedExplorersRotsActive");
-	}
-
-	function onRemoved() {
-		getContainer().getActor().getFlags().increment("CursedExplorersRotsActive", -1);
-	}
-
 	function onUpdate(_properties) {
-		_properties.HitpointsMult	*= 0.9;
+		local skills = getContainer().getActor().getSkills();
+		local numRots = 0;
+
+		foreach (trait in ::OFFP.Explorers.RotTraits) {
+			if (skills.hasSkill(trait))
+				numRots++;
+		};
+
+		_properties.ThresholdToReceiveInjuryMult	*= (1.0 - (numRots * 0.05));
 	}
-})
+});

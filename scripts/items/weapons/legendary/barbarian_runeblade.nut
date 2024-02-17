@@ -1,14 +1,10 @@
-barbarian_runeblade <- inherit("scripts/items/weapons/weapon",
-{
-
-	m =
-	{
+barbarian_runeblade <- inherit("scripts/items/weapons/weapon", {
+	m = {
 		DamageBoost = 5
 		StunChance  = 0
 	}
 
-	function create()
-	{
+	function create() {
 		weapon.create();
 
 		m.ID				= "weapon.barbarian_runeblade";
@@ -43,16 +39,14 @@ barbarian_runeblade <- inherit("scripts/items/weapons/weapon",
 		m.ChanceToHitHead	= 5;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = weapon.getTooltip();
 		result.push({ id = 6, type = "text", icon = "ui/icons/special.png", text = "Inflicts [color=" + Const.UI.Color.PositiveValue + "]+5[/color] damage for each of the wielder's active runes" });
 		result.push({ id = 7, type = "text", icon = "ui/icons/special.png", text = "Inflicts [color=" + Const.UI.Color.PositiveValue + "]+20%[/color] damage against enemy leaders and champions" });
 		return result;
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		weapon.onEquip();
 
 		local skillToAdd = new("scripts/skills/actives/overhead_strike");
@@ -70,8 +64,7 @@ barbarian_runeblade <- inherit("scripts/items/weapons/weapon",
 			getContainer().getActor().getSkills().add(new("scripts/skills/items/runeblade_skill"));
 	}
 
-	function onUnequip()
-	{
+	function onUnequip() {
 		weapon.onUnequip();
 
 		m.RegularDamage = 60;
@@ -81,16 +74,14 @@ barbarian_runeblade <- inherit("scripts/items/weapons/weapon",
 			getContainer().getActor().getSkills().removeByID("items.runeblade_skill");
 	}
 
-	function onUpdateProperties( _properties )
-	{
+	function onUpdateProperties( _properties ) {
 		m.RegularDamage = 60;
 		m.RegularDamageMax = 80;
 		local actor = getContainer().getActor();
 
-		if(actor != null && !actor.isNull() && actor.isAlive())
-		{
+		if (actor != null && !actor.isNull() && actor.isAlive()) {
 			local numRunes = actor.getFlags().getAsInt("numActiveRunes");
-			if(numRunes != null && numRunes > 0) {
+			if (numRunes != null && numRunes > 0) {
 				m.RegularDamage += numRunes * m.DamageBoost;
 				m.RegularDamageMax += numRunes * m.DamageBoost;
 			}
@@ -98,4 +89,4 @@ barbarian_runeblade <- inherit("scripts/items/weapons/weapon",
 
 		weapon.onUpdateProperties(_properties);
 	}
-})
+});

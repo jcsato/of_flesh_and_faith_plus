@@ -1,7 +1,5 @@
-conquerer_potion_effect <- inherit("scripts/skills/skill",
-{
-	m =
-	{
+conquerer_potion_effect <- inherit("scripts/skills/skill", {
+	m = {
 		ArmorDamageTaken	= 0
 	}
 
@@ -22,10 +20,8 @@ conquerer_potion_effect <- inherit("scripts/skills/skill",
 		return "This character's body has taken in material found in the Black Monolith, and they are filled with a constant, albeit undirected, vengeful rage. This makes them almost unbearable to be around in camp, but their attitude and newfound mutations make them all the more capable in the battlefield.";
 	}
 
-	function getTooltip()
-	{
-		local ret =
-		[
+	function getTooltip() {
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/damage_dealt.png", text = "Every time this character takes armor damage, [color=" + Const.UI.Color.PositiveValue + "]50%[/color] of that damage is added to their next attack that hits" }
@@ -73,4 +69,4 @@ conquerer_potion_effect <- inherit("scripts/skills/skill",
 	function onDismiss() {
 		World.Statistics.getFlags().set("isConquererPotionAcquired", false);
 	}
-})
+});

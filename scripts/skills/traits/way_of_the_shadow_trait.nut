@@ -1,7 +1,5 @@
 way_of_the_shadow_trait <- inherit("scripts/skills/traits/character_trait", {
-	m =
-	{
-	}
+	m = { }
 
 	function create() {
 		character_trait.create();
@@ -11,7 +9,7 @@ way_of_the_shadow_trait <- inherit("scripts/skills/traits/character_trait", {
 		m.Icon			= "ui/traits/trait_icon_plus_09.png";
 		m.Description	= "The Gilder's gleam blesses all equally, yet not all are equally worthy - why fight whilst they benefit so undeservedly? The Way of the Shadow followers have embraced their arts outside His auspice, and they dominate the night like no other.";
 
-		m.Excluded = [];
+		m.Excluded		= [ ];
 	}
 
 	function getTooltip() {
@@ -39,4 +37,4 @@ way_of_the_shadow_trait <- inherit("scripts/skills/traits/character_trait", {
 			_properties.Vision		+= 1;
 		}
 	}
-})
+});

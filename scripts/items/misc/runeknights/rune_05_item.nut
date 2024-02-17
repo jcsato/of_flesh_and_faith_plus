@@ -1,12 +1,7 @@
-rune_05_item <- inherit("scripts/items/item",
-{
+rune_05_item <- inherit("scripts/items/item", {
+	m = { }
 
-	m =
-	{
-	}
-
-	function create()
-	{
+	function create() {
 		m.ID					= "misc.rune_05";
 		m.Name					= "Death's Door Rune";
 		m.Description			= "If a warrior meets his end without truly leaving his mark on this plane, his soul's strength may be ceded to another who may claim glory for the both of them.\n\nFew reach the first threshold, but truly rare is the warrior who lives in the final portal, in the door of death.";
@@ -23,10 +18,8 @@ rune_05_item <- inherit("scripts/items/item",
 		m.Value					= 0;
 	}
 
-	function getTooltip()
-	{
-		local result =
-		[ 
+	function getTooltip() {
+		local result = [
 			{ id = 1, type = "title", text = getName() },
 			{ id = 2, type = "description", text = getDescription() }
 		];
@@ -38,7 +31,7 @@ rune_05_item <- inherit("scripts/items/item",
 		else
 			result.push({ id = 3, type = "image", image = getIcon() });
 
-		result.push({ id = 14, type = "text", icon = "ui/icons/special.png", text = "Deal [color=" + Const.UI.Color.PositiveValue + "]+15%[/color] Damage if hitpoints are below [color=" + Const.UI.Color.NegativeValue + "]75%[/color]" });
+		result.push({ id = 14, type = "text", icon = "ui/icons/special.png", text = "Deal [color=" + Const.UI.Color.PositiveValue + "]+15%[/color] damage if hitpoints are below [color=" + Const.UI.Color.NegativeValue + "]75%[/color]" });
 		result.push({ id = 15, type = "text", icon = "ui/icons/bravery.png", text = "Grants [color=" + Const.UI.Color.PositiveValue + "]+4[/color] Resolve upon taking hitpoint damage, resetting at the end of combat" });
 		result.push({ id = 16, type = "text", icon = "ui/icons/initiative.png", text = "Grants [color=" + Const.UI.Color.PositiveValue + "]+6[/color] Initiative upon taking hitpoint damage, resetting at the end of combat" });
 		result.push({ id = 65, type = "text", text = "Right-click or drag onto the currently selected character in order to etch the rune into their soul. This item will be consumed in the process." });
@@ -46,13 +39,11 @@ rune_05_item <- inherit("scripts/items/item",
 		return result;
 	}
 
-	function playInventorySound(_eventType)
-	{
+	function playInventorySound(_eventType) {
 		Sound.play("sounds/combat/armor_leather_impact_03.wav", Const.Sound.Volume.Inventory);
 	}
 
-	function onUse(_actor, _item = null)
-	{
+	function onUse(_actor, _item = null) {
 		if (_actor.getSkills().hasSkill("effects.rune_05"))
 			return false;
 
@@ -63,4 +54,4 @@ rune_05_item <- inherit("scripts/items/item",
 
 		return true;
 	}
-})
+});

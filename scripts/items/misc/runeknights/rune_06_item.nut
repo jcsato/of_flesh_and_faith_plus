@@ -1,14 +1,10 @@
-rune_06_item <- inherit("scripts/items/item",
-{
-
-	m =
-	{
+rune_06_item <- inherit("scripts/items/item", {
+	m = {
 		BraveryBuff		= 15
-		ThreatBuff		= 7
+		ThreatBuff		= 5
 	}
 
-	function create()
-	{
+	function create() {
 		m.ID					= "misc.rune_06";
 		m.Name					= "Nemesis Rune";
 		m.Description			= "If a warrior meets his end without truly leaving his mark on this plane, his soul's strength may be ceded to another who may claim glory for the both of them.\n\nTo know the true worth of an enemy is a difficult task indeed, but the rune rite does not discriminate against any who prove themselves, regardless of allegiance.";
@@ -25,10 +21,8 @@ rune_06_item <- inherit("scripts/items/item",
 		m.Value					= 0;
 	}
 
-	function getTooltip()
-	{
-		local result =
-		[
+	function getTooltip() {
+		local result = [
 			{ id = 1, type = "title", text = getName() },
 			{ id = 2, type = "description", text = getDescription() }
 		];
@@ -47,13 +41,11 @@ rune_06_item <- inherit("scripts/items/item",
 		return result;
 	}
 
-	function playInventorySound(_eventType)
-	{
+	function playInventorySound(_eventType) {
 		Sound.play("sounds/combat/armor_leather_impact_03.wav", Const.Sound.Volume.Inventory);
 	}
 
-	function onUse(_actor, _item = null)
-	{
+	function onUse(_actor, _item = null) {
 		if (_actor.getSkills().hasSkill("effects.rune_06"))
 			return false;
 
@@ -64,4 +56,4 @@ rune_06_item <- inherit("scripts/items/item",
 
 		return true;
 	}
-})
+});

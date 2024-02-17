@@ -1,6 +1,5 @@
 rune_02_effect <- inherit("scripts/skills/skill", {
-	m =
-	{
+	m = {
 		HealingApplied = false
 	}
 
@@ -22,8 +21,7 @@ rune_02_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local ret =
-		[
+		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/days_wounded.png", text = "Injuries heal [color=" + Const.UI.Color.PositiveValue + "]1[/color] day faster" }
@@ -46,4 +44,4 @@ rune_02_effect <- inherit("scripts/skills/skill", {
 			m.HealingApplied = true;
 		}
 	}
-})
+});
