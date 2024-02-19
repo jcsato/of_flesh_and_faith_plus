@@ -256,7 +256,7 @@ oathtaker_brings_oaths_event <- inherit("scripts/events/event", {
 				// Again, prevent new guy's gear from being *too* good
 				if (items.getItemAtSlot(Const.ItemSlot.Head).getID() == "armor.head.adorned_full_helm") {
 					items.unequip(items.getItemAtSlot(Const.ItemSlot.Head));
-					item.equip(new("scripts/items/helmets/heavy_mail_coif"));
+					items.equip(new("scripts/items/helmets/heavy_mail_coif"));
 				}
 
 				if (items.getItemAtSlot(Const.ItemSlot.Body).getID() == "armor.body.adorned_heavy_mail_hauberk") {
