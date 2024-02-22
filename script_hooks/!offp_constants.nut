@@ -105,7 +105,7 @@
 			DominionAlpsSlain				= 1
 			DominionUnholdsSlain			= 1
 			DominionHexenSlain				= 1
-			EnduranceConsecutiveBattles		= 5
+			EnduranceConsecutiveBattles		= 6
 			FortificationAttacksNegated		= 50
 			HonorRetreatsAllowed			= 10
 			TithingCrownsLevied				= 500

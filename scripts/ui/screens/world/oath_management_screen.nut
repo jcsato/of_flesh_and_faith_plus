@@ -162,7 +162,7 @@ oath_management_screen <- {
 		local oath = new("scripts/skills/effects/" + oathFileName);
 		bro.getSkills().add(oath);
 
-		local entity = getUIEntityForBro(bro);
+		local entity = getUIEntityForBro(bro, true);
 
 		::OFFP.Helpers.resetOathFlags(oathID, bro.getFlags());
 		World.Statistics.getFlags().set(::OFFP.Flags.LastOathCompletedTime, Time.getVirtualTimeF());
@@ -225,7 +225,7 @@ oath_management_screen <- {
 				}
 			}
 
-			if (oaths.Active.len() < 1 && !bro.getSkills().hasSkill(activeID) && !bro.getSkills().hasSkill(completedID))
+			if (oaths.Completed.len() < 3 && oaths.Active.len() < 1 && !bro.getSkills().hasSkill(activeID) && !bro.getSkills().hasSkill(completedID))
 				entity.OathsAvailable.push(oathToUIObject(oathName, bro.getID()));
 
 			if (!bro.getSkills().hasSkill(completedID)) {

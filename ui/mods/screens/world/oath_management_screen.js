@@ -386,6 +386,7 @@ OathManagementScreen.prototype.createOathCompletionDIV = function(_i, _parentDiv
             self.updateSelectedListEntry(_result.Entity);
             self.updateDetailsPanel(self.mSelectedEntry);
         });
+        complete.unbindTooltip();
     }, '', 1);
 
     complete.bindTooltip({ contentType: 'oath-effect', oathId: _data.completedTooltipID })
