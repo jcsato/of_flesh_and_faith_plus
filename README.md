@@ -62,7 +62,7 @@ The Oathtakers origin has been totally overhauled to make their mechanics more e
 
 Where once Oaths were picked for the whole company in lieu of Ambitions, they are now chosen on a per-bro basis via the "Book of Oaths" inventory item. Oaths grant a debuff as the battle brother struggles to internalize its teachings. Once he has completed a quest to prove the oath fulfilled, it instead grants him a buff as consecration of his accomplishment.
 
-Not all the oaths are available from the start of a campaign, however. There are many wardens of the sacred texts, and the company must prove itself by following the oaths it has to earn the right to access more. Additionally, while all Oathtakers are sworn to follow all of Young Anselm's oaths, there are only so many a man can truly commit to questing toward.
+Not all the oaths are available from the start of a campaign, however. There are many wardens of the sacred texts, and the company must prove by following the oaths that it has earned the right to access more. Additionally, while the Oathtakers are sworn to follow all of Young Anselm's oaths, there are only so many a man can truly commit to questing toward.
 
 Note that a new Oathtaker campaign will need to be started for these changes to take effect.
 
