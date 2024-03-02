@@ -153,10 +153,10 @@
 
 			case "effects.oath_of_dominion_active":
 				if (Const.DLC.Unhold) {
-					local conditionOneFulfilled = flags.getAsInt(::OFFP.Oathtakers.Flags.DominionAlps) >= ::OFFP.Oathtakers.Quests.DominionAlpsSlain;
+					local conditionOneFulfilled = flags.getAsInt(::OFFP.Oathtakers.Flags.DominionLindwurms) >= ::OFFP.Oathtakers.Quests.DominionLindwurmsSlain;
 					local conditionTwoFulfilled = flags.getAsInt(::OFFP.Oathtakers.Flags.DominionUnholds) >= ::OFFP.Oathtakers.Quests.DominionUnholdsSlain;
 					local conditionThreeFulfilled = flags.getAsInt(::OFFP.Oathtakers.Flags.DominionHexen) >= ::OFFP.Oathtakers.Quests.DominionHexenSlain;
-					ready = conditionOneFulfilled && conditionTwoFulfilled && conditionThreeFulfilled;
+					ready = conditionOneFulfilled || conditionTwoFulfilled || conditionThreeFulfilled;
 				} else {
 					ready = flags.getAsInt(::OFFP.Oathtakers.Flags.DominionLegacy) >= ::OFFP.Oathtakers.Quests.DominionNumSlain;
 				}

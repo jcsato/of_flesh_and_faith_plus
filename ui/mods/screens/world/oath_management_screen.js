@@ -73,7 +73,7 @@ OathManagementScreen.prototype.createDIV = function(_parentDiv) {
     this.mListContainer = listContainerLayout.createList(8.85);
     this.mListScrollContainer = this.mListContainer.findListScrollContainer();
 
-    this.mNoOathCandidates = $('<div class="is-no-oaths-hint text-font-medium font-bottom-shadow font-color-description display-none">You have no one in your ranks that can take on an Oath currently.</div>');
+    this.mNoOathCandidates = $('<div class="is-no-oaths-hint text-font-medium font-bottom-shadow font-color-description display-none">No one in your ranks can currently take on an Oath.</div>');
     listContainerLayout.append(this.mNoOathCandidates);
 
     // right column

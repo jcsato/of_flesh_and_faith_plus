@@ -225,6 +225,7 @@ oathtakers_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 					case Const.EntityType.BanditLeader:
 					case Const.EntityType.NomadLeader:
 					case Const.EntityType.BarbarianChampion:
+					case Const.EntityType.BarbarianChosen:
 						flags.increment(::OFFP.Oathtakers.Flags.WrathLeaders);
 						break;
 				}
@@ -255,6 +256,7 @@ oathtakers_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 								flags.set("OFFP_LindwurmSlain", true);
 								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
 							}
+							flags.increment(::OFFP.Oathtakers.Flags.DominionLindwurms);
 							break;
 
 						case Const.EntityType.Unhold:
@@ -283,7 +285,6 @@ oathtakers_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 								flags.set("OFFP_AlpSlain", true);
 								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
 							}
-							flags.increment(::OFFP.Oathtakers.Flags.DominionAlps);
 							break;
 
 						case Const.EntityType.Hexe:

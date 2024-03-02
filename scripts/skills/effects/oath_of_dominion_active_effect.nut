@@ -20,13 +20,13 @@ oath_of_dominion_active_effect <- inherit("scripts/skills/skill", {
 
 	function getTooltip(_withContainer = true) {
 		local numSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionLegacy) : 0;
-		local numAlpsSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionAlps) : 0;
 		local numUnholdsSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionUnholds) : 0;
 		local numHexenSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionHexen) : 0;
+		local numLindwurmsSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionLindwurms) : 0;
 
 		local objective = null;
 		if (Const.DLC.Unhold)
-			objective = "an Alp (" + numAlpsSlain + " so far), an Unhold (" + numUnholdsSlain + " so far), and a Hexe (" + numHexenSlain + " so far)";
+			objective = "" + ::OFFP.Oathtakers.Quests.DominionUnholdsSlain + " Unholds (" + numUnholdsSlain + " so far), a Hexe (" + numHexenSlain + " so far), or a Lindwurm (" + numLindwurmsSlain + " so far)";
 		else
 			objective = "15 beasts (" + numSlain + " so far)";
 

@@ -1,6 +1,6 @@
 oath_of_honor_completed_effect <- inherit("scripts/skills/skill", {
 	m = {
-		ThreatBonus	= 5
+		ThreatBonus	= 3
 	}
 
 	function create() {

@@ -30,9 +30,9 @@
 		Flags = {
 			Distinction				= "OFFP_OathOfDistinctionSlain"
 			DominionLegacy			= "OFFP_OathOfDominionBeastsSlain"
-			DominionAlps			= "OFFP_OathOfDominionAlpsSlain"
 			DominionUnholds			= "OFFP_OathOfDominionUnholdsSlain"
 			DominionHexen			= "OFFP_OathOfDominionHexenSlain"
+			DominionLindwurms		= "OFFP_OathOfDominionLindwurmsSlain"
 			Endurance				= "OFFP_OathOfEnduranceConsecutiveBattlesWon"
 			Fortification			= "OFFP_OathOfFortificationAttacksNegated"
 			HonorAlternate			= "OFFP_OathOfHonorTurnsSurrounded"
@@ -102,9 +102,9 @@
 		Quests = {
 			DistinctionSlain				= 4
 			DominionNumSlain				= 15
-			DominionAlpsSlain				= 1
-			DominionUnholdsSlain			= 1
+			DominionUnholdsSlain			= 3
 			DominionHexenSlain				= 1
+			DominionLindwurmsSlain			= 1
 			EnduranceConsecutiveBattles		= 6
 			FortificationAttacksNegated		= 50
 			HonorRetreatsAllowed			= 10
@@ -120,7 +120,7 @@
 			VengeanceCompanyGreenskinsSlain	= 30
 			VengeanceLeadersSlain			= 1
 			WrathLeadersSlain				= 1
-			WrathLocationsDestroyed			= 6
+			WrathLocationsDestroyed			= 5
 		}
 	}
 }
