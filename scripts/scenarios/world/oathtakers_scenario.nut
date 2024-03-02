@@ -237,25 +237,7 @@ oathtakers_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 			if (actorFaction == Const.FactionType.Beasts || _actor.getType() == Const.EntityType.BarbarianUnhold || _actor.getType() == Const.EntityType.BarbarianUnholdFrost) {
 				if (Const.DLC.Unhold) {
 					switch (_actor.getType()) {
-						case Const.EntityType.Ghoul:
-							if (!flags.get("OFFP_NachzehrerSlain")) {
-								flags.set("OFFP_NachzehrerSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
-							break;
-
-						case Const.EntityType.Direwolf:
-							if (!flags.get("OFFP_DirewolfSlain")) {
-								flags.set("OFFP_DirewolfSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
-							break;
-
 						case Const.EntityType.Lindwurm:
-							if (!flags.get("OFFP_LindwurmSlain")) {
-								flags.set("OFFP_LindwurmSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
 							flags.increment(::OFFP.Oathtakers.Flags.DominionLindwurms);
 							break;
 
@@ -264,79 +246,11 @@ oathtakers_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 						case Const.EntityType.UnholdBog:
 						case Const.EntityType.BarbarianUnhold:
 						case Const.EntityType.BarbarianUnholdFrost:
-							if (!flags.get("OFFP_UnholdSlain")) {
-								flags.set("OFFP_UnholdSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
 							flags.increment(::OFFP.Oathtakers.Flags.DominionUnholds);
 							break;
 
-						case Const.EntityType.Spider:
-						case Const.EntityType.SpiderEggs:
-							if (!flags.get("OFFP_WebknechtSlain")) {
-								flags.set("OFFP_WebknechtSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
-							break;
-
-						case Const.EntityType.Alp:
-						case Const.EntityType.AlpShadow:
-							if (!flags.get("OFFP_AlpSlain")) {
-								flags.set("OFFP_AlpSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
-							break;
-
 						case Const.EntityType.Hexe:
-							if (!flags.get("OFFP_HexeSlain")) {
-								flags.set("OFFP_HexeSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
 							flags.increment(::OFFP.Oathtakers.Flags.DominionHexen);
-							break;
-
-						case Const.EntityType.Schrat:
-						case Const.EntityType.SchratSmall:
-							if (!flags.get("OFFP_SchratSlain")) {
-								flags.set("OFFP_SchratSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
-							break;
-
-						case Const.EntityType.Kraken:
-						case Const.EntityType.KrakenTentacle:
-							if (!flags.get("OFFP_KrakenSlain")) {
-								flags.set("OFFP_KrakenSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
-							break;
-
-						case Const.EntityType.TricksterGod:
-							if (!flags.get("OFFP_IjirokSlain")) {
-								flags.set("OFFP_IjirokSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
-							break;
-
-						case Const.EntityType.Serpent:
-							if (!flags.get("OFFP_SerpentSlain")) {
-								flags.set("OFFP_SerpentSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
-							break;
-
-						case Const.EntityType.SandGolem:
-							if (!flags.get("OFFP_IfritSlain")) {
-								flags.set("OFFP_IfritSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
-							break;
-
-						case Const.EntityType.Hyena:
-							if (!flags.get("OFFP_HyenaSlain")) {
-								flags.set("OFFP_HyenaSlain", true);
-								flags.increment(::OFFP.Oathtakers.Flags.Dominion);
-							}
 							break;
 					}
 				} else {
