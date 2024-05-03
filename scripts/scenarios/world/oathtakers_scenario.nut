@@ -180,6 +180,10 @@ oathtakers_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		local skills = _killer.getSkills();
 		local flags = _killer.getFlags();
 
+		// Oath of Redemption only checks personal kills
+		if (skills.hasSkill("effects.oath_of_redemption_active"))
+			flags.increment(::OFFP.Oathtakers.Flags.Redemption);
+
 		// Oath of Righteousness only checks personal kills
 		if (skills.hasSkill("effects.oath_of_righteousness_active")) {
 			if (actorFaction == Const.FactionType.Zombies || actorFaction == Const.FactionType.Undead) {

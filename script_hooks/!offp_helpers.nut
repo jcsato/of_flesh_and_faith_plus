@@ -228,7 +228,7 @@
 
 			case "effects.oath_of_dominion_active":
 				if (Const.DLC.Unhold) {
-					flags.set(::OFFP.Oathtakers.Flags.DominionAlps, 0);
+					flags.set(::OFFP.Oathtakers.Flags.DominionLindwurms, 0);
 					flags.set(::OFFP.Oathtakers.Flags.DominionUnholds, 0);
 					flags.set(::OFFP.Oathtakers.Flags.DominionHexen, 0);
 				} else {

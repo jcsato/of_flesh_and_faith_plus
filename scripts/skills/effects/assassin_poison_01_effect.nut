@@ -25,10 +25,10 @@ assassin_poison_01_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
-		if (_damageInflictedHitpoints < Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0)
+		if (!_targetEntity.isAlive())
 			return;
 
-		if (!_targetEntity.isAlive())
+		if (_damageInflictedHitpoints < Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0)
 			return;
 
 		if (!_targetEntity.getFlags().has("undead"))
