@@ -270,7 +270,7 @@ Uphold by slaying 4 enemy champions or leaders
 
 -5 Melee Skill and Ranged Skill when fighting human opponents
 
-Uphold by personally slaying an Alp, an Unhold and a Hexe
+Uphold by personally slaying 3 Unholds, a Hexe, or a Lindwurm
 
 **Oath of Dominion (completed)**
 
