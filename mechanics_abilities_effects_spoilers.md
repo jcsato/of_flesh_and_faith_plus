@@ -92,7 +92,7 @@ Score: 8-10
 
 +15% damage if hitpoints are below 75%
 
-Gain +4 Resolve and +6 Initiative each time. Resets at the end of combat
+Gain +4 Resolve and +6 Initiative each time hitpoints are lost, resetting at the end of combat
 
 Score: 11+
 
