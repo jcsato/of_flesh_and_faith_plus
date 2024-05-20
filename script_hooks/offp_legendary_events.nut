@@ -197,6 +197,9 @@
 			{
 				Text = "Well said. To arms!"
 				function getResult(_event) {
+					if (World.State.getLastLocation() != null)
+						World.State.getLastLocation().setVisited(false);
+
 					World.Statistics.getFlags().set("SouthernAssassinsProphetFightTriggered", true);
 
 					local p = World.State.getLocalCombatProperties(World.State.getPlayer().getPos());
@@ -465,7 +468,11 @@
 	});
 
 	oee.onDetermineStartScreen = function() {
-		if (World.Assets.getOrigin().getID() != "scenario.southern_assassins" || (World.Statistics.getFlags().get("SouthernAssassinsProphetSummonsReceived") != true && World.Statistics.getFlags().get("SouthernAssassinsProphetFightTriggered") != true))
+		local flags = World.Statistics.getFlags();
+		local noSummons = flags.get("SouthernAssassinsProphetSummonsReceived") != true;
+		local alreadyFought = (flags.get("SouthernAssassinsProphetFightTriggered") && (flags.get("SouthernAssassinsProphetFightLost") || flags.get("SouthernAssassinsProphetSlain") || flags.get("SouthernAssassinsProphetFled")));
+
+		if (World.Assets.getOrigin().getID() != "scenario.southern_assassins" || noSummons || alreadyFought)
 			return onDetermineStartScreen();
 		else {
 			return "SouthernAssassinsProphetStart";
