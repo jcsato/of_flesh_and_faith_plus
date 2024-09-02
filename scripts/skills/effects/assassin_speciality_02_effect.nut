@@ -11,7 +11,7 @@ assassin_speciality_02_effect <- inherit("scripts/skills/skill", {
 		m.Description	= "Bring them on! Assassins often find themselves outnumbered, but rather than being daunted this character relishes the challenge, focusing even harder than normal.";
 		m.Icon			= "skills/status_effect_plus_14.png";
 		m.IconMini		= "";
-		m.Type			= Const.SkillType.StatusEffect;
+		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
 		m.Order			= Const.SkillOrder.VeryLast - 2;
 		m.IsActive		= false;
 		m.IsStacking	= false;

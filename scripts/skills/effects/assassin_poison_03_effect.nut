@@ -9,7 +9,7 @@ assassin_poison_03_effect <- inherit("scripts/skills/skill", {
 		m.Description	= "This character has coated their weapons with a venom that saps energy from victims and leaves them struggling to breathe.";
 		m.Icon			= "skills/status_effect_plus_10.png";
 		m.IconMini		= "";
-		m.Type			= Const.SkillType.StatusEffect;
+		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
 		m.Order			= Const.SkillOrder.VeryLast - 3;
 		m.SoundOnUse	= [ "sounds/combat/poison_applied_01.wav", "sounds/combat/poison_applied_02.wav" ];
 	}

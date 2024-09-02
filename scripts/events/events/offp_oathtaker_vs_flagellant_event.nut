@@ -82,7 +82,7 @@ offp_oathtaker_vs_flagellant_event <- inherit("scripts/events/event", {
 				_event.m.Flagellant.getSkills().add(background);
 				_event.m.Flagellant.m.Background = background;
 
-				_event.m.Flagellant.getBackground().m.RawDescription = "Once a flagellant, %name% has traded his whip for the Oaths of Young Anselm. The man is as insufferable as the next man in his order, but at least you can be confident you won't wake up to find he's killed himself in some religious pursuit. By whip. Probably.";
+				_event.m.Flagellant.getBackground().m.RawDescription = "Once a flagellant, %name% has traded his whip for the Oaths of Young Anselm. The man is as insufferable as the rest of his order, but at least you can be confident you won't wake up to find he's killed himself in some religious pursuit. By whip. Probably.";
 				_event.m.Flagellant.getBackground().buildDescription(true);
 
 				local hitpointBoost = Math.rand(4, 6);

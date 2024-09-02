@@ -7,7 +7,7 @@ assassin_poison_01_effect <- inherit("scripts/skills/skill", {
 		m.Description	= "This character's weapons are laced with a viscous liquid that has been blessed by priests. While benign to the living, it burns the undead with divine wrath.";
 		m.Icon			= "skills/status_effect_plus_08.png";
 		m.IconMini		= "";
-		m.Type			= Const.SkillType.StatusEffect;
+		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
 		m.Order			= Const.SkillOrder.VeryLast - 3;
 		m.SoundOnUse	= [ "sounds/combat/poison_applied_01.wav", "sounds/combat/poison_applied_02.wav" ];
 	}

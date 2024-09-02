@@ -35,7 +35,7 @@ oathtaker_brings_oaths_event <- inherit("scripts/events/event", {
 					oathName = ::OFFP.Oathtakers.OathsCombat[Math.rand(0, ::OFFP.Oathtakers.OathsCombat.len() - 1)];
 					oathUnlockFlag = ::OFFP.Oathtakers.Flags.CombatUnlocked;
 				} else if (_event.m.OathGroup == "Flesh") {
-					Text = "[img]gfx/ui/events/event_180.png[/img]{A curious visitor has made their way into camp. What was surely once a hail and hearty Oathtaker now stands doubled over before you, winded and bruised, leaning on his weapon for support. When he speaks, however, his voice is strong and even toned.%SPEECH_ON%Good tidings, captain. I come bearing gifts from the order.%SPEECH_OFF%He shakily proffers a collection of loose papers and scrolls.%SPEECH_ON%The Oaths pertaining to the flesh. Truly a worthy set of aspirations for any Oathtaker to follow, and a keen reminder that though the body be bruised and battered, the quest goes on. While my own trials continue, it is time for your company to benefit from Young Anselm's wisdom.%SPEECH_OFF%You question how much wisdom there can truly be in a codex built on self-torture, but you accept them out of concern it would harm the man to require further use of his limbs. You collect them into the Book of Oaths, making note that a handful of the scripts might do more good than harm if followed, then turn back to your beleaguered visitor. }";
+					Text = "[img]gfx/ui/events/event_180.png[/img]{A curious visitor has made their way into camp. What was surely once a hail and hearty Oathtaker now stands doubled over before you, winded and bruised, leaning on his weapon for support. When he speaks, however, his voice is strong and even toned.%SPEECH_ON%Good tidings, captain. I come bearing gifts from the order.%SPEECH_OFF%He shakily proffers a collection of loose papers and scrolls.%SPEECH_ON%The Oaths pertaining to the flesh. Truly a worthy set of aspirations for any Oathtaker to follow, and a keen reminder that though the body be bruised and battered, the quest goes on. While my own trials continue, it is time for your company to benefit from Young Anselm's wisdom.%SPEECH_OFF%You question how much wisdom there can truly be in a codex built on self-torture, but you accept them out of concern it would harm the man to require further use of his limbs. You collect them into the Book of Oaths, making note that a handful of the scripts might do more good than ill if followed, then turn back to your beleaguered visitor. }";
 					oathName = ::OFFP.Oathtakers.OathsFlesh[Math.rand(0, ::OFFP.Oathtakers.OathsFlesh.len() - 1)];
 					oathUnlockFlag = ::OFFP.Oathtakers.Flags.FleshUnlocked;
 				} else if (_event.m.OathGroup == "Glory") {
@@ -46,6 +46,14 @@ oathtaker_brings_oaths_event <- inherit("scripts/events/event", {
 					Text = "[img]gfx/ui/events/event_180.png[/img]{%randombrother% comes jogging up to you in camp.%SPEECH_ON%Cap, we've got a visitor. Think you ought to come.%SPEECH_OFF%Your guest turns out to be an Oathtaker. He scowls at the men, and the camp, and even the sky with an unnerving intensity. The dirt caked on his boots and garb betray familiarity with the road, and the various trophies that adorn him betray a penchant for battle against exotic foes. The terseness of his manner, in turn, betrays little care for the niceties of society.%SPEECH_ON%Captain. Finally. The order bid me confer to you these Oaths, that you and your company might take up arms in our great crusade as well.%SPEECH_OFF%He hands you a bundle of scrolls, blackened by age and stained by blood and sweat and tears and all the fluids men tend to shed in moments of fear.%SPEECH_ON%I myself have been devoted to the undoing of those that would undo us, a task I must return to forthwith, for ever in the recesses of the world does evil spawn.%SPEECH_OFF%You thank the man and add the papers to the Book of Oaths.}";
 					oathName = ::OFFP.Oathtakers.OathsNemeses[Math.rand(0, ::OFFP.Oathtakers.OathsNemeses.len() - 1)];
 					oathUnlockFlag = ::OFFP.Oathtakers.Flags.NemesesUnlocked;
+				}
+
+				if (_event.m.OathGroup != "Glory" || _event.m.OathGroup != "Chivalry") {
+					local head = _event.m.Dude.getItems().getItemAtSlot(Const.ItemSlot.Head);
+					local body = _event.m.Dude.getItems().getItemAtSlot(Const.ItemSlot.Body);
+
+					head.setCondition(Math.max(1, head.getConditionMax() * Math.rand(60, 100) * 0.01));
+					body.setCondition(Math.max(1, body.getConditionMax() * Math.rand(60, 100) * 0.01));
 				}
 
 				::OFFP.Helpers.resetOathFlags(::OFFP.Helpers.oathNameToActiveID(oathName), _event.m.Dude.getFlags());

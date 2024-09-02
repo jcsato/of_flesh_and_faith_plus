@@ -49,6 +49,7 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		items.unequip(items.getItemAtSlot(Const.ItemSlot.Ammo));
 
 		items.equip(new("scripts/items/weapons/legendary/barbarian_runeblade"));
+		// items.equip(new("scripts/items/weapons/barbarians/two_handed_spiked_mace"));
 		items.equip(new("scripts/items/helmets/barbarians/closed_scrap_metal_helmet"));
 		items.equip(new("scripts/items/armor/barbarians/heavy_iron_armor"));
 
@@ -80,14 +81,13 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		items.equip(new("scripts/items/weapons/barbarians/axehammer"));
 		items.equip(new("scripts/items/shields/wooden_shield_old"));
 		items.equip(new("scripts/items/helmets/barbarians/bear_headpiece"));
-		items.equip(new("scripts/items/armor/barbarians/scrap_metal_armor"));
+		items.equip(new("scripts/items/armor/barbarians/rugged_scale_armor"));
 
 		World.Assets.addMoralReputation(-40.0);
 		World.Assets.getStash().add(new("scripts/items/supplies/strange_meat_item"));
-		World.Assets.getStash().add(new("scripts/items/supplies/strange_meat_item"));
 		World.Assets.getStash().add(new("scripts/items/misc/runeknights/rune_01_item"));
 
-		World.Assets.m.Money = World.Assets.m.Money / 2 + 150;
+		World.Assets.m.Money = World.Assets.m.Money / 2 + 250;
 		World.Assets.m.Ammo = World.Assets.m.Ammo / 2;
 	}
 

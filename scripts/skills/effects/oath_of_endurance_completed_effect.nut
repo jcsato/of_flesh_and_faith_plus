@@ -1,6 +1,6 @@
 oath_of_endurance_completed_effect <- inherit("scripts/skills/skill", {
 	m = {
-		FatigueBonus	= 15
+		FatigueBonus	= 12
 	}
 
 	function create() {

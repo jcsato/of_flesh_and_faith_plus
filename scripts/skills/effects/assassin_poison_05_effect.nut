@@ -7,7 +7,7 @@ assassin_poison_05_effect <- inherit("scripts/skills/skill", {
 		m.Description	= "An exotic substance glistens on this character's weapons. Anyone unlucky enough to be wounded by them will find their muscles freeze and their whole body begin to seize up.";
 		m.Icon			= "skills/status_effect_plus_12.png";
 		m.IconMini		= "";
-		m.Type			= Const.SkillType.StatusEffect;
+		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
 		m.Order			= Const.SkillOrder.VeryLast - 3;
 		m.SoundOnUse	= [ "sounds/combat/poison_applied_01.wav", "sounds/combat/poison_applied_02.wav" ];
 	}

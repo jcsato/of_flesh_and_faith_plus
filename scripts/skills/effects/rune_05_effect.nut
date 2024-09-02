@@ -49,8 +49,10 @@ rune_05_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
-		if (_damageHitpoints > 0)
+		if (_damageHitpoints > 0) {
+			spawnIcon("status_effect_plus_05", getContainer().getActor().getTile());
 			m.Stacks++;
+		}
 	}
 
 	function onUpdate(_properties) {

@@ -1,12 +1,12 @@
 oath_of_honor_completed_effect <- inherit("scripts/skills/skill", {
 	m = {
-		ThreatBonus	= 3
+		ResolveBonus	= 10
 	}
 
 	function create() {
 		m.ID					= "effects.oath_of_honor_completed";
 		m.Name					= "Oath of Honor";
-		m.Description			= "\"Know that you enter battle with honor as your weapon, and so too will your enemy.\"";
+		m.Description			= "\"Know that to enter battle cloaked in honor is to be a victor awaiting only declaration.\"";
 		m.Icon					= "skills/status_effect_plus_31.png";
 		m.IconMini				= "";
 		m.Overlay				= "status_effect_plus_31";
@@ -27,7 +27,7 @@ oath_of_honor_completed_effect <- inherit("scripts/skills/skill", {
 
 		ret.extend([
 			{ id = 10, type = "text", icon = "ui/icons/morale.png", text = "Will start combat at confident morale if permitted by mood" }
-			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "When at Confident or Steady morale, reduces the Resolve of any opponent engaged in melee by [color=" + Const.UI.Color.NegativeValue + "]-" + m.ThreatBonus + "[/color]" }
+			{ id = 11, type = "text", icon = "ui/icons/bravery.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+" + m.ResolveBonus + "%[/color] Resolve when at Confident morale" }
 		]);
 
 		return ret;
@@ -47,7 +47,7 @@ oath_of_honor_completed_effect <- inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		local actor = getContainer().getActor();
 
-		if (actor.getMoraleState() >= Const.MoraleState.Steady)
-			_properties.Threat	+= m.ThreatBonus;
+		if (actor.getMoraleState() > Const.MoraleState.Steady)
+			_properties.BraveryMult	*= (1.0 + m.ResolveBonus / 100.0);
 	}
 });

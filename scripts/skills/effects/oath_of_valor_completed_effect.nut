@@ -25,6 +25,7 @@ oath_of_valor_completed_effect <- inherit("scripts/skills/skill", {
 
 		ret.extend([
 			{ id = 10, type = "text", icon = "ui/icons/morale.png", text = "Will not flee in battle" }
+			{ id = 11, type = "text", icon = "ui/icons/bravery.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+5[/color] Resolve for adjacent allies who have not also completed the Oath of Valor" }
 		]);
 
 		return ret;
@@ -32,5 +33,33 @@ oath_of_valor_completed_effect <- inherit("scripts/skills/skill", {
 
 	function getManagementScreenTooltip() {
 		return getTooltip(false);
+	}
+
+	function onCombatStarted() {
+		local actor = getContainer().getActor();
+		local allies = Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+
+		foreach (ally in allies) {
+			ally.getSkills().add(new("scripts/skills/effects/inspired_by_hero_effect"));
+		}
+	}
+
+	function onCombatFinished() {
+		local actor = getContainer().getActor();
+		local allies = Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+
+		foreach (ally in allies) {
+			ally.getSkills().removeByID("effects.inspired_by_hero");
+		}
+	}
+
+	function onMovementFinished() {
+		local actor = getContainer().getActor();
+		local allies = Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+
+		foreach (ally in allies) {
+			if (ally.getID() != actor.getID())
+				ally.getSkills().update();
+		}
 	}
 });

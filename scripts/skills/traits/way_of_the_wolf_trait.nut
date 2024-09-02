@@ -10,6 +10,8 @@ way_of_the_wolf_trait <- inherit("scripts/skills/traits/character_trait", {
 		m.ID			= "trait.way_of_the_wolf";
 		m.Name			= "Way of the Wolf";
 		m.Icon			= "ui/traits/trait_icon_plus_11.png";
+		m.Type			= Const.SkillType.Trait | Const.SkillType.Perk;
+		m.Order			= Const.SkillOrder.VeryLast - 1;
 		m.Description	= "Strike first, strike hard, and thusly strike last. The Way of the Wolf has no room for hesitancy, nor for ponderousness. Assassination is a hunt, and while only a foolish predator leaps headlong into danger, one who waits for their quarry to give up of its own accord is not a predator at all, but prey. And a Wolf is never prey.";
 
 		m.Excluded = [];

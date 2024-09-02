@@ -19,7 +19,7 @@ oath_of_penitence_trait <- inherit("scripts/skills/traits/character_trait", {
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 10, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+" + m.DamageBonus + "%[/color] Melee Damage when wielding flails or whips" }
+			{ id = 10, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+" + m.DamageBonus + "%[/color] damage when wielding flails or whips" }
 			{ id = 11, type = "text", icon = "ui/icons/health.png", text = "[color=" + Const.UI.Color.NegativeValue + "]-" + m.HitpointMalus + "[/color] Hitpoints" }
 		];
 

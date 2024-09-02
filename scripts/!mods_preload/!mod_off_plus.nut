@@ -1,4 +1,4 @@
-::mods_registerMod("of_flesh_and_faith_plus", 2.1.3, "Of Flesh and Faith+");
+::mods_registerMod("of_flesh_and_faith_plus", 2.2, "Of Flesh and Faith+");
 
 ::mods_queue("of_flesh_and_faith_plus", null, function() {
 	::mods_registerCSS("screens/world/oath_management_screen.css");

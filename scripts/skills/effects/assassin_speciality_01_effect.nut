@@ -11,7 +11,7 @@ assassin_speciality_01_effect <- inherit("scripts/skills/skill", {
 		m.Description	= "While the practice of sending skirmishers against each other before battle has fallen out of style in current military doctrine, generations of the practice has provided valuable lessons for the lone assassin to learn.";
 		m.Icon			= "skills/status_effect_plus_13.png";
 		m.IconMini		= "";
-		m.Type			= Const.SkillType.StatusEffect;
+		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
 		m.Order			= Const.SkillOrder.VeryLast - 2;
 		m.IsActive		= false;
 		m.IsStacking	= false;
@@ -42,7 +42,7 @@ assassin_speciality_01_effect <- inherit("scripts/skills/skill", {
 
 			local tile = myTile.getNextTile(i);
 
-			if (Math.abs(myTile.Level - tile.Level) <= 1 && tile.IsOccupiedByActor) {
+			if (Math.abs(myTile.Level - tile.Level) <= 1 && tile.IsOccupiedByActor) {// && tile.getEntity().getMoraleState() != Const.MoraleState.Fleeing) {
 				if (tile.getEntity().isAlliedWith(actor))
 					numAlliesAdjacent = ++numAlliesAdjacent;
 				else

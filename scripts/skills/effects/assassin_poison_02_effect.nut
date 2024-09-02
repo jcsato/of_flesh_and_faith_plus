@@ -7,7 +7,7 @@ assassin_poison_02_effect <- inherit("scripts/skills/skill", {
 		m.Description	= "This character's weapons are coated in a hallucinogenic poison that distorts the victim's perception and induces terrifying visions. One of the more cruel tools in the assassin's kit.";
 		m.Icon			= "skills/status_effect_plus_09.png";
 		m.IconMini		= "";
-		m.Type			= Const.SkillType.StatusEffect;
+		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
 		m.Order			= Const.SkillOrder.VeryLast - 3;
 		m.SoundOnUse	= [ "sounds/combat/poison_applied_01.wav", "sounds/combat/poison_applied_02.wav" ];
 	}

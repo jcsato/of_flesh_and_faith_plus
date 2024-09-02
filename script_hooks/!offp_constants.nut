@@ -100,9 +100,9 @@
 			"oath_of_redemption"
 		]
 		Quests = {
-			DistinctionSlain				= 4
+			DistinctionSlain				= 3
 			DominionNumSlain				= 15
-			DominionUnholdsSlain			= 3
+			DominionUnholdsSlain			= 2
 			DominionHexenSlain				= 1
 			DominionLindwurmsSlain			= 1
 			EnduranceConsecutiveBattles		= 6

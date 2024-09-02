@@ -13,6 +13,8 @@ way_of_the_spider_trait <- inherit("scripts/skills/traits/character_trait", {
 		m.ID			= "trait.way_of_the_spider";
 		m.Name			= "Way of the Spider";
 		m.Icon			= "ui/traits/trait_icon_plus_10.png";
+		m.Type			= Const.SkillType.Trait | Const.SkillType.Perk;
+		m.Order			= Const.SkillOrder.VeryLast - 1;
 		m.SoundOnUse	= [ "sounds/combat/poison_applied_01.wav", "sounds/combat/poison_applied_02.wav" ];
 		m.Description	= "Let the wound fester, let the poison run its course. The Way of the Spider appears cruel at first, but at its heart is pragmatism. Assassination is inherently asymmetrical - it would be foolish to not leverage one's unique strengths in such a contest.";
 

@@ -1,6 +1,6 @@
 assassin_poisoned_04_effect <- inherit("scripts/skills/skill", {
 	m = {
-		SkillMultPenalty		= 0.10
+		DamageMultPenalty		= 0.20
 		VisionPenalty			= 5
 		LastRoundApplied		= 0
 		TurnsLeft				= 2
@@ -19,7 +19,7 @@ assassin_poisoned_04_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function getDescription() {
-		return "This character is afflicted by a vicious poison that clouds his vision and senses. [color=" + Const.UI.Color.NegativeValue + "]-" + m.VisionPenalty + "[/color] Vision and [color=" + Const.UI.Color.NegativeValue + "]-" + (m.SkillMultPenalty * 100) + "%[/color] Melee and Ranged Skill for [color=" + Const.UI.Color.NegativeValue + "]" + m.TurnsLeft + "[/color] more turn(s).";
+		return "This character is afflicted by a vicious poison that clouds his vision and senses. [color=" + Const.UI.Color.NegativeValue + "]-" + m.VisionPenalty + "[/color] Vision and [color=" + Const.UI.Color.NegativeValue + "]-" + (m.DamageMultPenalty * 100) + "%[/color] damage for [color=" + Const.UI.Color.NegativeValue + "]" + m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function resetTime() {
@@ -43,7 +43,6 @@ assassin_poisoned_04_effect <- inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties) {
 		_properties.Vision			-= m.VisionPenalty;
-		_properties.MeleeSkillMult	*= (1.0 - m.SkillMultPenalty);
-		_properties.RangedSkillMult	*= (1.0 - m.SkillMultPenalty);
+		_properties.DamageTotalMult	*= (1.0 - m.DamageMultPenalty);
 	}
 });

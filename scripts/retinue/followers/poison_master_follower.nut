@@ -7,7 +7,7 @@ poison_master_follower <- inherit("scripts/retinue/follower", {
 		m.ID			= "follower.poison_master";
 		m.Name			= "The Poison Master";
 		m.Description	= "A former alchemist, the poison master can train others to concoct and apply a variety of dangerous substances - sometimes even without injury!";
-		m.Image			= "ui/campfire/poison_master_01";
+		m.Image			= "ui/campfire/poison_master_02";
 		m.Cost			= 0;
 		m.Effects		= [
 			"Your men learn a poison specialty at level 2 instead of gaining a perk point"

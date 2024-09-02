@@ -90,7 +90,7 @@
 		if (_m == Const.MoraleState.Confident && m.Skills.hasSkill("effects.oath_of_valor_active"))
 			return;
 
-		if(_m == Const.MoraleState.Fleeing && m.Skills.hasSkill("effects.oath_of_valor_completed"))
+		if (_m == Const.MoraleState.Fleeing && m.Skills.hasSkill("effects.oath_of_valor_completed"))
 			return;
 
 		if ((_m == Const.MoraleState.Confident || _m == Const.MoraleState.Steady) && m.Skills.hasSkill("effects.oath_of_redemption_active"))
@@ -246,7 +246,7 @@
 
 	// This *could* also be done in location.onCombatLost and check the location faction against the quest factions.
 	ts.onBattleEnded = function() {
-		if (World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.oathtakers") {
+		if (("State" in World) && World.State != null && World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.oathtakers") {
 			local isVictory = Tactical.Entities.getCombatResult() == Const.Tactical.CombatResult.EnemyDestroyed || Tactical.Entities.getCombatResult() == Const.Tactical.CombatResult.EnemyRetreated;
 			if (isVictory && !isScenarioMode() && m.StrategicProperties != null && m.StrategicProperties.IsAttackingLocation) {
 				local locationFaction = World.Statistics.getFlags().getAsInt("LastCombatFaction");

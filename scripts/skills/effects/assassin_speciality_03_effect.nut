@@ -9,7 +9,7 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
 		m.Description	= "Hit them while they're down! This character can recognize and exploit blind spots and vulnerabilities, and knows how to strike for maximum effect.";
 		m.Icon			= "skills/status_effect_plus_15.png";
 		m.IconMini		= "";
-		m.Type			= Const.SkillType.StatusEffect;
+		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
 		m.Order			= Const.SkillOrder.VeryLast - 2;
 		m.IsActive		= false;
 		m.IsStacking	= false;
@@ -26,7 +26,7 @@ assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		if (!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())
+		if (!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())// || _targetEntity.isAlliedWith(getContainer().getActor()))
 			return;
 
 		local skills = _targetEntity.getSkills();

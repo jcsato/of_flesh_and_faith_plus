@@ -32,6 +32,9 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		bros[0].m.PerkPoints = 1;
 		bros[0].m.LevelUps = 1;
 		bros[0].m.Level = 2;
+		bros[0].getFlags().set("SouthernAssassinsPoisonSpecialty", Math.rand(0, 4));
+		bros[0].getFlags().set("SouthernAssassinsCombatSpecialty", Math.rand(0, 4));
+		bros[0].getFlags().set("SouthernAssassinsPhilosophy", Math.rand(0, 4));
 		addPoisonSpeciality(bros[0])
 
 		bros[0].m.Talents = [];
@@ -60,6 +63,9 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		bros[1].m.PerkPoints = 1;
 		bros[1].m.LevelUps = 1;
 		bros[1].m.Level = 2;
+		bros[1].getFlags().set("SouthernAssassinsPoisonSpecialty", Math.rand(0, 4));
+		bros[1].getFlags().set("SouthernAssassinsCombatSpecialty", Math.rand(0, 4));
+		bros[1].getFlags().set("SouthernAssassinsPhilosophy", Math.rand(0, 4));
 		addPoisonSpeciality(bros[1])
 
 		bros[1].getBaseProperties().RangedSkill = Math.max(bros[1].getBaseProperties().RangedSkill, 38);
@@ -158,6 +164,10 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 	}
 
 	function onHired(_bro) {
+		_bro.getFlags().set("SouthernAssassinsPoisonSpecialty", Math.rand(0, 4));
+		_bro.getFlags().set("SouthernAssassinsCombatSpecialty", Math.rand(0, 4));
+		_bro.getFlags().set("SouthernAssassinsPhilosophy", Math.rand(0, 4));
+
 		if (_bro.getLevel() >= 2)
 			addPoisonSpeciality(_bro);
 		if (_bro.getLevel() >= 5)
@@ -177,7 +187,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 
 	function addPoisonSpeciality(_bro) {
 		local poison_effects = [ "assassin_poison_01_effect", "assassin_poison_02_effect", "assassin_poison_03_effect", "assassin_poison_04_effect", "assassin_poison_05_effect" ];
-		_bro.getSkills().add(new("scripts/skills/effects/" + poison_effects[Math.rand(0, poison_effects.len() - 1)]));
+		_bro.getSkills().add(new("scripts/skills/effects/" + poison_effects[_bro.getFlags().get("SouthernAssassinsPoisonSpecialty")]));
 
 		_bro.m.PerkPoints -= 1;
 		_bro.m.PerkPointsSpent += 1;
@@ -185,7 +195,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 
 	function addCombatSpeciality(_bro) {
 		local speciality_effects = [ "assassin_speciality_01_effect", "assassin_speciality_02_effect", "assassin_speciality_03_effect", "assassin_speciality_04_effect", "assassin_speciality_05_effect" ];
-		_bro.getSkills().add(new("scripts/skills/effects/" + speciality_effects[Math.rand(0, speciality_effects.len() - 1)]));
+		_bro.getSkills().add(new("scripts/skills/effects/" + speciality_effects[_bro.getFlags().get("SouthernAssassinsCombatSpecialty")]));
 
 		_bro.m.PerkPoints -= 1;
 		_bro.m.PerkPointsSpent += 1;
@@ -193,7 +203,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 
 	function addPhilosophy(_bro) {
 		local philosophies = [ "way_of_the_gilder_trait", "way_of_the_scorpion_trait", "way_of_the_shadow_trait", "way_of_the_spider_trait", "way_of_the_wolf_trait" ];
-		_bro.getSkills().add(new("scripts/skills/traits/" + philosophies[Math.rand(0, philosophies.len() - 1)]));
+		_bro.getSkills().add(new("scripts/skills/traits/" + philosophies[_bro.getFlags().get("SouthernAssassinsPhilosophy")]));
 
 		_bro.m.PerkPoints -= 1;
 		_bro.m.PerkPointsSpent += 1;
