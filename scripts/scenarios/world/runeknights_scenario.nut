@@ -49,7 +49,6 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		items.unequip(items.getItemAtSlot(Const.ItemSlot.Ammo));
 
 		items.equip(new("scripts/items/weapons/legendary/barbarian_runeblade"));
-		// items.equip(new("scripts/items/weapons/barbarians/two_handed_spiked_mace"));
 		items.equip(new("scripts/items/helmets/barbarians/closed_scrap_metal_helmet"));
 		items.equip(new("scripts/items/armor/barbarians/heavy_iron_armor"));
 

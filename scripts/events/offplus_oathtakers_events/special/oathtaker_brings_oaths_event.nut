@@ -52,7 +52,9 @@ oathtaker_brings_oaths_event <- inherit("scripts/events/event", {
 					local head = _event.m.Dude.getItems().getItemAtSlot(Const.ItemSlot.Head);
 					local body = _event.m.Dude.getItems().getItemAtSlot(Const.ItemSlot.Body);
 
-					head.setCondition(Math.max(1, head.getConditionMax() * Math.rand(60, 100) * 0.01));
+					if (head != null)
+						head.setCondition(Math.max(1, head.getConditionMax() * Math.rand(60, 100) * 0.01));
+
 					body.setCondition(Math.max(1, body.getConditionMax() * Math.rand(60, 100) * 0.01));
 				}
 
