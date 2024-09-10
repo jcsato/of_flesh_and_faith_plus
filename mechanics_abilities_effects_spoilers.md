@@ -156,7 +156,7 @@ Does not stack
 
 **Gilder's Gaze**
 
-Reduces Vision by 5 and Melee Skill and Ranged Skill by 10% for 2 turns
+Reduces Vision by 5 and damage by 20% for 2 turns
 
 Does not stack
 
@@ -196,11 +196,11 @@ The threshold to inflict injuries is lowered by 25% against targets who are inju
 
 +5% damage for each other combatant engaged with the target
 
-+5% chance to hit while covered by smoke
++10% chance to hit targets with Wavering or worse morale
 
 **Ambidextrous**
 
-Consumables such as nets cost 1 fewer Action Points to use and build up 50% less Fatigue
+Consumables such as nets cost 3 Action Points to use and build up 50% less Fatigue
 
 </details>
 
@@ -212,7 +212,13 @@ Philosophies are gained at random upon reaching level 8.
 
 **Way of the Gilder**
 
-+1 to all stats
++100% chance to hit each combat until successfully landing a blow
+
+No morale check triggered upon losing hitpoints
+
+No morale check triggered upon allies fleeing
+
+No morale check triggered upon allies dying
 
 **Way of the Scorpion**
 
@@ -222,13 +228,15 @@ Builds up 1 less Fatigue for each tile travelled
 
 **Way of the Shadow**
 
-+15 Resolve at night
++15 Resolve at night or when in smoke
 
-+20 Initiative at night
++20 Initiative at night or when in smoke
 
-+1 Vision at night
++1 Vision at night or when in smoke
 
 Not affected by nighttime penalties
+
+Being in smoke no longer imposes a Ranged Skill penalty
 
 **Way of the Spider**
 
@@ -258,7 +266,7 @@ There are five unlocks, which are granted via a special event that also gives an
 
 -5 Melee Skill and Ranged Skill if there are allies in adjacent tiles
 
-Uphold by slaying 4 enemy champions or leaders
+Uphold by slaying 3 enemy champions or leaders
 
 **Oath of Distinction (completed)**
 
@@ -270,7 +278,7 @@ Uphold by slaying 4 enemy champions or leaders
 
 -5 Melee Skill and Ranged Skill when fighting human opponents
 
-Uphold by personally slaying 3 Unholds, a Hexe, or a Lindwurm
+Uphold by personally slaying 2 Unholds, a Hexe, or a Lindwurm
 
 **Oath of Dominion (completed)**
 
@@ -286,7 +294,7 @@ Uphold by taking part in 5 consecutive battles
 
 **Oath of Endurance (completed)**
 
-+15 Fatigue
++12 Fatigue
 
 The Recover skill now reduces current Fatigue by 66%
 
@@ -316,7 +324,7 @@ Uphold by allowing enemies to flee without running them down 10 times
 
 Will start combat at Confident morale if permitted by mood
 
-When at Confident or Steady morale, reduces the Resolve of any opponent engaged in melee by 5
++10% Resolve when at Confident morale
 
 **Oath of Loyalty (active)**
 
@@ -385,6 +393,8 @@ Uphold by taking part in 8 battles against outnumbering foes
 **Oath of Valor (completed)**
 
 Will not flee in battle
+
++5 Resolve to adjacent bros who have not also completed the Oath of Valor
 
 **Oath of Vengeance (active)**
 
