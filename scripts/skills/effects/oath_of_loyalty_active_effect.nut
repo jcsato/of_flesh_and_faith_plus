@@ -35,7 +35,7 @@ oath_of_loyalty_active_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function onUpdate(_properties) {
-		if (!("Contracts" in World && World.Contracts.getActiveContract() == null))
+		if (!("Contracts" in World && World.Contracts.getActiveContract() != null))
 			_properties.XPGainMult	*= (1.0 - m.XPMalus / 100.0);
 	}
 });
