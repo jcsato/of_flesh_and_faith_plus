@@ -52,14 +52,4 @@ oath_of_valor_completed_effect <- inherit("scripts/skills/skill", {
 			ally.getSkills().removeByID("effects.inspired_by_hero");
 		}
 	}
-
-	function onMovementFinished() {
-		local actor = getContainer().getActor();
-		local allies = Tactical.Entities.getInstancesOfFaction(actor.getFaction());
-
-		foreach (ally in allies) {
-			if (ally.getID() != actor.getID())
-				ally.getSkills().update();
-		}
-	}
 });
