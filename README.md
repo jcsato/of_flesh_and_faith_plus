@@ -91,6 +91,8 @@ The Anatomists have gotten a small update as well, with a handful of new events 
 
 ## Compatibility
 
+If playing with the [Legends](https://github.com/Battle-Brothers-Legends/Legends-public) or [Reforged](https://github.com/Battle-Modders/mod-reforged) overhaul mods, make sure to also install the relevant patches from https://github.com/jcsato/bbros_mod_patches.
+
 **IMPORTANT!** As of v2.0, Of Flesh and Faith+ is **NOT** save game compatible. In other words, any saves made while the mod is installed cannot be loaded if the mod is uninstalled.
 
 Versions prior to v2.0 should be safe to remove at any time, provided that only saves not using of the new or modified origins are loaded.
