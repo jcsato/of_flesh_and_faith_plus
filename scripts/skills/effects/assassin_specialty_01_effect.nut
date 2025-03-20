@@ -1,4 +1,4 @@
-assassin_speciality_01_effect <- inherit("scripts/skills/skill", {
+assassin_specialty_01_effect <- inherit("scripts/skills/skill", {
 	m = {
 		DamageBoost			= 15
 		MeleeDefenseBoost	= 5
@@ -6,7 +6,7 @@ assassin_speciality_01_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function create() {
-		m.ID			= "effects.assassin_speciality_01";
+		m.ID			= "effects.assassin_specialty_01";
 		m.Name			= "Mubarizun";
 		m.Description	= "While the practice of sending skirmishers against each other before battle has fallen out of style in current military doctrine, generations of the practice has provided valuable lessons for the lone assassin to learn.";
 		m.Icon			= "skills/status_effect_plus_13.png";

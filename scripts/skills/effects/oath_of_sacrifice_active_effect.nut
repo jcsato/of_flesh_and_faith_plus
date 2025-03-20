@@ -18,8 +18,8 @@ oath_of_sacrifice_active_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_withContainer = true) {
-		local numSustained = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Sacrifice) : 0;
+	function getTooltip() {
+		local numSustained = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Sacrifice) : 0;
 	
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
@@ -29,10 +29,6 @@ oath_of_sacrifice_active_effect <- inherit("scripts/skills/skill", {
 		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	// Called before update()

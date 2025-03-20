@@ -18,11 +18,11 @@ oath_of_dominion_active_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_withContainer = true) {
-		local numSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionLegacy) : 0;
-		local numUnholdsSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionUnholds) : 0;
-		local numHexenSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionHexen) : 0;
-		local numLindwurmsSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionLindwurms) : 0;
+	function getTooltip() {
+		local numSlain = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionLegacy) : 0;
+		local numUnholdsSlain = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionUnholds) : 0;
+		local numHexenSlain = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionHexen) : 0;
+		local numLindwurmsSlain = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.DominionLindwurms) : 0;
 
 		local objective = null;
 		if (Const.DLC.Unhold)
@@ -39,10 +39,6 @@ oath_of_dominion_active_effect <- inherit("scripts/skills/skill", {
 		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	function onCombatStarted() {

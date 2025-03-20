@@ -20,25 +20,16 @@ oath_of_fortification_completed_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_normalDescription = true) {
-		local ret = [{ id = 1, type = "title", text = getName() }];
-
-		if (_normalDescription)
-			ret.push({ id = 2, type = "description", text = getDescription() });
-		else
-			ret.push({ id = 2, type = "description", text = "Upholding this Oath will grant the following effects:" });
-
-		ret.extend([
+	function getTooltip() {
+		local ret = [
+			{ id = 1, type = "title", text = getName() }
+			{ id = 2, type = "description", text = getDescription() }
 			{ id = 11, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+" + m.DamageBonus + "%[/color] damage when equipped with a shield" }
 			{ id = 12, type = "text", icon = "ui/icons/special.png", text = "The Knock Back skill has a [color=" + Const.UI.Color.PositiveValue + "]" + m.StunChance + "%[/color] chance to stun targets" }
 			{ id = 13, type = "text", icon = "ui/icons/special.png", text = "Only receive [color=" + Const.UI.Color.PositiveValue + "]" + m.DamageResistance + "%[/color] damage from the first hit of every combat encounter which doesn't ignore armor" }
-		]);
+		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {

@@ -15,8 +15,8 @@ oath_of_valor_active_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_withContainer = true) {
-		local numWon = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Valor) : 0;
+	function getTooltip() {
+		local numWon = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Valor) : 0;
 
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
@@ -26,9 +26,5 @@ oath_of_valor_active_effect <- inherit("scripts/skills/skill", {
 		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 });

@@ -18,24 +18,15 @@ oath_of_sacrifice_completed_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_normalDescription = true) {
-		local ret = [{ id = 1, type = "title", text = getName() }];
-
-		if (_normalDescription)
-			ret.push({ id = 2, type = "description", text = getDescription() });
-		else
-			ret.push({ id = 2, type = "description", text = "Upholding this Oath will grant the following effects:" });
-
-		ret.extend([
+	function getTooltip() {
+		local ret = [
+			{ id = 1, type = "title", text = getName() }
+			{ id = 2, type = "description", text = getDescription() }
 			{ id = 10, type = "text", icon = "ui/icons/special.png", text = "The threshold to sustain injuries on getting hit is increased by [color=" + Const.UI.Color.PositiveValue + "]" + m.InjuryThresholdBonus + "%[/color]" }
 			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "Receives only [color=" + Const.UI.Color.PositiveValue + "]" + (100 - m.DamageReduction) + "%[/color] of any damage while affected by injuries" }
-		]);
+		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	function onUpdate( _properties ) {

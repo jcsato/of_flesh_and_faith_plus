@@ -35,7 +35,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		bros[0].getFlags().set("SouthernAssassinsPoisonSpecialty", Math.rand(0, 4));
 		bros[0].getFlags().set("SouthernAssassinsCombatSpecialty", Math.rand(0, 4));
 		bros[0].getFlags().set("SouthernAssassinsPhilosophy", Math.rand(0, 4));
-		addPoisonSpeciality(bros[0])
+		addPoisonSpecialty(bros[0]);
 
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
@@ -66,7 +66,7 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		bros[1].getFlags().set("SouthernAssassinsPoisonSpecialty", Math.rand(0, 4));
 		bros[1].getFlags().set("SouthernAssassinsCombatSpecialty", Math.rand(0, 4));
 		bros[1].getFlags().set("SouthernAssassinsPhilosophy", Math.rand(0, 4));
-		addPoisonSpeciality(bros[1])
+		addPoisonSpecialty(bros[1]);
 
 		bros[1].getBaseProperties().RangedSkill = Math.max(bros[1].getBaseProperties().RangedSkill, 38);
 
@@ -169,23 +169,23 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		_bro.getFlags().set("SouthernAssassinsPhilosophy", Math.rand(0, 4));
 
 		if (_bro.getLevel() >= 2)
-			addPoisonSpeciality(_bro);
+			addPoisonSpecialty(_bro);
 		if (_bro.getLevel() >= 5)
-			addCombatSpeciality(_bro);
+			addCombatSpecialty(_bro);
 		if (_bro.getLevel() >= 8)
 			addPhilosophy(_bro);
 	}
 
 	function onUpdateLevel(_bro) {
 		if (_bro.getLevel() == 2)
-			addPoisonSpeciality(_bro);
+			addPoisonSpecialty(_bro);
 		else if (_bro.getLevel() == 5)
-			addCombatSpeciality(_bro);
+			addCombatSpecialty(_bro);
 		else if (_bro.getLevel() == 8)
 			addPhilosophy(_bro);
 	}
 
-	function addPoisonSpeciality(_bro) {
+	function addPoisonSpecialty(_bro) {
 		local poison_effects = [ "assassin_poison_01_effect", "assassin_poison_02_effect", "assassin_poison_03_effect", "assassin_poison_04_effect", "assassin_poison_05_effect" ];
 		_bro.getSkills().add(new("scripts/skills/effects/" + poison_effects[_bro.getFlags().get("SouthernAssassinsPoisonSpecialty")]));
 
@@ -193,17 +193,17 @@ southern_assassins_scenario <- inherit("scripts/scenarios/world/starting_scenari
 		_bro.m.PerkPointsSpent += 1;
 	}
 
-	function addCombatSpeciality(_bro) {
-		local speciality_effects = [ "assassin_speciality_01_effect", "assassin_speciality_02_effect", "assassin_speciality_03_effect", "assassin_speciality_04_effect", "assassin_speciality_05_effect" ];
-		_bro.getSkills().add(new("scripts/skills/effects/" + speciality_effects[_bro.getFlags().get("SouthernAssassinsCombatSpecialty")]));
+	function addCombatSpecialty(_bro) {
+		local specialty_effects = [ "assassin_specialty_01_effect", "assassin_specialty_02_effect", "assassin_specialty_03_effect", "assassin_specialty_04_effect", "assassin_specialty_05_effect" ];
+		_bro.getSkills().add(new("scripts/skills/effects/" + specialty_effects[_bro.getFlags().get("SouthernAssassinsCombatSpecialty")]));
 
 		_bro.m.PerkPoints -= 1;
 		_bro.m.PerkPointsSpent += 1;
 	}
 
 	function addPhilosophy(_bro) {
-		local philosophies = [ "way_of_the_gilder_trait", "way_of_the_scorpion_trait", "way_of_the_shadow_trait", "way_of_the_spider_trait", "way_of_the_wolf_trait" ];
-		_bro.getSkills().add(new("scripts/skills/traits/" + philosophies[_bro.getFlags().get("SouthernAssassinsPhilosophy")]));
+		local philosophies = [ "way_of_the_gilder_effect", "way_of_the_scorpion_effect", "way_of_the_shadow_effect", "way_of_the_spider_effect", "way_of_the_wolf_effect" ];
+		_bro.getSkills().add(new("scripts/skills/effects/" + philosophies[_bro.getFlags().get("SouthernAssassinsPhilosophy")]));
 
 		_bro.m.PerkPoints -= 1;
 		_bro.m.PerkPointsSpent += 1;

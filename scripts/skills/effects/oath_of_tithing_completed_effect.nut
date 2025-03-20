@@ -15,23 +15,14 @@ oath_of_tithing_completed_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_normalDescription = true) {
-		local ret = [{ id = 1, type = "title", text = getName() }];
-
-		if (_normalDescription)
-			ret.push({ id = 2, type = "description", text = getDescription() });
-		else
-			ret.push({ id = 2, type = "description", text = "Upholding this Oath will grant the following effects:" });
-
-		ret.extend([
+	function getTooltip() {
+		local ret = [
+			{ id = 1, type = "title", text = getName() }
+			{ id = 2, type = "description", text = getDescription() }
 			{ id = 10, type = "text", icon = "ui/icons/asset_daily_money.png", text = "All brothers with the Oathtaker background are paid 10% fewer wages" }
 			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "All Oathtaker recruits cost 1000 fewer crowns to hire, to a minimum of " + ::OFFP.Oathtakers.Boons.TithingRecruitMinimum }
-		]);
+		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 });

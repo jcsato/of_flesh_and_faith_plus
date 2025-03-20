@@ -17,9 +17,9 @@ oath_of_wrath_active_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_withContainer = true) {
-		local numLeadersSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.WrathLeaders) : 0;
-		local numDestroyed = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.WrathLocations) : 0;
+	function getTooltip() {
+		local numLeadersSlain = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.WrathLeaders) : 0;
+		local numDestroyed = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.WrathLocations) : 0;
 
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
@@ -30,10 +30,6 @@ oath_of_wrath_active_effect <- inherit("scripts/skills/skill", {
 		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	function onUpdate( _properties ) {

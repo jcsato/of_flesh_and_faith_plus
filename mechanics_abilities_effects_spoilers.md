@@ -284,7 +284,7 @@ Uphold by personally slaying 2 Unholds, a Hexe, or a Lindwurm
 
 +10 Resolve
 
-Reduces the Resolve on any opponent engaged in melee by 5 when fighting beasts
+Reduces the Resolve on any opponent engaged in melee by 3
 
 **Oath of Endurance (active)**
 

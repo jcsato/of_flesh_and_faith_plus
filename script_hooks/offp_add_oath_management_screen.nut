@@ -105,13 +105,13 @@
 		local entity = Tactical.getEntityByID(_entityId);
 		if (entity != null) {
 			local statusEffect = entity.getSkills().getSkillByID(_oathId);
+
 			if (statusEffect != null)
 				return statusEffect.getTooltip();
 		} else {
 			local oathFileName = split(_oathId, ".")[1] + "_effect";
-			local statusEffect = new("scripts/skills/effects/" + oathFileName);
-			if ("getManagementScreenTooltip" in statusEffect)
-				return statusEffect.getManagementScreenTooltip();
+
+			return ::OFFP.Helpers.getManagementScreenTooltip(new("scripts/skills/effects/" + oathFileName));
 		}
 	});
 });

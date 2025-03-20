@@ -17,8 +17,8 @@ oath_of_endurance_active_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_withContainer = true) {
-		local numWon = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Endurance) : 0;
+	function getTooltip() {
+		local numWon = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Endurance) : 0;
 
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
@@ -28,10 +28,6 @@ oath_of_endurance_active_effect <- inherit("scripts/skills/skill", {
 		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	function onUpdate(_properties) {

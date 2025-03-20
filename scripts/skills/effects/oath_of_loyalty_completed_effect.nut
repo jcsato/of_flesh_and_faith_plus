@@ -15,23 +15,14 @@ oath_of_loyalty_completed_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_normalDescription = true) {
-		local ret = [{ id = 1, type = "title", text = getName() }];
-
-		if (_normalDescription)
-			ret.push({ id = 2, type = "description", text = getDescription() });
-		else
-			ret.push({ id = 2, type = "description", text = "Upholding this Oath will grant the following effects:" });
-
-		ret.extend([
+	function getTooltip() {
+		local ret = [
+			{ id = 1, type = "title", text = getName() }
+			{ id = 2, type = "description", text = getDescription() }
 			{ id = 10, type = "text", icon = "ui/icons/special.png", text = "Gain additional Renown each time you successfully complete a contract" }
 			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "Gain additional relations with your employer each time you successfully complete a contract" }
-		]);
+		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 });

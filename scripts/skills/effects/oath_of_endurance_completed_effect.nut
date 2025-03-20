@@ -17,24 +17,15 @@ oath_of_endurance_completed_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_normalDescription = true) {
-		local ret = [{ id = 1, type = "title", text = getName() }];
-
-		if (_normalDescription)
-			ret.push({ id = 2, type = "description", text = getDescription() });
-		else
-			ret.push({ id = 2, type = "description", text = "Upholding this Oath will grant the following effects:" });
-
-		ret.extend([
+	function getTooltip() {
+		local ret = [
+			{ id = 1, type = "title", text = getName() }
+			{ id = 2, type = "description", text = getDescription() }
 			{ id = 10, type = "text", icon = "ui/icons/fatigue.png", text = "[color=" + Const.UI.Color.PositiveValue + "]+" + m.FatigueBonus + "[/color] Fatigue" }
 			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "The Recover skill now reduces current Fatigue by [color=" + Const.UI.Color.PositiveValue + "]" + ::OFFP.Oathtakers.Boons.EnduranceRecovery + "%[/color]" }
-		]);
+		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	function onUpdate(_properties) {

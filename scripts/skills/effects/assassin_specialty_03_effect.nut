@@ -1,10 +1,10 @@
-assassin_speciality_03_effect <- inherit("scripts/skills/skill", {
+assassin_specialty_03_effect <- inherit("scripts/skills/skill", {
 	m = {
 		AttackBoost		= 10
 	}
 
 	function create() {
-		m.ID			= "effects.assassin_speciality_03";
+		m.ID			= "effects.assassin_specialty_03";
 		m.Name			= "Torturer";
 		m.Description	= "Hit them while they're down! This character can recognize and exploit blind spots and vulnerabilities, and knows how to strike for maximum effect.";
 		m.Icon			= "skills/status_effect_plus_15.png";

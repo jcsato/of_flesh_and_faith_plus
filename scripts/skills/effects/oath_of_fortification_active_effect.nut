@@ -19,8 +19,8 @@ oath_of_fortification_active_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_withContainer = true) {
-		local numNegated = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Fortification) : 0;
+	function getTooltip() {
+		local numNegated = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Fortification) : 0;
 
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
@@ -32,10 +32,6 @@ oath_of_fortification_active_effect <- inherit("scripts/skills/skill", {
 		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	function onMissed(_attacker, _skill) {

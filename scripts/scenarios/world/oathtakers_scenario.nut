@@ -29,6 +29,7 @@ oathtakers_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 
 		bros[0].setStartValuesEx([ "old_paladin_background" ]);
 		bros[0].getBackground().m.RawDescription = "{%name% is rather old, nigh on decrepit, a rarity amongst the militant and doubly so amongst the Oathtakers. Few throw themselves into danger with the reckless abandon of Young Anselm's paladins, and to grow old in their number requires great skill indeed. Though age has dulled some of his natural abilities, he still commands much respect from his fellow Oathtakers. Seeing him bellow as he cleaves through the order's foes, you can see why. | %name% is a man of many spirits, having wandered the world in the shell of soldier, farmer, sellsword, and more. He has never divulged what events saw him join the Oathtakers, but in the years since he has proven one of the most ardent followers of the Oaths. When schism tore the group asunder, none questioned %name%'s right to safeguard Young Anselm's skull.}";
+		bros[0].getBackground().buildDescription(true);
 		bros[0].setPlaceInFormation(4);
 		bros[0].m.PerkPoints = 2;
 		bros[0].m.LevelUps = 2;
@@ -60,6 +61,7 @@ oathtakers_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 
 		bros[1].setStartValuesEx([ "paladin_background" ]);
 		bros[1].getBackground().m.RawDescription = "{Orphaned by a brigand raid, %name% was taken in and raised by a traveling group of Oathtakers. The eclectic warriors taught him how to survive on the road, how to fight, and most importantly how to follow Young Anselm's Oaths. Though now a grown man, he has yet to let the world's horrors and grind wear him down. In moments of honesty, he reminds you of yourself. In moments of reflection, you realize that he will likely one day resemble you as you are now. But until then, his earnest nature is a nice change of pace from the cynicism typical of sellswords.}"
+		bros[1].getBackground().buildDescription(true);
 		bros[1].setPlaceInFormation(5);
 		bros[1].m.PerkPoints = 0;
 		bros[1].m.LevelUps = 0;
@@ -163,9 +165,8 @@ oathtakers_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		// Because brothers are deserialized one by one (reasonably), skills that scale based on number of brothers
 		//  (such as the completed Oath of Tithing effect) won't work correctly on initial load. onInit is loaded
 		//  after all bros are deserialized, so running onUpdate will calculate those skills correctly.
-		foreach (bro in brothers) {
+		foreach (bro in brothers)
 			bro.getSkills().update();
-		}
 	}
 
 	function onGetBackgroundTooltip(_background, _tooltip) {

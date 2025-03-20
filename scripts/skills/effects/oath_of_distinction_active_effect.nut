@@ -18,8 +18,8 @@ oath_of_distinction_active_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_withContainer = true) {
-		local numSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Distinction) : 0;
+	function getTooltip() {
+		local numSlain = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Distinction) : 0;
 
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
@@ -31,10 +31,6 @@ oath_of_distinction_active_effect <- inherit("scripts/skills/skill", {
 		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	function onUpdate(_properties) {

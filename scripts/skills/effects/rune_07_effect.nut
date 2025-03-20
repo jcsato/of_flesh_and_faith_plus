@@ -20,7 +20,7 @@ rune_07_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function getDescription() {
-		return "\"Beware, mine chosen! The fang of the mad god is sharp indeed, but ever inward does it point. Do not think to outwit its master's machinations, only to find thine own death before they can take bloom.\"";
+		return "\"Beware, mine chosen! The fang of the mad god is sharp indeed, but ever inward does it point. Do not think to outwit its master's machinations. Focus only on finding thine own death before they can take bloom.\"";
 	}
 
 	function getTooltip() {

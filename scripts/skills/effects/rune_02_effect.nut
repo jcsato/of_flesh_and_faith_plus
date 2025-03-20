@@ -44,4 +44,8 @@ rune_02_effect <- inherit("scripts/skills/skill", {
 			m.HealingApplied = true;
 		}
 	}
+
+	function onUpdate(_properties) {
+		_properties.AdditionalHealingDays -= 1;
+	}
 });

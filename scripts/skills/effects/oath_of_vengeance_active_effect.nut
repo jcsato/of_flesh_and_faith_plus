@@ -18,9 +18,9 @@ oath_of_vengeance_active_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_withContainer = true) {
-		local numSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Vengeance) : 0;
-		local numLeadersSlain = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.VengeanceLeaders) : 0;
+	function getTooltip() {
+		local numSlain = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Vengeance) : 0;
+		local numLeadersSlain = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.VengeanceLeaders) : 0;
 
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
@@ -30,10 +30,6 @@ oath_of_vengeance_active_effect <- inherit("scripts/skills/skill", {
 		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 
 	function onCombatStarted() {

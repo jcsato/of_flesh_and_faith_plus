@@ -22,9 +22,8 @@ assassin_master_follower <- inherit("scripts/retinue/follower", {
 			{ id = 4, type = "description", text = getDescription() }
 		];
 
-		foreach (i, e in m.Effects) {
+		foreach (i, e in m.Effects)
 			ret.push({ id = i, type = "text", icon = "ui/icons/special.png", text = e });
-		}
 
 		ret.push({ id = 1, type = "warning", icon = "ui/icons/warning.png", text = "Cannot be replaced" });
 		return ret;

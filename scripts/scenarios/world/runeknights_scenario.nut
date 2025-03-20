@@ -138,18 +138,18 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 		local nobles = World.FactionManager.getFactionsOfType(Const.FactionType.NobleHouse);
 		local houses = [];
 
-		foreach(n in nobles) {
+		foreach (noble in nobles) {
 			local closest = null, dist = 9999;
-			foreach(s in n.getSettlements()) {
-				local d = s.getTile().getDistanceTo(randomVillageTile);
+			foreach (settlement in noble.getSettlements()) {
+				local distance = settlement.getTile().getDistanceTo(randomVillageTile);
 
-				if (d < dist) {
-					dist = d;
-					closest = s;
+				if (distance < dist) {
+					dist = distance;
+					closest = settlement;
 				}
 			}
 
-			houses.push({ Faction = n, Dist = dist });
+			houses.push({ Faction = noble, Dist = dist });
 		}
 
 		houses.sort(function(_a, _b) { 

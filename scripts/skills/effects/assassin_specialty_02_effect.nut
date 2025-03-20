@@ -1,4 +1,4 @@
-assassin_speciality_02_effect <- inherit("scripts/skills/skill", {
+assassin_specialty_02_effect <- inherit("scripts/skills/skill", {
 	m = {
 		PrimaryStatBoost	= 4
 		SecondaryStatBoost	= 8
@@ -6,7 +6,7 @@ assassin_speciality_02_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function create() {
-		m.ID			= "effects.assassin_speciality_02";
+		m.ID			= "effects.assassin_specialty_02";
 		m.Name			= "Challenger";
 		m.Description	= "Bring them on! Assassins often find themselves outnumbered, but rather than being daunted this character relishes the challenge, focusing even harder than normal.";
 		m.Icon			= "skills/status_effect_plus_14.png";

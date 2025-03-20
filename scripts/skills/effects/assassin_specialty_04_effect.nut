@@ -1,11 +1,11 @@
-assassin_speciality_04_effect <- inherit("scripts/skills/skill", {
+assassin_specialty_04_effect <- inherit("scripts/skills/skill", {
 	m = {
 		DamagePercent	= 5
 		HitBoost		= 10
 	}
 
 	function create() {
-		m.ID			= "effects.assassin_speciality_04";
+		m.ID			= "effects.assassin_specialty_04";
 		m.Name			= "Predator";
 		m.Description	= "Hunt them down! This character knows how to take advantage of a distracted opponent and hit them where it hurts most.";
 		m.Icon			= "skills/status_effect_plus_16.png";

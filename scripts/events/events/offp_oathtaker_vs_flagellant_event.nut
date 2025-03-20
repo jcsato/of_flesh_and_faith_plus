@@ -114,7 +114,7 @@ offp_oathtaker_vs_flagellant_event <- inherit("scripts/events/event", {
 		foreach (bro in brothers) {
 			if (bro.getBackground().getID() == "background.flagellant")
 				flagellant_candidates.push(bro);
-			else if (bro.getBackground().getID() == "background.paladin" && !hasWeaponMastery(bro))
+			else if (bro.getBackground().getID() == "background.paladin" && !hasNonFlailWeaponMastery(bro))
 				oathtaker_candidates.push(bro);
 		}
 		
@@ -133,12 +133,12 @@ offp_oathtaker_vs_flagellant_event <- inherit("scripts/events/event", {
 
 	function onClear() { }
 
-	function hasWeaponMastery(bro) {
+	function hasNonFlailWeaponMastery(bro) {
 		local properties = bro.getCurrentProperties();
 
 		return properties.IsSpecializedInBows || properties.IsSpecializedInCrossbows || properties.IsSpecializedInThrowing
 			|| properties.IsSpecializedInSwords || properties.IsSpecializedInCleavers || properties.IsSpecializedInMaces
-			|| properties.IsSpecializedInHammers || properties.IsSpecializedInAxes || properties.IsSpecializedInFlails
-			|| properties.IsSpecializedInSpears || properties.IsSpecializedInPolearms || properties.IsSpecializedInDaggers;
+			|| properties.IsSpecializedInHammers || properties.IsSpecializedInAxes || properties.IsSpecializedInSpears
+			|| properties.IsSpecializedInPolearms || properties.IsSpecializedInDaggers;
 	}
 });

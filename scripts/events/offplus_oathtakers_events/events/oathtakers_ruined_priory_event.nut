@@ -78,9 +78,8 @@ oathtakers_ruined_priory_event <- inherit("scripts/events/event", {
 
 				local brothers = World.getPlayerRoster().getAll();
 
-				foreach (bro in brothers) {
+				foreach (bro in brothers)
 					bro.improveMood(0.5, "Inspired by " + _event.m.Oathtaker.getNameOnly() + "'s knowledge of the Oaths");
-				}
 			}
 		});
 
@@ -109,9 +108,8 @@ oathtakers_ruined_priory_event <- inherit("scripts/events/event", {
 
 				local brothers = World.getPlayerRoster().getAll();
 
-				foreach (bro in brothers) {
+				foreach (bro in brothers)
 					bro.improveMood(1.0, "Inspired by " + _event.m.Oathtaker.getNameOnly() + "'s knowledge of the Oaths");
-				}
 			}
 		});
 	}

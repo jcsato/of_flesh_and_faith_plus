@@ -30,9 +30,8 @@
 				getTypeID() == "location.unhold_graveyard" || getTypeID() == "location.holy_site.vulcano")
 			{
 				local brothers = World.getPlayerRoster().getAll();
-				foreach (bro in brothers) {
+				foreach (bro in brothers)
 					bro.getFlags().increment("CursedExplorersLegendaryLocations");
-				}
 			}
 		}
 
@@ -47,9 +46,8 @@
 			{
 				local brothers = World.getPlayerRoster().getAll();
 
-				foreach (bro in brothers) {
+				foreach (bro in brothers)
 					bro.getFlags().increment("CursedExplorersLegendaryLocations");
-				}
 			}
 		}
 
@@ -73,9 +71,8 @@
 			getTypeID() == "location.unhold_graveyard" || getTypeID() == "location.holy_site.vulcano")
 		{
 			local brothers = World.getPlayerRoster().getAll();
-			foreach (bro in brothers) {
+			foreach (bro in brothers)
 				bro.getFlags().increment("CursedExplorersLegendaryLocations", -1);
-			}
 		}
 	}
 });

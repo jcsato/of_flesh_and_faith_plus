@@ -127,7 +127,7 @@
 		local oathName = "";
 		local completed = false;
 
-		if (oathID.find("_completed") != 0)
+		if (oathID.find("_completed") != null)
 			completed = true;
 
 		oathName = split(oathID, '.')[1];
@@ -309,9 +309,8 @@
 		local brothers = World.getPlayerRoster().getAll();
 		local totalOathsCompleted = 0;
 
-		foreach (bro in brothers) {
+		foreach (bro in brothers)
 			totalOathsCompleted += ::OFFP.Helpers.getNumOathsCompletedForBro(bro);
-		}
 
 		return totalOathsCompleted;
 	}
@@ -345,5 +344,13 @@
 		}
 
 		return haveSkull;
+	}
+	getManagementScreenTooltip = function(skill) {
+		local ret = skill.getTooltip();
+
+		if (skill.getID().find("_completed") != null)
+			ret.apply(@(tooltip) tooltip.type == "description" ? { id = 2, type = "description", text = "Upholding this Oath will grant the following effects:" } : tooltip);
+
+		return ret;
 	}
 }

@@ -17,8 +17,8 @@ oath_of_tithing_active_effect <- inherit("scripts/skills/skill", {
 		m.IsStacking			= false;
 	}
 
-	function getTooltip(_withContainer = true) {
-		local numLevied = _withContainer ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Tithing) : 0;
+	function getTooltip() {
+		local numLevied = !(getContainer() == null) ? getContainer().getActor().getFlags().getAsInt(::OFFP.Oathtakers.Flags.Tithing) : 0;
 
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
@@ -28,9 +28,5 @@ oath_of_tithing_active_effect <- inherit("scripts/skills/skill", {
 		];
 
 		return ret;
-	}
-
-	function getManagementScreenTooltip() {
-		return getTooltip(false);
 	}
 });
