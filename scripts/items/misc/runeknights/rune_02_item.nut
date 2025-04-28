@@ -2,6 +2,8 @@ rune_02_item <- inherit("scripts/items/item", {
 	m = { }
 
 	function create() {
+		item.create();
+
 		m.ID					= "misc.rune_02";
 		m.Name					= "Unpassage Rune";
 		m.Description			= "If a warrior meets his end without truly leaving his mark on this plane, his soul's strength may be ceded to another who may claim glory for the both of them.\n\nMany kinds of warriors quest for Ironhand's favor, but common to all the most successful is an unrelenting vigor that compels them to seek the next conquest.";

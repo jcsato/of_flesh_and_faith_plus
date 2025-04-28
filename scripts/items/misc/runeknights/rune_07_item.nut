@@ -5,6 +5,8 @@ rune_07_item <- inherit("scripts/items/item", {
 	}
 
 	function create() {
+		item.create();
+
 		m.ID					= "misc.rune_07";
 		m.Name					= "Rune of the Berserker";
 		m.Description			= "If a warrior meets his end without truly leaving his mark on this plane, his soul's strength may be ceded to another who may claim glory for the both of them.\n\nThose who have stared into the gaze of the mad god can never know peace. They crave battle, for only in combat does his shroud lift and a clarity of purpose descends.";

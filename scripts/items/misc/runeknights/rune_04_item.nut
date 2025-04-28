@@ -2,6 +2,8 @@ rune_04_item <- inherit("scripts/items/item", {
 	m = { }
 
 	function create() {
+		item.create();
+
 		m.ID					= "misc.rune_04";
 		m.Name					= "Rune of the Old God";
 		m.Description			= "If a warrior meets his end without truly leaving his mark on this plane, his soul's strength may be ceded to another who may claim glory for the both of them.\n\nTo be the chosen of Ironhand is to seek the end unflaggingly and without fear.";

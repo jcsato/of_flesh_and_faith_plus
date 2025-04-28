@@ -2,6 +2,8 @@ rune_05_item <- inherit("scripts/items/item", {
 	m = { }
 
 	function create() {
+		item.create();
+
 		m.ID					= "misc.rune_05";
 		m.Name					= "Death's Door Rune";
 		m.Description			= "If a warrior meets his end without truly leaving his mark on this plane, his soul's strength may be ceded to another who may claim glory for the both of them.\n\nFew reach the first threshold, but truly rare is the warrior who lives in the final portal, in the door of death.";

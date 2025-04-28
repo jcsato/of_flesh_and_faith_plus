@@ -5,6 +5,8 @@ rune_06_item <- inherit("scripts/items/item", {
 	}
 
 	function create() {
+		item.create();
+
 		m.ID					= "misc.rune_06";
 		m.Name					= "Nemesis Rune";
 		m.Description			= "If a warrior meets his end without truly leaving his mark on this plane, his soul's strength may be ceded to another who may claim glory for the both of them.\n\nTo know the true worth of an enemy is a difficult task indeed, but the rune rite does not discriminate against any who prove themselves, regardless of allegiance.";
