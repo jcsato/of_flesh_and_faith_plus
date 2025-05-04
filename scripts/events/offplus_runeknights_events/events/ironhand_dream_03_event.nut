@@ -1,7 +1,5 @@
 ironhand_dream_03_event <- inherit("scripts/events/event", {
-	m = {
-		Chosen = null
-	}
+	m = { }
 
 	function create() {
 		m.ID		= "event.ironhand_dream_03";
@@ -97,15 +95,9 @@ ironhand_dream_03_event <- inherit("scripts/events/event", {
 		}
 
 		local candidates_sum = elite_rune_candidates.len() + veteran_rune_candidates.len() + rune_candidates.len();
-		if (elite_rune_candidates.len() < 1 && candidates_sum < 7)
+		if (elite_rune_candidates.len() < 1 || candidates_sum < 7)
 			return;
 
 		m.Score = 4 * candidates_sum;
 	}
-
-	function onPrepare() { }
-
-	function onPrepareVariables(_vars) { }
-
-	function onClear() { }
 });

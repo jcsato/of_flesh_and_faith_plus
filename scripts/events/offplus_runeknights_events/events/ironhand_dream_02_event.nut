@@ -60,14 +60,12 @@ ironhand_dream_02_event <- inherit("scripts/events/event", {
 		}
 
 		local candidates_sum = veteran_rune_candidates.len() + rune_candidates.len();
-		if (veteran_rune_candidates.len() < 1 && candidates_sum < 5)
+		if (veteran_rune_candidates.len() < 1 || candidates_sum < 5)
 			return;
 
 		m.Chosen = veteran_rune_candidates[Math.rand(0, veteran_rune_candidates.len() - 1)];
 		m.Score = 5 * candidates_sum;
 	}
-
-	function onPrepare() { }
 
 	function onPrepareVariables(_vars) {
 		_vars.push([ "chosen", m.Chosen.getName() ]);

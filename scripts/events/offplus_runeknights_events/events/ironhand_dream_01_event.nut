@@ -65,8 +65,6 @@ ironhand_dream_01_event <- inherit("scripts/events/event", {
 		m.Score = 5 * rune_candidates.len();
 	}
 
-	function onPrepare() { }
-
 	function onPrepareVariables(_vars) {
 		_vars.push([ "randombarbarianname", Const.Strings.BarbarianNames[Math.rand(0, Const.Strings.BarbarianNames.len() - 1)]]);
 		_vars.push([ "chosen", m.Chosen.getName() ]);
