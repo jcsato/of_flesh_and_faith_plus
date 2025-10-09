@@ -336,6 +336,8 @@ Uphold by successfully completing 8 contracts
 
 Gain additional Renown (5) and relations (1.0) each time you successfully complete a contract
 
+The effect stacks if multiple brothers have completed the oath
+
 **Oath of Proving (active)**
 
 -100% Experience Gain each combat until scoring a kill
@@ -383,6 +385,8 @@ Uphold by tithing at least 500 crowns
 All brothers with the Oathtaker background are paid 10% fewer wages
 
 All Oathtaker recruits cost 1000 fewer crowns to hire, to a minimum of 1500
+
+Both effects stack if multiple brothers have completed the oath
 
 **Oath of Valor (active)**
 
