@@ -10,7 +10,7 @@ assassin_poison_03_effect <- inherit("scripts/skills/skill", {
 		m.Icon			= "skills/status_effect_plus_10.png";
 		m.IconMini		= "";
 		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
-		m.Order			= Const.SkillOrder.VeryLast - 3;
+		m.Order			= Const.SkillOrder.Any - 3;
 		m.SoundOnUse	= [ "sounds/combat/poison_applied_01.wav", "sounds/combat/poison_applied_02.wav" ];
 	}
 

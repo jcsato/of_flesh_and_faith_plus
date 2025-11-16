@@ -8,7 +8,7 @@ way_of_the_shadow_effect <- inherit("scripts/skills/skill", {
 
 		m.Icon			= "skills/status_effect_plus_47.png";
 		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
-		m.Order			= Const.SkillOrder.VeryLast - 1;
+		m.Order			= Const.SkillOrder.Any - 1;
 
 		m.IsActive		= false;
 		m.IsStacking	= false;
@@ -33,9 +33,6 @@ way_of_the_shadow_effect <- inherit("scripts/skills/skill", {
 
 		if (!getContainer().getActor().isPlacedOnMap())
 			return;
-
-		if (getContainer().hasSkill("special.night"))
-			getContainer().getSkillByID("special.night").m.IsHidden = true;
 
 		local nighttime = (("State" in World) && World.State != null && !World.getTime().IsDaytime) ? true : false;
 

@@ -12,7 +12,7 @@ assassin_specialty_02_effect <- inherit("scripts/skills/skill", {
 		m.Icon			= "skills/status_effect_plus_14.png";
 		m.IconMini		= "";
 		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
-		m.Order			= Const.SkillOrder.VeryLast - 2;
+		m.Order			= Const.SkillOrder.Any - 2;
 		m.IsActive		= false;
 		m.IsStacking	= false;
 	}

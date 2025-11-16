@@ -14,7 +14,7 @@ way_of_the_spider_effect <- inherit("scripts/skills/skill", {
 
 		m.Icon			= "skills/status_effect_plus_48.png";
 		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
-		m.Order			= Const.SkillOrder.VeryLast - 1;
+		m.Order			= Const.SkillOrder.Any - 1;
 
 		m.IsActive		= false;
 		m.IsStacking	= false;

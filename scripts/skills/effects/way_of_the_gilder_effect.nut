@@ -8,7 +8,7 @@ way_of_the_gilder_effect <- inherit("scripts/skills/skill", {
 
 		m.Icon			= "skills/status_effect_plus_45.png";
 		m.Type			= Const.SkillType.StatusEffect | Const.SkillType.Perk;
-		m.Order			= Const.SkillOrder.VeryLast - 1;
+		m.Order			= Const.SkillOrder.AnyAny - 1;
 
 		m.IsActive		= false;
 		m.IsStacking	= false;
