@@ -71,8 +71,8 @@ explorers_legendary_location_rumor_event <- inherit("scripts/events/event", {
 	function onPrepare() { }
 
 	function onPrepareVariables(_vars) {
-		_vars.push( [ "direction", m.Location == null || m.Location.isNull() ? "" : Const.Strings.Direction8[World.State.getPlayer().getTile().getDirection8To(m.Location.getTile())] ] );
-		_vars.push( [ "terrain", m.Location != null && !m.Location.isNull() ? Const.Strings.Terrain[m.Location.getTile().Type] : "" ] );
+		_vars.push( [ "direction", m.Location == null ? "" : Const.Strings.Direction8[World.State.getPlayer().getTile().getDirection8To(m.Location.getTile())] ] );
+		_vars.push( [ "terrain", m.Location != null ? Const.Strings.Terrain[m.Location.getTile().Type] : "" ] );
 	}
 
 	function onClear() {

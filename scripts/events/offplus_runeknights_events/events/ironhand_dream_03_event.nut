@@ -33,15 +33,15 @@ ironhand_dream_03_event <- inherit("scripts/events/event", {
 
 					if (bro.getSkills().hasSkill("trait.fear_undead")) {
 						bro.getSkills().removeByID("trait.fear_undead");
-						List.push( { id = 10, icon = trait.getIcon(), text = bro.getName() + " no longer fears the undead" } );
+						List.push( { id = 10, icon = "ui/traits/trait_icon_47.png", text = bro.getName() + " no longer fears the undead" } );
 						fear_removed = true;
 					} else if (bro.getSkills().hasSkill("trait.fear_greenskins")) {
 						bro.getSkills().removeByID("trait.fear_greenskins");
-						List.push( { id = 10, icon = trait.getIcon(), text = bro.getName() + " no longer fears greenskins" } );
+						List.push( { id = 10, icon = "ui/traits/trait_icon_49.png", text = bro.getName() + " no longer fears greenskins" } );
 						fear_removed = true;
 					} else if (bro.getSkills().hasSkill("trait.fear_beasts")) {
 						bro.getSkills().removeByID("trait.fear_beasts");
-						List.push( { id = 10, icon = trait.getIcon(), text = bro.getName() + " no longer fears beasts" } );
+						List.push( { id = 10, icon = "ui/traits/trait_icon_48.png", text = bro.getName() + " no longer fears beasts" } );
 						fear_removed = true;
 					}
 
