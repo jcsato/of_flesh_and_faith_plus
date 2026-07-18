@@ -44,6 +44,12 @@ I've gotten some feedback that the Assassin abilities are not powerful enough to
 
 As for ordering, poisons are the first unlock because they often have the biggest effect on what weapon a bro should wield. This can be the most important choice for a build so it needs come early and players need space to react and plan accordingly. The specialties *can* impact weapon choice, so they push off picking a mastery by another level. In practice most players don't actually take weapon mastery perks until late in the build anyway, so this doesn't do a ton to interfere with a bro's overall power progression. Philosophies need to come at level 8 because Nimble & Battleforged are too important and forcing players to get another level before picking them is extremely impactful. The philosophies themselves are less build defining and more just offer conditional power on top of what's already there. Players have a couple perk choices after to swerve if they need to, though.
 
+**Addendum for v4.x**
+
+In v4 of the mod, assassins got two big changes - bros get an additional perk point at level 11, and once they reach level 8 and get all the assassin perks they can respec to a different combat specialty (the level 5 perk). The former change allows for a bit more reactivity in builds - if you got a philosophy that really implies a perk, you don't need to leave the existing build you had unfinished to take it - and perk points are tight enough that I think players still have to make tough choices.
+
+The latter change, respeccing, is largely there to expand the design space of combat specialties. Prior to this, making specialties that affected ranged attacks was extremely difficult, because turning a melee build into a ranged (or even hybrid build) is so hard. With respeccing in the mix, there's a bit more freedom to add specialties that may not be readily capitalized on for a few levels if the player wants to stick with their current weapon set. Since they'll be playing with a much less useful perk from levels 5 to 8, this balances out some of the eventual power creep.
+
 ### The Oathtakers
 
 The OFF+ Oathtakers aren't there to "fix" anything, per se, but the vanilla implementation of the origin makes for an extremely limiting design space. I'll try to hit the biggest points and leave it at those for now.

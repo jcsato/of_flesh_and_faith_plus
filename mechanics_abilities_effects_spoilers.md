@@ -156,13 +156,23 @@ Does not stack
 
 **Gilder's Gaze**
 
-Reduces Vision by 5 and damage by 20% for 2 turns
+Reduces damage by 20% for the rest of combat
+
+Applies the 'Nighttime' effect (if applicable) for the rest of combat
 
 Does not stack
 
 **Violet Paralytic**
 
 Reduces Action Points by 2 for 1 turn
+
+Can stack
+
+**Dragon Spit**
+
+Sets the target's tile on fire, as with the Firelance or Fire Bomb items
+
+Also applies if the target is bleeding
 
 Can stack
 
@@ -180,17 +190,15 @@ Specialties are gain at random upon reaching level 5.
 
 +5 Melee Defense and Ranged Defense if there are no allies in adjacent tiles
 
-**Challenger**
+**Incubator**
 
-+8 Resolve and Initiative if outnumbered by the enemy
-
-+4 Melee Skill, Ranged Skill, Melee Defense, and Ranged Defense if outnumbered by the enemy
+Poison is applied on any direct hit (i.e. not non-damaging skills like Repel or Split Shield), regardless of hitpoint damage inflicted
 
 **Torturer**
 
-The threshold to inflict injuries is lowered by 25% against targets who are injured or under the effects of poison
+The threshold to inflict injuries is lowered by 25% against targets who are injured, under the effects of poison, or are standing on tiles with harmful effects like miasma or fire
 
-+10% chance to hit targets who are injured or under the effects of poison
++10% chance to hit targets who are injured, under the effects of poison, or are standing on tiles with harmful effects like miasma or fire
 
 **Predator**
 
@@ -201,6 +209,12 @@ The threshold to inflict injuries is lowered by 25% against targets who are inju
 **Ambidextrous**
 
 Consumables such as nets cost 3 Action Points to use and build up 50% less Fatigue
+
+**Sniper**
+
++30% damage against targets 5 or more tiles away, or +10% damage against targets 2 or more tiles away
+
+-100% chance to inflict friendly fire
 
 </details>
 
@@ -219,6 +233,14 @@ No morale check triggered upon losing hitpoints
 No morale check triggered upon allies fleeing
 
 No morale check triggered upon allies dying
+
+**Way of the Owl**
+
++15% armor penetration on attacks made wtih 85% or greater chance to hit
+
+25% damage reduction against attacks made with 75% or greater chance to hit
+
++1 Vision
 
 **Way of the Scorpion**
 

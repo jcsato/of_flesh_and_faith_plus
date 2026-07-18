@@ -50,7 +50,7 @@ Do not think to cheat death under Old Ironhand's auspices, however - any Rune Ch
 
 The Southern Assassins are part cold-blooded killer, part Crownling. Seeking out a heretic too powerful for the guilds to touch, they take on contracts as any other sellsword might, but their esoteric training quickly comes through in battle.
 
-At levels 2, 5, and 8, each member of the company gains a random assassin speciality instead of a perk point. These can range from powerful poisons that are inflicted with every blow to whole schools of thought that change how an individual assassin approaches the battlefield.
+At levels 2, 5, and 8, each member of the company gains a random assassin speciality instead of a perk point. These can range from powerful poisons that are inflicted with every blow to whole schools of thought that change how an individual assassin approaches the battlefield. An additional perk point is granted at level 11, allowing for some additional build reactivity to the specialties learned.
 
 Providing this training to mercenaries of less exotic backgrounds are two master assassins. They permanently occupy two slots of the company retinue from the outset, limiting options for other camp followers.
 
@@ -140,3 +140,15 @@ Versions prior to v2.0 should be safe to remove at any time, provided that only 
 - Doubt
 - Orange
 - A5G Reaper
+
+### v3.x
+- Sato
+
+### v4.x
+
+**Design, Programming, Artwork, Writing**
+- Sato
+
+**Principal Playtesting**
+- Ranger
+- Nanashi
