@@ -1,6 +1,6 @@
 "use strict";
 
-var OathManagementScreen = function(_parent) {
+var AssassinRespecScreen = function(_parent) {
     this.mSQHandle = null;
 
     this.mRoster = null;
@@ -9,7 +9,7 @@ var OathManagementScreen = function(_parent) {
     this.mDialogContainer = null;
     this.mListContainer = null;
     this.mListScrollContainer = null;
-    this.mNoOathCandidates = null;
+    this.mNoAssassinCandidates = null;
 
     this.mDetailsPanel = {
         Container: null,
@@ -26,27 +26,27 @@ var OathManagementScreen = function(_parent) {
     this.mSelectedEntry = null;
 };
 
-OathManagementScreen.prototype.isConnected = function() {
+AssassinRespecScreen.prototype.isConnected = function() {
     return this.mSQHandle !== null;
 };
 
-OathManagementScreen.prototype.onConnection = function(_handle) {
+AssassinRespecScreen.prototype.onConnection = function(_handle) {
     this.mSQHandle = _handle;
     this.register($('.root-screen'));
 };
 
-OathManagementScreen.prototype.onDisconnection = function() {
+AssassinRespecScreen.prototype.onDisconnection = function() {
     this.mSQHandle = null;
     this.unregister();
 };
 
-OathManagementScreen.prototype.createDIV = function(_parentDiv) {
+AssassinRespecScreen.prototype.createDIV = function(_parentDiv) {
     var self = this;
 
     // create: containers (init hidden!)
-    this.mContainer = $('<div class="l-oath-management-dialog-container display-none opacity-none"/>');
+    this.mContainer = $('<div class="l-assassin-respec-dialog-container display-none opacity-none"/>');
     _parentDiv.append(this.mContainer);
-    this.mDialogContainer = this.mContainer.createDialog('Oath Management', '', '', true, 'dialog-1024-768');
+    this.mDialogContainer = this.mContainer.createDialog('Combat Specialty Retraining', '', '', true, 'dialog-1024-768');
 
     // create tabs
     var tabButtonsContainer = $('<div class="l-tab-container"/>');
@@ -63,8 +63,8 @@ OathManagementScreen.prototype.createDIV = function(_parentDiv) {
     this.mListContainer = listContainerLayout.createList(8.85);
     this.mListScrollContainer = this.mListContainer.findListScrollContainer();
 
-    this.mNoOathCandidates = $('<div class="is-no-oaths-hint text-font-medium font-bottom-shadow font-color-description display-none">No one in your ranks can currently take on an Oath.</div>');
-    listContainerLayout.append(this.mNoOathCandidates);
+    this.mNoAssassinCandidates = $('<div class="is-no-assassins-hint text-font-medium font-bottom-shadow font-color-description display-none">No one in your ranks can currently be retrained.</div>');
+    listContainerLayout.append(this.mNoAssassinCandidates);
 
     // right column
     column = $('<div class="column is-right"/>');
@@ -98,7 +98,7 @@ OathManagementScreen.prototype.createDIV = function(_parentDiv) {
         _image.removeClass('opacity-none');
     }, null, 'opacity-none');
 
-    var explanation = $('<div class="text-font-medium font-bottom-shadow font-color-description is-explanation">Have this character vow to fulfill one of the sacred Oaths, and in so doing be shaped by it.</div>');
+    var explanation = $('<div class="text-font-medium font-bottom-shadow font-color-description is-explanation">Have this character retrain their combat specialty, replacing it with one from  the list below.</div>');
     detailsRow.append(explanation);
 
     detailsColumn = $('<div class="column is-character-background-container"/>');
@@ -115,7 +115,7 @@ OathManagementScreen.prototype.createDIV = function(_parentDiv) {
     backgroundRow = $('<div class="row is-bottom"/>');
     detailsColumn.append(backgroundRow);
 
-    this.mDetailsPanel.ScrollContainer = backgroundRow.createList(4, 'is-oath-list', true);
+    this.mDetailsPanel.ScrollContainer = backgroundRow.createList(4, 'is-respec-list', true);
     this.mDetailsPanel.ScrollContainerList = this.mDetailsPanel.ScrollContainer.findListScrollContainer();
 
     // create footer button bar
@@ -132,7 +132,7 @@ OathManagementScreen.prototype.createDIV = function(_parentDiv) {
     this.mIsVisible = false;
 };
 
-OathManagementScreen.prototype.destroyDIV = function() {
+AssassinRespecScreen.prototype.destroyDIV = function() {
 
     this.mSelectedEntry = null;
 
@@ -166,7 +166,7 @@ OathManagementScreen.prototype.destroyDIV = function() {
     this.mContainer = null;
 };
 
-OathManagementScreen.prototype.addListEntry = function(_data) {
+AssassinRespecScreen.prototype.addListEntry = function(_data) {
     var result = $('<div class="l-row"/>');
     this.mListScrollContainer.append(result);
 
@@ -228,8 +228,7 @@ OathManagementScreen.prototype.addListEntry = function(_data) {
     }
 };
 
-
-OathManagementScreen.prototype.updateSelectedListEntry = function(_data) {
+AssassinRespecScreen.prototype.updateSelectedListEntry = function(_data) {
     if (this.mSelectedEntry == null)
         return;
 
@@ -252,7 +251,7 @@ OathManagementScreen.prototype.updateSelectedListEntry = function(_data) {
     }
 };
 
-OathManagementScreen.prototype.selectListEntry = function(_element, _scrollToEntry) {
+AssassinRespecScreen.prototype.selectListEntry = function(_element, _scrollToEntry) {
     if (_element !== null && _element.length > 0) {
         this.mListContainer.deselectListEntries();
         _element.addClass('is-selected');
@@ -271,7 +270,7 @@ OathManagementScreen.prototype.selectListEntry = function(_element, _scrollToEnt
     }
 };
 
-OathManagementScreen.prototype.removeRosterEntry = function(_entry) {
+AssassinRespecScreen.prototype.removeRosterEntry = function(_entry) {
     if (_entry !== null) {
         var data = _entry.data('entry');
         if ('ID' in data && data['ID'] !== null && _data.item['ID'] === data['ID']) {
@@ -287,12 +286,12 @@ OathManagementScreen.prototype.removeRosterEntry = function(_entry) {
 
             this.mRoster.splice(_data.index, 1);
         } else {
-            console.error('ERROR: Failed to update oath roster. Invalid entry data.');
+            console.error('ERROR: Failed to update assassin roster. Invalid entry data.');
         }
     }
 };
 
-OathManagementScreen.prototype.updateDetailsPanel = function(_element) {
+AssassinRespecScreen.prototype.updateDetailsPanel = function(_element) {
     if (_element !== null && _element.length > 0) {
         var data = _element.data('entry');
 
@@ -303,17 +302,10 @@ OathManagementScreen.prototype.updateDetailsPanel = function(_element) {
 
         this.mDetailsPanel.ScrollContainerList.empty();
 
-        if (data.OathsAvailable.length != 0) {
-            for (var i = 0; i < data.OathsAvailable.length; ++i) {
-                this.createOathAcceptanceDIV(i, this.mDetailsPanel.ScrollContainerList, data.ID, data.OathsAvailable[i]);
+        if (data.RespecsAvailable.length != 0) {
+            for (var i = 0; i < data.RespecsAvailable.length; ++i) {
+                this.createRespecDIV(i, this.mDetailsPanel.ScrollContainerList, data.ID, data.RespecsAvailable[i]);
             }
-        } else if (data.OathsToComplete.length != 0) {
-            for (var i = 0; i < data.OathsToComplete.length; ++i) {
-                this.createOathCompletionDIV(i, this.mDetailsPanel.ScrollContainerList, data.ID, data.OathsToComplete[i]);
-            }
-        } else {
-            var row = $('<div class="is-oath-row display-block text-font-medium font-bottom-shadow font-color-description display-none">No Oaths can be completed nor new ones undertaken at this time.</div>');
-            this.mDetailsPanel.ScrollContainerList.append(row);
         }
 
         this.mDetailsPanel.Container.removeClass('display-none').addClass('display-block');
@@ -322,16 +314,16 @@ OathManagementScreen.prototype.updateDetailsPanel = function(_element) {
     }
 };
 
-OathManagementScreen.prototype.createOathAcceptanceDIV = function(_i, _parentDiv, _entityID, _data) {
+AssassinRespecScreen.prototype.createRespecDIV = function(_i, _parentDiv, _entityID, _data) {
     var self = this;
 
-    var row = $('<div class="is-oath-row display-block"/>');
+    var row = $('<div class="is-respec-row display-block"/>');
     row.css({ 'top': ((7.5*_i) + 'rem') });
     _parentDiv.append(row);
 
     var icon = $('<img class="is-icon"/>');
     icon.attr('src', Path.GFX + _data.icon);
-    icon.bindTooltip({ contentType: 'oath-effect', oathId: _data.tooltipID });
+    icon.bindTooltip({ contentType: 'respec-effect', specialtyId: _data.tooltipID });
     row.append(icon);
 
     var name = $('<div class="is-name text-font-normal font-bottom-shadow font-color-description">' + _data.name + '</div>');
@@ -340,69 +332,39 @@ OathManagementScreen.prototype.createOathAcceptanceDIV = function(_i, _parentDiv
     var layout = $('<div class="is-button"/>');
     row.append(layout);
 
-    var undertake = $('<div class="is-confirm"><div class="is-confirm-ffs">Undertake</div></div>');
-    layout.createCustomButton(undertake, function() {
-        self.notifyBackendOathAccepted(_data.ID, _entityID, function(_result) {
-            self.updateSelectedListEntry(_result.Entity);
-            self.updateDetailsPanel(self.mSelectedEntry);
+    var choose = $('<div class="is-confirm"><div class="is-confirm-ffs">Retrain</div></div>');
+    layout.createCustomButton(choose, function() {
+        self.notifyBackendRespecChosen(_data.ID, _entityID, function(_result) {
+            self.loadFromData(_result);
+            self.updateSelectedListEntry(null);
         });
-        undertake.unbindTooltip();
+        choose.unbindTooltip();
     }, '', 1);
 
-    undertake.bindTooltip({ contentType: 'oath-effect', oathId: _data.completedTooltipID })
-};
-
-OathManagementScreen.prototype.createOathCompletionDIV = function(_i, _parentDiv, _entityID, _data) {
-    var self = this;
-
-    var row = $('<div class="is-oath-row display-block"/>');
-    row.css({ 'top': ((7.5*_i) + 'rem') });
-    _parentDiv.append(row);
-
-    var icon = $('<img class="is-icon"/>');
-    icon.attr('src', Path.GFX + _data.icon);
-    icon.bindTooltip({ contentType: 'oath-effect', oathId: _data.tooltipID, entityId: _data.entityId });
-    row.append(icon);
-
-    var name = $('<div class="is-name text-font-normal font-bottom-shadow font-color-description">' + _data.name + '</div>');
-    row.append(name);
-
-    var layout = $('<div class="is-button"/>');
-    row.append(layout);
-
-    var complete = $('<div class="is-confirm"><div class="is-confirm-ffs">Complete</div></div>');
-    layout.createCustomButton(complete, function() {
-        self.notifyBackendOathCompleted(_data.ID, _entityID, function(_result) {
-            self.updateSelectedListEntry(_result.Entity);
-            self.updateDetailsPanel(self.mSelectedEntry);
-        });
-        complete.unbindTooltip();
-    }, '', 1);
-
-    complete.bindTooltip({ contentType: 'oath-effect', oathId: _data.completedTooltipID })
+    choose.bindTooltip({ contentType: 'respec-effect', specialtyId: _data.tooltipID })
 };
 
 // Called by other modules, so required
-OathManagementScreen.prototype.bindTooltips = function() {};
+AssassinRespecScreen.prototype.bindTooltips = function() {};
 
 // Called by other modules, so required
-OathManagementScreen.prototype.unbindTooltips = function() {};
+AssassinRespecScreen.prototype.unbindTooltips = function() {};
 
-OathManagementScreen.prototype.create = function(_parentDiv) {
+AssassinRespecScreen.prototype.create = function(_parentDiv) {
     this.createDIV(_parentDiv);
     this.bindTooltips();
 };
 
-OathManagementScreen.prototype.destroy = function() {
+AssassinRespecScreen.prototype.destroy = function() {
     this.unbindTooltips();
     this.destroyDIV();
 };
 
-OathManagementScreen.prototype.register = function(_parentDiv) {
-    console.log('OathManagementScreen::REGISTER');
+AssassinRespecScreen.prototype.register = function(_parentDiv) {
+    console.log('AssassinRespecScreen::REGISTER');
 
     if (this.mContainer !== null) {
-        console.error('ERROR: Failed to register Oath Management Screen. Reason: Already initialized.');
+        console.error('ERROR: Failed to register Assassin Respec Screen. Reason: Already initialized.');
         return;
     }
 
@@ -411,18 +373,18 @@ OathManagementScreen.prototype.register = function(_parentDiv) {
     }
 };
 
-OathManagementScreen.prototype.unregister = function() {
-    console.log('OathManagementScreen::UNREGISTER');
+AssassinRespecScreen.prototype.unregister = function() {
+    console.log('AssassinRespecScreen::UNREGISTER');
 
     if (this.mContainer === null) {
-        console.error('ERROR: Failed to unregister Oath Management Screen. Reason: Not initialized.');
+        console.error('ERROR: Failed to unregister Assassin Respec Screen. Reason: Not initialized.');
         return;
     }
 
     this.destroy();
 };
 
-OathManagementScreen.prototype.isRegistered = function() {
+AssassinRespecScreen.prototype.isRegistered = function() {
     if (this.mContainer !== null) {
         return this.mContainer.parent().length !== 0;
     }
@@ -430,7 +392,7 @@ OathManagementScreen.prototype.isRegistered = function() {
     return false;
 };
 
-OathManagementScreen.prototype.show = function(_data) {
+AssassinRespecScreen.prototype.show = function(_data) {
     this.loadFromData(_data);
 
     var self = this;
@@ -451,7 +413,7 @@ OathManagementScreen.prototype.show = function(_data) {
     });
 };
 
-OathManagementScreen.prototype.hide = function(_withSlideAnimation) {
+AssassinRespecScreen.prototype.hide = function(_withSlideAnimation) {
     var self = this;
 
     var offset = -(self.mContainer.parent().width() + self.mContainer.width());
@@ -472,12 +434,12 @@ OathManagementScreen.prototype.hide = function(_withSlideAnimation) {
     });
 };
 
-OathManagementScreen.prototype.isVisible = function() {
+AssassinRespecScreen.prototype.isVisible = function() {
     return this.mIsVisible;
 };
 
 
-OathManagementScreen.prototype.loadFromData = function(_data) {
+AssassinRespecScreen.prototype.loadFromData = function(_data) {
     if (_data === undefined || _data === null) {
         return;
     }
@@ -495,59 +457,55 @@ OathManagementScreen.prototype.loadFromData = function(_data) {
     this.mListScrollContainer.empty();
 
     if (_data.Roster.length != 0) {
-        this.mNoOathCandidates.addClass('display-none');
+        this.mNoAssassinCandidates.addClass('display-none');
 
         for (var i = 0; i < _data.Roster.length; ++i) {
             var entry = _data.Roster[i];
             this.addListEntry(entry);
         }
     } else {
-        this.mNoOathCandidates.removeClass('display-none');
+        this.mNoAssassinCandidates.removeClass('display-none');
     }
 
     this.selectListEntry(this.mListContainer.findListEntryByIndex(0), true);
 };
 
-OathManagementScreen.prototype.notifyBackendOnConnected = function() {
+AssassinRespecScreen.prototype.notifyBackendOnConnected = function() {
     if (this.mSQHandle !== null) {
         SQ.call(this.mSQHandle, 'onScreenConnected');
     }
 };
 
-OathManagementScreen.prototype.notifyBackendOnDisconnected = function() {
+AssassinRespecScreen.prototype.notifyBackendOnDisconnected = function() {
     if (this.mSQHandle !== null) {
         SQ.call(this.mSQHandle, 'onScreenDisconnected');
     }
 };
 
-OathManagementScreen.prototype.notifyBackendOnShown = function() {
+AssassinRespecScreen.prototype.notifyBackendOnShown = function() {
     if (this.mSQHandle !== null) {
         SQ.call(this.mSQHandle, 'onScreenShown');
     }
 };
 
-OathManagementScreen.prototype.notifyBackendOnHidden = function() {
+AssassinRespecScreen.prototype.notifyBackendOnHidden = function() {
     if (this.mSQHandle !== null) {
         SQ.call(this.mSQHandle, 'onScreenHidden');
     }
 };
 
-OathManagementScreen.prototype.notifyBackendOnAnimating = function() {
+AssassinRespecScreen.prototype.notifyBackendOnAnimating = function() {
     if (this.mSQHandle !== null) {
         SQ.call(this.mSQHandle, 'onScreenAnimating');
     }
 };
 
-OathManagementScreen.prototype.notifyBackendCloseButtonPressed = function(_buttonID) {
+AssassinRespecScreen.prototype.notifyBackendCloseButtonPressed = function(_buttonID) {
     if (this.mSQHandle !== null) {
         SQ.call(this.mSQHandle, 'onClose', _buttonID);
     }
 };
 
-OathManagementScreen.prototype.notifyBackendOathAccepted = function(_entityID, _oathID, _callback) {
-    SQ.call(this.mSQHandle, 'onAccepted', [ _entityID, _oathID ], _callback);
-};
-
-OathManagementScreen.prototype.notifyBackendOathCompleted = function(_entityID, _oathID, _callback) {
-    SQ.call(this.mSQHandle, 'onCompleted', [ _entityID, _oathID ], _callback);
+AssassinRespecScreen.prototype.notifyBackendRespecChosen = function(_entityID, _respecID, _callback) {
+    SQ.call(this.mSQHandle, 'onRespecChosen', [ _entityID, _respecID ], _callback);
 };

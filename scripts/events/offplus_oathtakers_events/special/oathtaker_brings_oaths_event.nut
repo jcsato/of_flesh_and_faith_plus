@@ -35,7 +35,7 @@ oathtaker_brings_oaths_event <- inherit("scripts/events/event", {
 					oathName = ::OFFP.Oathtakers.OathsCombat[Math.rand(0, ::OFFP.Oathtakers.OathsCombat.len() - 1)];
 					oathUnlockFlag = ::OFFP.Oathtakers.Flags.CombatUnlocked;
 				} else if (_event.m.OathGroup == "Flesh") {
-					Text = "[img]gfx/ui/events/event_180.png[/img]{A curious visitor has made their way into camp. What was surely once a hail and hearty Oathtaker now stands doubled over before you, winded and bruised, leaning on his weapon for support. When he speaks, however, his voice is strong and even toned.%SPEECH_ON%Good tidings, captain. I come bearing gifts from the order.%SPEECH_OFF%He shakily proffers a collection of loose papers and scrolls.%SPEECH_ON%The Oaths pertaining to the flesh. Truly a worthy set of aspirations for any Oathtaker to follow, and a keen reminder that though the body be bruised and battered, the quest goes on. While my own trials continue, it is time for your company to benefit from Young Anselm's wisdom.%SPEECH_OFF%You question how much wisdom there can truly be in a codex built on self-torture, but you accept them out of concern it would harm the man to require further use of his limbs. You collect them into the Book of Oaths, making note that a handful of the scripts might do more good than ill if followed, then turn back to your beleaguered visitor. }";
+					Text = "[img]gfx/ui/events/event_180.png[/img]{A curious visitor has made their way into camp. What was surely once a hale and hearty Oathtaker now stands doubled over before you, winded and bruised, leaning on his weapon for support. When he speaks, however, his voice is strong and even toned.%SPEECH_ON%Good tidings, captain. I come bearing gifts from the order.%SPEECH_OFF%He shakily proffers a collection of loose papers and scrolls.%SPEECH_ON%The Oaths pertaining to the flesh. Truly a worthy set of aspirations for any Oathtaker to follow, and a keen reminder that though the body be bruised and battered, the quest goes on. While my own trials continue, it is time for your company to benefit from Young Anselm's wisdom.%SPEECH_OFF%You question how much wisdom there can truly be in a codex built on self-torture, but you accept them out of concern it would harm the man to require further use of his limbs. You collect them into the Book of Oaths, making note that a handful of the scripts might do more good than ill if followed, then turn back to your beleaguered visitor. }";
 					oathName = ::OFFP.Oathtakers.OathsFlesh[Math.rand(0, ::OFFP.Oathtakers.OathsFlesh.len() - 1)];
 					oathUnlockFlag = ::OFFP.Oathtakers.Flags.FleshUnlocked;
 				} else if (_event.m.OathGroup == "Glory") {
@@ -253,7 +253,7 @@ oathtaker_brings_oaths_event <- inherit("scripts/events/event", {
 					case "weapon.bardiche":
 					case "weapon.billhook":
 						items.unequip(items.getItemAtSlot(Const.ItemSlot.Mainhand));
-						items.equip(new("scripts/items/weapons/arming_sword"));
+						items.equip(new("scripts/items/weapons/longsword"));
 						break;
 				}
 
@@ -265,7 +265,7 @@ oathtaker_brings_oaths_event <- inherit("scripts/events/event", {
 
 			case 1:
 				// Again, prevent new guy's gear from being *too* good
-				if (items.getItemAtSlot(Const.ItemSlot.Head).getID() == "armor.head.adorned_full_helm") {
+				if (items.getItemAtSlot(Const.ItemSlot.Head).getID() == "armor.head.adorned_closed_flat_top_with_mail" || items.getItemAtSlot(Const.ItemSlot.Head).getID() == "armor.head.adorned_full_helm") {
 					items.unequip(items.getItemAtSlot(Const.ItemSlot.Head));
 					items.equip(new("scripts/items/helmets/heavy_mail_coif"));
 				}
@@ -276,14 +276,16 @@ oathtaker_brings_oaths_event <- inherit("scripts/events/event", {
 				}
 
 				switch (items.getItemAtSlot(Const.ItemSlot.Mainhand).getID()) {
+					case "weapon.fighting_axe":
+					case "weapon.warhammer":
+					case "weapon.winged_mace":
 					case "weapon.greataxe":
 					case "weapon.greatsword":
 					case "weapon.two_handed_flail":
 					case "weapon.two_handed_flanged_mace":
-					case "weapon.bardiche":
 					case "weapon.billhook":
 						items.unequip(items.getItemAtSlot(Const.ItemSlot.Mainhand));
-						items.equip(new("scripts/items/weapons/arming_sword"));
+						items.equip(new("scripts/items/weapons/longsword"));
 						break;
 				}
 

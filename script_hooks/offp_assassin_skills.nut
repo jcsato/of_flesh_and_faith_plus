@@ -29,3 +29,57 @@
 		return result;
 	});
 });
+
+::mods_hookExactClass("skills/effects/poison_coat_effect", function(pce) {
+	local getDescription = ::mods_getMember(pce, "getDescription");
+	local onTargetHit = ::mods_getMember(pce, "onTargetHit");
+
+	::mods_override(pce, "getDescription", function() {
+		local oldDescription = getDescription();
+
+		local threshold = ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor());
+		local startString = "doing at least [color=";
+		local startIndex = oldDescription.find(startString);
+		local length = ("doing at least [color=#8f1e1e]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints").len();
+		local resumeString = "[/color] damage to hitpoints";
+		local resumeIndex = oldDescription.find(resumeString);
+
+		local thresholdString = threshold > 0 ? (oldDescription.slice(startIndex, startString.len()) + Const.UI.Color.NegativeValue + threshold + resumeString) : "";
+		return oldDescription.slice(0, startIndex) + thresholdString + oldDescription.slice(resumeIndex + resumeString.len());
+	});
+
+	::mods_override(pce, "onTargetHit", function(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		local originalMinDamage = Const.Combat.PoisonEffectMinDamage;
+
+		Const.Combat.PoisonEffectMinDamage = ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor(), _targetEntity);
+		onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
+		Const.Combat.PoisonEffectMinDamage = originalMinDamage;
+	});
+});
+
+::mods_hookExactClass("skills/effects/spider_poison_coat_effect", function(spce) {
+	local getDescription = ::mods_getMember(spce, "getDescription");
+	local onTargetHit = ::mods_getMember(spce, "onTargetHit");
+
+	::mods_override(spce, "getDescription", function() {
+		local oldDescription = getDescription();
+
+		local threshold = ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor());
+		local startString = "doing at least [color=";
+		local startIndex = oldDescription.find(startString);
+		local length = ("doing at least [color=#8f1e1e]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints").len();
+		local resumeString = "[/color] damage to hitpoints";
+		local resumeIndex = oldDescription.find(resumeString);
+
+		local thresholdString = threshold > 0 ? (oldDescription.slice(startIndex, startString.len()) + Const.UI.Color.NegativeValue + threshold + resumeString) : "";
+		return oldDescription.slice(0, startIndex) + thresholdString + oldDescription.slice(resumeIndex + resumeString.len());
+	});
+
+	::mods_override(spce, "onTargetHit", function(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		local originalMinDamage = Const.Combat.PoisonEffectMinDamage;
+
+		Const.Combat.PoisonEffectMinDamage = ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor(), _targetEntity);
+		onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
+		Const.Combat.PoisonEffectMinDamage = originalMinDamage;
+	});
+});

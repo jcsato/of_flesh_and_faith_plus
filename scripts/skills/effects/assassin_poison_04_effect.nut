@@ -13,21 +13,28 @@ assassin_poison_04_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
+		local threshold = ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor());
+		local thresholdString = threshold > 0 ? "does at least [color=" + Const.UI.Color.NegativeValue + "]" + threshold + "[/color] damage to hitpoints" : "hits"
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints applies a poison that reduces the target's Vision by [color=" + Const.UI.Color.NegativeValue + "]5[/color] and damage by [color=" + Const.UI.Color.NegativeValue + "]20%[/color] for 2 turns" }
+			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "Every weapon attack that " + thresholdString + " applies a poison that reduces the target's damage by [color=" + Const.UI.Color.NegativeValue + "]20%[/color] for the rest of the battle" }
+			{ id = 11, type = "text", icon = "ui/icons/special.png", text = "Every weapon attack that " + thresholdString + " applies a poison that causes the target to suffer the 'Nighttime' effect for the rest of the battle" }
 			{ id = 13, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
 		];
 
 		return ret;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		// e.g. hook, repel, etc. - don't try to apply
+		if (_skill != null && ::OFFP.Assassins.PoisonExcludedSkills.find(_skill.getID()) != null)
+			return;
+
 		if (!_targetEntity.isAlive())
 			return;
 
-		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0)
+		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor()) || _targetEntity.getHitpoints() <= 0)
 			return;
 
 		if (_targetEntity.getFlags().has("undead"))
@@ -45,7 +52,10 @@ assassin_poison_04_effect <- inherit("scripts/skills/skill", {
 
 		if (poison == null)
 			_targetEntity.getSkills().add(new("scripts/skills/effects/assassin_poisoned_04_effect"));
-		else
-			poison.resetTime();
+
+		local nighttime = _targetEntity.getSkills().getSkillByID("special.night");
+
+		if (nighttime == null && _targetEntity.getBaseProperties().IsAffectedByNight)
+			_targetEntity.getSkills().add(new("scripts/skills/special/night_effect"));
 	}
 });

@@ -9,7 +9,7 @@
 			Cursor.setCursor(Const.UI.Cursor.Hand);
 
 			m.MenuStack.push(function() {
-				World.getCamera().zoomTo(m.CustomZoom, 4.0);			
+				World.getCamera().zoomTo(m.CustomZoom, 4.0);
 				m.OathManagementScreen.hide();
 				m.CharacterScreen.show();
 			}, function() {
@@ -111,7 +111,7 @@
 		} else {
 			local oathFileName = split(_oathId, ".")[1] + "_effect";
 
-			return ::OFFP.Helpers.getManagementScreenTooltip(new("scripts/skills/effects/" + oathFileName));
+			return ::OFFP.Helpers.getOathManagementScreenTooltip(new("scripts/skills/effects/" + oathFileName));
 		}
 	});
 });

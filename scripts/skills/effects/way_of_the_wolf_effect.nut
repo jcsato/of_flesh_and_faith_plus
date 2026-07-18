@@ -25,6 +25,9 @@ way_of_the_wolf_effect <- inherit("scripts/skills/skill", {
 			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "The Adrenaline skill costs [color=" + Const.UI.Color.NegativeValue + "]60%[/color] less Fatigue" }
 		];
 
+		if (!getContainer().getActor().getFlags().get(::OFFP.Assassins.Flags.HasUsedRespec))
+			ret.push({ id = 15, type = "text", icon = "ui/icons/special.png", text = "Can retrain to a different assassin specialty once" });
+
 		return ret;
 	}
 

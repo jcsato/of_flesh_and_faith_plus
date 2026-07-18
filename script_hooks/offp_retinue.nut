@@ -16,8 +16,12 @@
 		if (World.Assets.getOrigin().getID() == "scenario.southern_assassins") {
 			local retinueMemberAtSlot = World.Retinue.m.Slots[_data];
 
-			if (retinueMemberAtSlot != null && (World.Retinue.m.Slots[_data].getID() == "follower.assassin_master" || World.Retinue.m.Slots[_data].getID() == "follower.poison_master"))
-				return;
+			if (retinueMemberAtSlot != null) {
+				if (World.Retinue.m.Slots[_data].getID() == "follower.poison_master")
+					return;
+				else if (World.Retinue.m.Slots[_data].getID() == "follower.assassin_master")
+					World.showAssassinRespecScreen();
+			}
 		}
 
 		onSlotClicked(_data);

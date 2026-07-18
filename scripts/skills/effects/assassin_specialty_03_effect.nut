@@ -19,8 +19,8 @@ assassin_specialty_03_effect <- inherit("scripts/skills/skill", {
 		return [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 15, type = "text", icon = "ui/icons/special.png", text = "The threshold to inflict injuries is lowered by [color=" + Const.UI.Color.NegativeValue + "]25%[/color] against targets who are injured or under the effects of poison" }
-			{ id = 16, type = "text", icon = "ui/icons/hitchance.png", text = "Has an additional [color=" + Const.UI.Color.PositiveValue + "]+" + m.AttackBoost + "%[/color] chance to hit targets who are injured or under the effects of poison" }
+			{ id = 15, type = "text", icon = "ui/icons/special.png", text = "The threshold to inflict injuries is lowered by [color=" + Const.UI.Color.NegativeValue + "]25%[/color] against targets who are injured, under the effects of poison, or are standing on tiles with harmful effects like miasma or fire" }
+			{ id = 16, type = "text", icon = "ui/icons/hitchance.png", text = "Has an additional [color=" + Const.UI.Color.PositiveValue + "]+" + m.AttackBoost + "%[/color] chance to hit targets who are injured, under the effects of poison, or are standing on tiles with harmful effects like miasma or fire" }
 			{ id = 17, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
 		];
 	}
@@ -29,19 +29,20 @@ assassin_specialty_03_effect <- inherit("scripts/skills/skill", {
 		if (!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())// || _targetEntity.isAlliedWith(getContainer().getActor()))
 			return;
 
+		local shouldApply = false;
 		local skills = _targetEntity.getSkills();
-		if (skills.hasSkillOfType(Const.SkillType.TemporaryInjury) ||
-			skills.hasSkill("effects.goblin_poison") ||
-			skills.hasSkill("effects.spider_poison") ||
-			skills.hasSkill("effects.lindwurm_acid") ||
-			skills.hasSkill("effects.acid") ||
-			skills.hasSkill("effects.assassin_poisoned_01") ||
-			skills.hasSkill("effects.assassin_poisoned_02") ||
-			skills.hasSkill("effects.assassin_poisoned_03") ||
-			skills.hasSkill("effects.assassin_poisoned_04") ||
-			skills.hasSkill("effects.assassin_poisoned_05") ||
-			skills.hasSkill("effects.assassin_spider_poison"))
-		{
+
+		if (skills.hasSkillOfType(Const.SkillType.TemporaryInjury))
+			shouldApply = true;
+
+		if (::OFFP.Helpers.hasPoisonEffect(skills))
+			shouldApply = true;
+
+		local tileProperties = _targetEntity.getTile().Properties;
+		if (tileProperties.Effect != null && (tileProperties.Effect.Type == "fire" || tileProperties.Effect.Type == "miasma"))
+			shouldApply = true;
+
+		if (shouldApply) {
 			_properties.ThresholdToInflictInjuryMult	*= 0.75;
 			_properties.MeleeSkill						+= m.AttackBoost;
 			_properties.RangedSkill						+= m.AttackBoost;

@@ -18,7 +18,7 @@ assassin_specialty_05_effect <- inherit("scripts/skills/skill", {
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
 			{ id = 10, type = "text", icon = "ui/icons/action_points.png", text = "Consumables such as nets cost [color=" + Const.UI.Color.NegativeValue + "]3[/color] Action Points to use" }
-			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "Consumables such as nets build up [color=" + Const.UI.Color.NegativeValue + "]50%[/color] less Fatigue" }
+			{ id = 11, type = "text", icon = "ui/icons/fatigue.png", text = "Consumables such as nets build up [color=" + Const.UI.Color.NegativeValue + "]50%[/color] less Fatigue to use" }
 			{ id = 17, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
 		];
 	}

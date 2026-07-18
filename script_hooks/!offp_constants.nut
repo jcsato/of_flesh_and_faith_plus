@@ -1,4 +1,39 @@
 ::OFFP <- {
+	Assassins = {
+		PoisonEffects = [
+			"assassin_poison_01_effect"
+			"assassin_poison_02_effect"
+			"assassin_poison_03_effect"
+			"assassin_poison_04_effect"
+			"assassin_poison_05_effect"
+			"assassin_poison_06_effect"
+		]
+		SpecialtyEffects = [
+			"assassin_specialty_01_effect"
+			"assassin_specialty_02_effect"
+			"assassin_specialty_03_effect"
+			"assassin_specialty_04_effect"
+			"assassin_specialty_05_effect"
+			"assassin_specialty_06_effect"
+		]
+		PhilosophyEffects = [
+			"way_of_the_gilder_effect"
+			"way_of_the_scorpion_effect"
+			"way_of_the_shadow_effect"
+			"way_of_the_spider_effect"
+			"way_of_the_wolf_effect"
+			"way_of_the_owl_effect"
+		]
+		Flags = {
+			HasUsedRespec	= "OFFP_AssassinsHasUsedRespec"
+		}
+		PoisonExcludedSkills = [
+			"actives.hook"
+			"actives.knock_back"
+			"actives.repel"
+			"actives.split_shield"
+		]
+	}
 	Explorers = {
 		RotTraits = [
 			"trait.rot_01",

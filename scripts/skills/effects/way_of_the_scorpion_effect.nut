@@ -25,6 +25,9 @@ way_of_the_scorpion_effect <- inherit("scripts/skills/skill", {
 			{ id = 12, type = "text", icon = "ui/icons/special.png", text = "Builds up [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] less Fatigue for each tile travelled" }
 		];
 
+		if (!getContainer().getActor().getFlags().get(::OFFP.Assassins.Flags.HasUsedRespec))
+			ret.push({ id = 15, type = "text", icon = "ui/icons/special.png", text = "Can retrain to a different assassin specialty once" });
+
 		return ret;
 	}
 

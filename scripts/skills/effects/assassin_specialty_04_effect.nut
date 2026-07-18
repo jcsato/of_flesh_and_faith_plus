@@ -27,7 +27,7 @@ assassin_specialty_04_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
-		if (_targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())
+		if (_targetEntity == null || !_targetEntity.isAlive() || _targetEntity.isDying())// || _targetEntity.isAlliedWith(getContainer().getActor()))
 			return;
 
 		local targetTile = _targetEntity.getTile();

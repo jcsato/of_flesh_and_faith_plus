@@ -127,7 +127,7 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 				continue;
 
 			local path = World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
-			
+
 			if (!path.isEmpty()) {
 				randomVillageTile = tile;
 				break;
@@ -152,10 +152,10 @@ runeknights_scenario <- inherit("scripts/scenarios/world/starting_scenario", {
 			houses.push({ Faction = noble, Dist = dist });
 		}
 
-		houses.sort(function(_a, _b) { 
-			if (_a.Dist > _b.Dist) 
+		houses.sort(function(_a, _b) {
+			if (_a.Dist > _b.Dist)
 				return 1;
-			else if (_a.Dist < _b.Dist) 
+			else if (_a.Dist < _b.Dist)
 				return -1;
 			return 0;
 		});

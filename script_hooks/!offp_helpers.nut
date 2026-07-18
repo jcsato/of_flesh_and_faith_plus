@@ -345,12 +345,105 @@
 
 		return haveSkull;
 	}
-	getManagementScreenTooltip = function(skill) {
+	getOathManagementScreenTooltip = function(skill) {
 		local ret = skill.getTooltip();
 
 		if (skill.getID().find("_completed") != null)
 			ret.apply(@(tooltip) tooltip.type == "description" ? { id = 2, type = "description", text = "Upholding this Oath will grant the following effects:" } : tooltip);
 
 		return ret;
+	}
+	getSlainFlagFromEntityType = function(type) {
+		if (type in ::OFFP.Helpers.EntityTypeToNameMap)
+			return ::OFFP.Anatomists.Flags.Slain[::OFFP.Helpers.EntityTypeToNameMap[type]];
+		else
+			return null;
+	}
+	getIconForSpecialty = function(specialtyID) {
+		local icon = "";
+
+		switch (specialtyID) {
+			case "effects.assassin_specialty_01":
+				icon = "skills/status_effect_plus_13.png";
+				break;
+
+			case "effects.assassin_specialty_02":
+				icon = "skills/status_effect_plus_14.png";
+				break;
+
+			case "effects.assassin_specialty_03":
+				icon = "skills/status_effect_plus_15.png";
+				break;
+
+			case "effects.assassin_specialty_04":
+				icon = "skills/status_effect_plus_16.png";
+				break;
+
+			case "effects.assassin_specialty_05":
+				icon = "skills/status_effect_plus_17.png";
+				break;
+
+			case "effects.assassin_specialty_06":
+				icon = "skills/status_effect_plus_51.png";
+				break;
+
+		}
+
+		return icon;
+	}
+	getProperNameForSpecialtyID = function(specialtyID) {
+		local name = "";
+
+		switch (specialtyID) {
+			case "effects.assassin_specialty_01":
+				name = "Mubarizun";
+				break;
+
+			case "effects.assassin_specialty_02":
+				name = "Incubator";
+				break;
+
+			case "effects.assassin_specialty_03":
+				name = "Torturer";
+				break;
+
+			case "effects.assassin_specialty_04":
+				name = "Predator";
+				break;
+
+			case "effects.assassin_specialty_05":
+				name = "Ambidextrous";
+				break;
+
+			case "effects.assassin_specialty_06":
+				name = "Sniper";
+				break;
+
+		}
+
+		return name;
+	}
+	getPoisonHitpointThreshold = function(_attacker, _target = null) {
+		if (_attacker.getSkills().hasSkill("effects.assassin_specialty_02"))
+			return 0;
+		else
+			return Const.Combat.PoisonEffectMinDamage;
+	}
+	getHolyWaterHitpointThreshold = function(_attacker, _target = null) {
+		if (_attacker.getSkills().hasSkill("effects.assassin_specialty_02"))
+			return 0;
+		else
+			return 1;
+	}
+	hasPoisonEffect = function(_skills) {
+		return _skills.hasSkill("effects.assassin_poisoned_01")
+			|| _skills.hasSkill("effects.assassin_poisoned_02")
+			|| _skills.hasSkill("effects.assassin_poisoned_03")
+			|| _skills.hasSkill("effects.assassin_poisoned_04")
+			|| _skills.hasSkill("effects.assassin_poisoned_05")
+			|| _skills.hasSkill("effects.lindwurm_acid")
+			|| _skills.hasSkill("effects.acid")
+			|| _skills.hasSkill("effects.spider_poison")
+			|| _skills.hasSkill("effects.goblin_poison");
 	}
 }

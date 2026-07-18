@@ -32,6 +32,9 @@ way_of_the_spider_effect <- inherit("scripts/skills/skill", {
 			{ id = 14, type = "text", icon = "ui/icons/regular_damage.png", text = "[color=" + Const.UI.Color.DamageValue + "]+" + m.DamageBoost + "[/color] additional damage for each active poison effect on the target, up to [color=" + Const.UI.Color.DamageValue + "]" + m.DamageCap + "[/color] total" }
 		];
 
+		if (!getContainer().getActor().getFlags().get(::OFFP.Assassins.Flags.HasUsedRespec))
+			ret.push({ id = 15, type = "text", icon = "ui/icons/special.png", text = "Can retrain to a different assassin specialty once" });
+
 		return ret;
 	}
 
@@ -39,16 +42,7 @@ way_of_the_spider_effect <- inherit("scripts/skills/skill", {
 		if (!_skill.isAttack() || _targetEntity == null || !_targetEntity.isAlive())
 			return;
 
-		if (!(_targetEntity.getSkills().hasSkill("effects.assassin_poisoned_01")
-				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_02")
-				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_03")
-				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_04")
-				|| _targetEntity.getSkills().hasSkill("effects.assassin_poisoned_05")
-				|| _targetEntity.getSkills().hasSkill("effects.lindwurm_acid")
-				|| _targetEntity.getSkills().hasSkill("effects.acid")
-				|| _targetEntity.getSkills().hasSkill("effects.spider_poison")
-				|| _targetEntity.getSkills().hasSkill("effects.goblin_poison")
-			))
+		if (!::OFFP.Helpers.hasPoisonEffect(_targetEntity.getSkills()))
 			return;
 
 		spawnIcon("status_effect_plus_48", _targetEntity.getTile());

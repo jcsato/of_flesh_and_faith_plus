@@ -25,6 +25,9 @@ way_of_the_shadow_effect <- inherit("scripts/skills/skill", {
 			{ id = 14, type = "text", icon = "ui/icons/special.png", text = "Not affected by the Ranged Skill penalty of smoke" }
 		];
 
+		if (!getContainer().getActor().getFlags().get(::OFFP.Assassins.Flags.HasUsedRespec))
+			ret.push({ id = 15, type = "text", icon = "ui/icons/special.png", text = "Can retrain to a different assassin specialty once" });
+
 		return ret;
 	}
 

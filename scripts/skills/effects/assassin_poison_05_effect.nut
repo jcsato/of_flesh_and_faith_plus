@@ -13,22 +13,32 @@ assassin_poison_05_effect <- inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
+		local threshold = ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor());
+		local thresholdString = threshold > 0 ? "does at least [color=" + Const.UI.Color.NegativeValue + "]" + threshold + "[/color] damage to hitpoints" : "hits"
 		local ret = [
 			{ id = 1, type = "title", text = getName() }
 			{ id = 2, type = "description", text = getDescription() }
-			{ id = 11, type = "text", icon = "ui/icons/action_points.png", text = "Every weapon attack that does at least [color=" + Const.UI.Color.NegativeValue + "]" + Const.Combat.PoisonEffectMinDamage + "[/color] damage to hitpoints applies a poison that reduces the target's Action Points by [color=" + Const.UI.Color.NegativeValue + "]2[/color] for 1 turn" }
+			{ id = 11, type = "text", icon = "ui/icons/action_points.png", text = "Every weapon attack that " + thresholdString + " applies a poison that reduces the target's Action Points by [color=" + Const.UI.Color.NegativeValue + "]2[/color] for 1 turn" }
 			{ id = 12, type = "text", icon = "ui/icons/special.png", text = "Can stack multiple times on a single target" }
+			// { id = 12, type = "warning", icon = "ui/icons/warning.png", text = "Does not work with the Fire Handgonne skill" }
 			{ id = 13, type = "hint", icon = "ui/icons/special.png", text = "Unlocks the next row of perks" }
 		];
 
 		return ret;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		// if (_skill != null && _skill.getID() == "actives.fire_handgonne")
+		// 	return;
+
+		// e.g. hook, repel, etc. - don't try to apply
+		if (_skill != null && ::OFFP.Assassins.PoisonExcludedSkills.find(_skill.getID()) != null)
+			return;
+
 		if (!_targetEntity.isAlive())
 			return;
 
-		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0)
+		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor()) || _targetEntity.getHitpoints() <= 0)
 			return;
 
 		if (_targetEntity.getFlags().has("undead"))

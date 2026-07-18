@@ -10,8 +10,9 @@ assassin_master_follower <- inherit("scripts/retinue/follower", {
 		m.Image			= "ui/campfire/assassin_master_01";
 		m.Cost			= 0;
 		m.Effects		= [
-			"Your men learn an assassin specialty at level 5 instead of gaining a perk point",
-			"Your men adopt an assassination philosophy at level 8 instead of gaining a perk point"
+			"Your men learn a combat specialty at level 5 instead of gaining a perk point",
+			"Your men adopt an assassination philosophy at level 8 instead of gaining a perk point",
+			"Your men who have adopted a philosophy can retrain to a different combat specialty once"
 		];
 		m.Requirements	= [ { IsSatisfied = false, Text = "You are a trusted assassin of the Southern guilds" } ];
 	}
