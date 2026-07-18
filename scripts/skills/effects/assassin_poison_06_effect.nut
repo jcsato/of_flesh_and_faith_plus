@@ -46,8 +46,8 @@ assassin_poison_06_effect <- inherit("scripts/skills/skill", {
 		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding || _targetEntity.getCurrentProperties().IsImmuneToFire)
 			return;
 
-		// Do spawn fire if < threshold but target died
-		if (_damageInflictedHitpoints < ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor()) && _targetEntity.getHitpoints() > 0)
+		// Do spawn fire if < threshold but target died (so only return early if we shouldn't apply and target is still alive)
+		if (_damageInflictedHitpoints < ::OFFP.Helpers.getPoisonHitpointThreshold(getContainer().getActor()) && !_targetEntity.getSkills().hasSkill("effects.bleeding") && _targetEntity.getHitpoints() > 0)
 			return;
 
 		// Don't re-trigger if the target is already on fire, both for balance and annoyance
