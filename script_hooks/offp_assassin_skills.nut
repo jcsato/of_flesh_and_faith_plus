@@ -44,7 +44,7 @@
 		local resumeString = "[/color] damage to hitpoints";
 		local resumeIndex = oldDescription.find(resumeString);
 
-		local thresholdString = threshold > 0 ? (oldDescription.slice(startIndex, startString.len()) + Const.UI.Color.NegativeValue + threshold + resumeString) : "";
+		local thresholdString = threshold > 0 ? (oldDescription.slice(startIndex, startIndex + startString.len()) + Const.UI.Color.NegativeValue + "]" + threshold + resumeString) : "";
 		return oldDescription.slice(0, startIndex) + thresholdString + oldDescription.slice(resumeIndex + resumeString.len());
 	});
 
@@ -71,7 +71,7 @@
 		local resumeString = "[/color] damage to hitpoints";
 		local resumeIndex = oldDescription.find(resumeString);
 
-		local thresholdString = threshold > 0 ? (oldDescription.slice(startIndex, startString.len()) + Const.UI.Color.NegativeValue + threshold + resumeString) : "";
+		local thresholdString = threshold > 0 ? (oldDescription.slice(startIndex, startIndex + startString.len()) + Const.UI.Color.NegativeValue + "]" + threshold + resumeString) : "";
 		return oldDescription.slice(0, startIndex) + thresholdString + oldDescription.slice(resumeIndex + resumeString.len());
 	});
 
